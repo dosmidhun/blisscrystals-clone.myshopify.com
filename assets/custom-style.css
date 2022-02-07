@@ -667,7 +667,7 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 
 .loading {
    position: relative;
-   opacity:0;
+   opacity:1;
 }
 .loading:after {
     content: '';
