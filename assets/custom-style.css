@@ -718,3 +718,92 @@ div#collection-display {
         transform: rotate(360deg);
     }
 }
+div#collection-body {display: grid;grid-template-areas:
+'collection-image1 collection-name-body collection-name-body'
+'collection-image1 collection-desc-body collection-image2'
+'collection-image3 collection-image3 collection-image3'
+'collection-uses collection-uses collection-uses'
+'collection-healings collection-healings collection-healings'
+'collection-product-description collection-product-description collection-product-description';grid-gap: 30px;}
+
+div#collection-image1 {
+    grid-area:collection-image1;
+}
+
+div#collection-image2 {
+    grid-area:collection-image2;
+}
+
+div#collection-image3 {
+    grid-area:collection-image3;
+}
+
+div#collection-name-body {
+    grid-area:collection-name-body;
+}
+
+div#collection-description {
+    grid-area:collection-description;
+}
+
+div#collection-desc-body {
+    grid-area:collection-desc-body;
+}
+
+div#collection-uses {
+    grid-area:collection-uses;
+}
+
+div#collection-healings {
+    grid-area:collection-healings;
+}
+
+div#collection-product-description {
+    grid-area:collection-product-description;
+}
+
+div#collection-image3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+div#collection-name h4 {
+    font-size: 40px;
+}
+
+div#collection-description h6 {
+    font-size: 22px;
+}
+
+div#collection-name-body {
+    text-align: center;
+}
+
+div#collection-desc-body h6 {
+    font-size: 24px;
+    color: #000;
+}
+
+div#collection-desc-body span {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+div#collection-uses h6{
+        font-size: 24px;
+    color: #000;
+}
+
+div#collection-healings h6{
+        font-size: 24px;
+    color: #000;
+}
+div#collection-uses span{
+   font-size: 20px;
+    font-weight: 600;
+}
+
+div#collection-healings span{
+    font-size: 20px;
+    font-weight: 600;
+}
