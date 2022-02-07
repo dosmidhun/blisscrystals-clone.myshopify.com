@@ -80,7 +80,7 @@
                    if(end_crystal_path===api_end_crystal_path){
                      if(count_va==1){
                        
-                       $('#collection-display').removeClass('loading');
+                     
                         console.log("Found",end_crystal_path);
                      $('#collection-name').append('<h4>'+api_val.name+'</h4>');
 					 $('#collection-description').append('<h6>"'+api_val.description+'"</h6>');
@@ -333,7 +333,7 @@
 
             },
             complete: function (res) {
-                
+                  $('#collection-display').removeClass('loading');
 
             },
 
