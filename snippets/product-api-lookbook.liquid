@@ -208,7 +208,8 @@
               var orgin;
               orgin=res.data.origin;
                var htmlvalorgin='<h6>Origin: ';
-              $('#collection-desc-body').append('<span>'+orgin+'</span>');
+               htmlvalcolors+='<span>'+orgin+', </span>';
+              $('#collection-desc-body').append(htmlvalorgin);
             }
               if(res.data.colors.length){
               var colours=[];
