@@ -78,10 +78,9 @@
                        
                        $('#collection-display').removeClass('loading');
                         console.log("Found",end_crystal_path);
-                     $('#collection-display').append('<h4>'+api_val.name+'</h4>');
-					 $('#collection-display').append('<h6>'+api_val.description+'</h6>');
-                      $('#collection-display').append('<img src='+api_val.image_url+'/>');
-                      $('#collection-display').append('<p>'+api_val.description+'</p>');
+                     $('#collection-name').append('<h4>'+api_val.name+'</h4>');
+					 $('#collection-description').append('<h6>"'+api_val.description+'"</h6>');
+                      $('#collection-image1').append('<img src='+api_val.image_url+'/>');
                        additional_fetch(api_val.id);
                        
                       count_va=0;
