@@ -7,6 +7,30 @@
   </div>
   <div id="collection-display" class="loading">
     
+    <div id="collection-body">
+    
+      
+      <div id="collection-image1"></div>
+      <div id="collection-image2"></div>
+      <div id="collection-image3"></div>
+      <div id="collection-name"></div>
+      <div id="collection-description"></div>
+      
+       <div id="collection-desc-body">
+      	
+      
+       </div>
+      
+      <div id="collection-uses"></div>
+      <div id="collection-healings"></div>
+      <div id="collection-product-description"></div>
+    
+    
+    
+  	</div>
+    
+    
+    
   </div>
 </div>
 
@@ -58,7 +82,7 @@
 					 $('#collection-display').append('<h6>'+api_val.description+'</h6>');
                       $('#collection-display').append('<img src='+api_val.image_url+'/>');
                       $('#collection-display').append('<p>'+api_val.description+'</p>');
-                       zodiac_fetch(api_val.id);
+                       additional_fetch(api_val.id);
                        
                       count_va=0;
                      }
@@ -171,11 +195,11 @@
     
     
     
-    var zodiac_fetch = function(z_id){ 
+    var additional_fetch = function(a_id){ 
       
       $.ajax({
 
-            url:  'http://blisscrystalslearn.com/api/shopify/v1/crystals/'+z_id,
+            url:  'http://blisscrystalslearn.com/api/shopify/v1/crystals/'+a_id,
             type: 'GET',
             crossDomain: true,
      		headers: { "api-key": "DsVaxx8O0P9qLWXR1xC2YSg9oNejYNoZDRZZn2f5" },
