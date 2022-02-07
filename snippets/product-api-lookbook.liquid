@@ -207,6 +207,7 @@
               console.log(res.data.image,"zodiac image");
               console.log(JSON.parse(res.data.image),"zodiac json");
               var images= JSON.parse(res.data.image);
+              var htmlvalorgin='';
               for (var key in images) {
   				if (images.hasOwnProperty(key)) {
     				var val = images[key];
