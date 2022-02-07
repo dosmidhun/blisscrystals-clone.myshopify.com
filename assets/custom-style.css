@@ -770,19 +770,21 @@ div#collection-image3 {
 }
 
 div#collection-name h4 {
-    font-size: 40px;
+   font-size: 78px;
+   line-height: 80px;
+   font-family: 'Great Vibes', cursive;
 }
 
 div#collection-description h6 {
-    font-size: 22px;
+  
+      font-size: 24px;
+    font-style: italic;
 }
 
 div#collection-name-body {
     text-align: center;
 }
-div#collection-name{
-  font-family: 'Great Vibes', cursive;
-}
+
 div#collection-desc-body h6 {
     font-size: 24px;
     color: #000;
