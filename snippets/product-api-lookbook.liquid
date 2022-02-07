@@ -234,7 +234,7 @@
               }
             
               
-              if(res.data.origin.length){
+              if(res.data.origin == null){
               var orgin;
               orgin=res.data.origin;
                var htmlvalorgin='<h6>Origin: ';
@@ -242,7 +242,7 @@
               $('#collection-desc-body').append(htmlvalorgin);
             }
               
-              if(res.data.healing.length){
+              if(res.data.healing== null){
               var htmlvalhealing;
               healing=res.data.healing;
                var htmlvalhealing='<h6>Healing: ';
@@ -250,7 +250,7 @@
               $('#collection-healings').append(htmlvalhealing);
             }
               
-              if(res.data.uses.length){
+              if(res.data.uses== null){
               var htmlvaluses;
               uses=res.data.uses;
                var htmlvaluses='<h6>Uses: ';
