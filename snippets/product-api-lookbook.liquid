@@ -186,10 +186,10 @@
               zodiacs=res.data.zodiacs;
               zodiacs.forEach(function (item, index) {
   				 if(index<zodiacs.length-1){
-                  $('#collection-display').append('<p>'+item.name+', </p>');
+                  $('#collection-display').append('<span>'+item.name+', </span>');
                 }
                 else{
-                   $('#collection-display').append('<p>'+item.name+'</p>');
+                   $('#collection-display').append('<span>'+item.name+'</span>');
                 }
 			});
               
