@@ -1,0 +1,16 @@
+
+{% if settings.layout_product == 'default' %}
+	{% render 'product-default' %}
+{% elsif settings.layout_product == 'pr_gallery' %}
+	{% render 'product-gallery' %}
+{% endif %}
+
+{% if template contains 'product' %}
+<div class="themevale_popup">
+  {% section 'product-notification' %}
+  {% section 'cookie_popup' %}
+  {% if settings.display_sticky %} 
+	{% render 'sticky_add_to_cart' %}
+  {% endif %}
+</div>
+{% endif %}

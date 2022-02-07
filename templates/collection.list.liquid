@@ -1,0 +1,74 @@
+
+
+{% render 'breadcrumb' %}
+
+<header class="page-header">
+  <h2>
+     {% render 'multilang' with collection.title %}       
+  </h2>  
+   <div class="filter-sortby btn-group">
+    <label for="sort-by" {% if settings.enable_multilang %}data-translate="collections.sorting.title"{% endif %}>
+      {{ 'collections.sorting.title' | t }}
+    </label> 
+    <div class="label-tab">
+      <span class="label-text">
+        {{ 'collections.sorting.featured' | t }}
+      </span>
+      <span class="icon-dropdown">
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+      </span>
+    </div>
+    <ul class="dropdown-menu">
+      <li class="active">
+        <span data-href="manual" {% if settings.enable_multilang %}data-translate="collections.sorting.featured"{% endif %}>
+          {{ 'collections.sorting.featured' | t }}
+        </span>
+      </li>
+      <li>
+        <span data-href="price-ascending" {% if settings.enable_multilang %}data-translate="collections.sorting.price_ascending"{% endif %}>
+          {{ 'collections.sorting.price_ascending' | t }}
+        </span>
+      </li>
+      <li>
+        <span data-href="price-descending" {% if settings.enable_multilang %}data-translate="collections.sorting.price_descending"{% endif %}>
+          {{ 'collections.sorting.price_descending' | t }}
+        </span>
+      </li>
+      <li>
+        <span data-href="title-ascending" {% if settings.enable_multilang %}data-translate="collections.sorting.az"{% endif %}>
+          {{ 'collections.sorting.az' | t }}
+        </span>
+      </li>
+      <li>
+        <span data-href="title-descending" {% if settings.enable_multilang %}data-translate="collections.sorting.za"{% endif %}>
+          {{ 'collections.sorting.za' | t }}
+        </span>
+      </li>
+      <li>
+        <span data-href="created-ascending" {% if settings.enable_multilang %}data-translate="collections.sorting.date_ascending"{% endif %}>
+          {{ 'collections.sorting.date_ascending' | t }}
+        </span>
+      </li>
+      <li>
+        <span data-href="created-descending" {% if settings.enable_multilang %}data-translate="collections.sorting.date_descending"{% endif %}>
+          {{ 'collections.sorting.date_descending' | t }}
+        </span>
+      </li>
+      <li>
+        <span data-href="best-selling" {% if settings.enable_multilang %}data-translate="collections.sorting.best_selling"{% endif %}>
+          {{ 'collections.sorting.best_selling' | t }}
+        </span>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<div class="row-bt">
+  {% section 'sidebar' %}
+  <div class="block-row col-main col-lg-9">
+    {% section 'collection-header' %}
+    <div class="collections-content-product">
+      {% section 'collection-list-template' %}
+    </div>
+  </div>
+</div>

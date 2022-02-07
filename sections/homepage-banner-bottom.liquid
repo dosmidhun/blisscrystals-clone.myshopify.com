@@ -1,0 +1,83 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-81c17284"></div>
+{% if section.settings.show_banner_bottom %}
+<section class="one-block-image" id="section-{{section.id}}">
+  <div class="container">
+    <div class="block-image">
+       {%- assign img_url = section.settings.banner_bottom_img | img_url: '1024x' -%}
+       <a href="{{ section.settings.banner_bottom_link }}" title="{{ section.settings.banner_bottom_title}}">            
+          {% if section.settings.banner_bottom_img != blank %}
+          <img src="{{ img_url}}" alt="{{ section.settings.banner_bottom_title | escape }}"
+               class="lazyload"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ section.settings.banner_bottom_img | img_url: '1024x' }}"
+               data-sizes="auto">
+          {% else %}
+          <span class="not_img">930 x 100px</span>
+          {% endif %}          
+        </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+<style>
+  #section-{{section.id}}{
+    margin-top: {{ section.settings.space_on }}px;
+    margin-bottom: {{ section.settings.space_below }}px;
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Homepage Bottom Banner",
+    "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_banner_bottom",
+      "label": "Display Banner Bottom?",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "space_on",
+      "label": "Space on",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "space_below",
+      "label": "Space below",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40
+    },
+    {
+      "type" : "image_picker",
+      "id" : "banner_bottom_img",
+      "label" : "Select image",
+      "info" : "Recommended Image: Width x Height (930 x 100)PX"
+    },
+    {
+      "type": "url",
+      "id" : "banner_bottom_link",
+      "label" : "Image link"
+    },
+    {
+      "type" : "text",
+      "id": "banner_bottom_title",
+      "label" : "Image Title",
+      "default" : "Diamond Forever"
+    }
+    ],
+	"presets": [{
+      "name": "Homepage Bottom Banner",
+      "category": "block images"
+    }]
+  }
+{% endschema %}

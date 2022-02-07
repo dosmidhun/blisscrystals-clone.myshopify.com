@@ -1,0 +1,8 @@
+{% if settings.enable_wishlist %}
+<button class="wishlist" data-product-handle="{{ product.handle }}">
+  <i class="fa fa fa-heart-o" aria-hidden="true"></i>
+  <span {% if settings.enable_multilang %}data-translate="wishlist.general.added_to_wishlist"{% endif %} class="wishlist_text">
+    {{ 'wishlist.general.added_to_wishlist' | t }}
+  </span>
+</button>
+{% endif %}

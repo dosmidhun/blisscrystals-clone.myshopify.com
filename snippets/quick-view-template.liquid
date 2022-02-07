@@ -1,0 +1,20 @@
+<div id="quickview-template" class="quick-view">
+  <div class="overlay"></div>
+  <div class="content"></div>
+</div>
+
+{% render 'size-chart' %}
+
+<script type="text/javascript">
+
+  {% if settings.dpl_customers_view %}
+  setInterval(function(){
+    var view = Array({{ settings.number_view }});
+    var n = Math.floor(Math.random()*view.length);
+    jQuery("#customers_view label").html(view[n]);
+
+  },3000);
+
+  {% endif %}
+
+</script>

@@ -1,0 +1,322 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-3a667294"></div>
+{% if section.settings.show_weekly_special %}
+<section class="homepage-weekly-special" id="section-{{section.id}}">
+  <div class="container medium">
+    {% if section.settings.weekly_special_title != blank %}
+    <div class="widget-title">
+      <h3>
+        {% render 'multilang' with section.settings.weekly_special_title %}
+      </h3>
+      {% if section.settings.weekly_special_desc != blank %}
+        <p class="desc-text">{% render 'multilang' with section.settings.weekly_special_desc %}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="row-bt" >
+      {% for block in section.blocks %}
+      <div class="item column col column-{{block.id}} {% if section.blocks.size == 2 %} two-col{% elsif section.blocks.size == 3 %} three-col {% else %} one-col{% endif %}">
+        <div class="item-img">
+         <a href="{{block.settings.ws_link}}" title="{{block.settings.ws_img_heading}}">
+              {% if block.settings.ws_img != blank %}
+              {%- assign img_url = block.settings.ws_img | img_url: '1024x' -%}
+              <img src="https:{{ img_url}}" alt="{{block.settings.ws_img_heading}}"
+                   class="lazyload"
+                   data-src="https:{{ img_url }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ img_url.aspect_ratio }}"
+                   data-sizes="auto">
+              {% else %}
+              <span class="not_img">720 x 570px</span>
+              {% endif %}
+              <figcaption class="{% if block.settings.ws_img_heading_position == 'top' %} position-top{% elsif block.settings.ws_img_heading_position == 'bottom' %} position-bottom {% else %} position-middle{% endif %}">
+                {% if block.settings.ws_img_sub_heading != blank %}
+                <h5 class="sub-heading" style="font-size: {{ block.settings.font_size_img_sub_heading }};color: {{ block.settings.color_img_sub_heading }}; border-bottom: 1px solid {{ block.settings.color_img_sub_heading }};">
+                  {% render 'multilang' with  block.settings.ws_img_sub_heading %}
+                </h5>
+                {% endif %}
+
+                {% if block.settings.ws_img_heading != blank %}
+                <h3 class="heading" style="font-size: {{ block.settings.font_size_img_heading }};color: {{ block.settings.color_img_heading }};">
+                  {% render 'multilang' with  block.settings.ws_img_heading %}
+                </h3>
+                {% endif %}
+              </figcaption>
+            </a>
+        </div>
+        <div class="item-content">
+          {% if block.settings.ws_content_heading != blank %}
+          <h2 style="font-size: {{ block.settings.font_size_content_heading }};color: {{ block.settings.color_content_heading }};">
+            {% render 'multilang' with  block.settings.ws_content_heading %}
+          </h2>
+          {% endif %}
+          	{% if block.settings.display_promotion_text %}
+          	<div class="promotion">
+            {% if block.settings.ws_content_promotion_text != blank %}
+            <span class="promotion-text" style="font-size: {{ block.settings.font_size_content_promotion_text }};color: {{ block.settings.color_content_promotion_text }};">
+              {% render 'multilang' with  block.settings.ws_content_promotion_text %}
+            </span>
+            {% endif %}
+
+            {% if block.settings.ws_content_promotion_code != blank %}
+            <span class="promotion-code" style="font-size: {{ block.settings.font_size_content_promotion_code }};color: {{ block.settings.color_content_promotion_code }};">
+              {% render 'multilang' with  block.settings.ws_content_promotion_code %}
+            </span>
+            {% endif %}
+            </div>
+            {% endif %}
+
+            {% if block.settings.ws_content_desc != blank %}
+            <p class="desc-text" style="font-size: {{ block.settings.font_size_content_desc }};color: {{ block.settings.color_content_desc }};">
+              {% render 'multilang' with  block.settings.ws_content_desc %}
+            </p>
+            {% endif %}
+
+            {% if block.settings.ws_content_btn_text != blank %}
+            <a class="btn" href="{{ block.settings.ws_link }}">{% render 'multilang' with block.settings.ws_content_btn_text %}</a>
+            {% endif %}
+          
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  #section-{{section.id}}{
+    margin-top: {{ section.settings.space_on }}px;
+    margin-bottom: {{ section.settings.space_below }}px;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Weekly's Special",
+	  "max_blocks": 3,
+    "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_weekly_special",
+      "label": "Display Weekly's Special?",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "space_on",
+      "label": "Space on",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "space_below",
+      "label": "Space below",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 25
+    },
+	  {
+      "type": "text",
+      "id": "weekly_special_title",
+      "label": "Title",
+      "default": "Weekly’s Special  | Wöchentlich"
+    },
+    {
+      "type": "text",
+      "id": "weekly_special_desc",
+      "label": "Description Text",
+      "default": "Nulla dinterdum diverra de dacos saliduet lectus sarius"
+    }
+	],
+    "blocks": [
+      {
+        "type": "banner",
+        "name": "Block",
+        "settings": [
+          {
+            "type" : "header",
+            "content" : "Image Block"
+          },
+          {
+            "type" : "image_picker",
+            "id" : "ws_img",
+            "label" : "Select image",
+            "info" : "Recommended Image: Width x Height (720 x 570)PX"
+          },
+          {
+            "type" : "url",
+            "id" : "ws_link",
+            "label" : "Link"
+          },
+		      {
+            "type" : "text",
+            "id" : "ws_img_sub_heading",
+            "label" : "Sub Heading",
+            "default" : "Shop Bridal"
+          },
+          {
+            "type" : "text",
+            "id": "font_size_img_sub_heading",
+            "label" : "Font size sub heading",
+            "default" : "12px"
+          }, 
+          {
+            "type" : "color",
+            "id": "color_img_sub_heading",
+            "label": "Sub Heading Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "text",
+            "id" : "ws_img_heading",
+            "label" : "Heading",
+            "default" : "Accessories"
+          },
+          {
+            "type" : "text",
+            "id": "font_size_img_heading",
+            "label" : "Font size heading",
+            "default" : "50px"
+          }, 
+          {
+            "type" : "color",
+            "id": "color_img_heading",
+            "label": "Heading Color",
+            "default" : "#fff"
+          },
+          {
+            "type": "select",
+            "id": "ws_img_heading_position",
+            "label": "Heading position",
+            "default": "bottom",
+            "options": [
+              {
+                "value": "top",
+                "label": "Top"
+              },
+                {
+                "value": "middle",
+                "label": "Middle"
+                },
+                {
+                "value": "bottom",
+                "label": "Bottom"
+                }
+            ]
+          },
+          {
+            "type" : "header",
+            "content" : "Content Block"
+          },
+          {
+            "type" : "text",
+            "id" : "ws_content_heading",
+            "label" : "Content Heading",
+            "default" : "Bridal jewelry & accessories"
+          },
+          {
+            "type" : "text",
+            "id": "font_size_content_heading",
+            "label" : "Font size heading",
+            "default" : "24px"
+          }, 
+          {
+            "type" : "color",
+            "id": "color_content_heading",
+            "label": "Heading Color",
+            "default" : "#000"
+          },
+          {
+			"type": "checkbox",
+			"id": "display_promotion_text",
+			"label": "Display Promotion Text?",
+			"default": true
+    	  },
+          {
+            "type" : "textarea",
+            "id" : "ws_content_promotion_text",
+            "label" : "Promotion Text",
+            "default" : "Sale 10% off on Selected Items."
+          },
+          {
+            "type" : "text",
+            "id": "font_size_content_promotion_text",
+            "label" : "Font size heading",
+            "default" : "16px"
+          }, 
+          {
+            "type" : "color",
+            "id": "color_content_promotion_text",
+            "label": "Promotion Text Color",
+            "default" : "#5a5a5a"
+          },
+          {
+            "type" : "textarea",
+            "id" : "ws_content_promotion_code",
+            "label" : "Promotion Code",
+            "default" : "- CODE: HAIR10 -"
+          },
+          {
+            "type" : "text",
+            "id": "font_size_content_promotion_code",
+            "label" : "Font size heading",
+            "default" : "16px"
+          }, 
+          {
+            "type" : "color",
+            "id": "color_content_promotion_code",
+            "label": "Promotion Code Color",
+            "default" : "#ed2929"
+          },
+          {
+            "type" : "textarea",
+            "id" : "ws_content_desc",
+            "label" : "Description Text",
+            "default" : "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed diam ante lacinia pharetra des sestibulum a euismod del urna. Curabitur euismod tellus nec mi mollis quis."
+          },
+          {
+            "type" : "text",
+            "id": "font_size_content_desc",
+            "label" : "Font size Description Text",
+            "default" : "12px"
+          }, 
+          {
+            "type" : "color",
+            "id": "color_content_desc",
+            "label": "Description Text Color",
+            "default" : "#5a5a5a"
+          },
+          {
+            "type" : "text",
+            "id": "ws_content_btn_text",
+            "label" : "Button Text",
+            "default" : "Shop Now"
+          }
+        ]
+      }	
+    ],
+    "presets": [
+    {
+      "name": "Weekly's Special",
+      "category": "banner",
+		  "blocks": [
+        {
+          "type": "banner"
+        },
+        {
+          "type": "banner"
+        },        
+		    {
+          "type": "banner"
+        }
+      ]
+    }
+    ]
+  }
+{% endschema %}

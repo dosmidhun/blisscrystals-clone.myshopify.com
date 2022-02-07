@@ -1,0 +1,145 @@
+{% if settings.display_popup_newsletter %}
+<script type="text/javascript">// <![CDATA[
+  jQuery(document).ready(function() {    //
+    var $modalParent        = jQuery('div.newsletterwrapper'),
+        expire              = $modalParent.data('expire'),
+        modalWindow         = jQuery('#email-modal'),
+        emailModal          = jQuery('#email-modal'),
+        modalPageURL        = window.location.pathname; 
+    modalWindow = modalWindow.html();
+    modalWindow = '<div id="email-modal">' + modalWindow + '</div>';
+    $modalParent.css({'position':'relative'});
+    jQuery('.wrapper #email-modal').remove();
+    $modalParent.append(modalWindow);
+
+    if(jQuery.cookie('emailSubcribeModal') != 'closed') {
+      setTimeout(openEmailModalWindow, 5000);
+    };
+
+    $('#email-modal .modal-overlay').click(function(e) {
+      e.preventDefault();
+      closeEmailModalWindow();
+    });
+
+    $('#email-modal .close-window').click(function(e) {
+      e.preventDefault();
+      closeEmailModalWindowexpires();
+    });
+    
+    $('body').keydown(function(e) {
+      if( e.which == 27) {
+        closeEmailModalWindow();
+        jQuery('body').unbind('keydown');
+      }
+    });
+    
+    $('#email_signup form').submit(function() {
+      if ($('#email_signup .email').val() != '') {
+        closeEmailModalWindow();
+      }
+    });
+
+    function closeEmailModalWindow () {
+      $('#email-modal .modal-window').fadeOut(600, function() {
+        $('#email-modal .modal-overlay').fadeOut(600, function() {
+          $('#email-modal').hide();
+          $('body').removeClass('has-popup');
+          if ($('#email-modal').find('input[name="dismiss"]').prop('checked')) {
+              jQuery.cookie('emailSubcribeModal', 'closed', {expires:expire, path:'/'});
+          }
+        });
+      })
+    }
+
+    function closeEmailModalWindowexpires () {
+      $('#email-modal .modal-window').fadeOut(600, function() {
+        $('#email-modal .modal-overlay').fadeOut(600, function() {
+          $('#email-modal').hide();
+          $('body').removeClass('has-popup');
+            {% if settings.display_popup_newsletter_text_note %}
+              if ($('#email-modal').find('input[name="dismiss"]').prop('checked')) {
+                  jQuery.cookie('emailSubcribeModal', 'closed', {expires:expire, path:'/'});
+              }
+            {% else %}
+              jQuery.cookie('emailSubcribeModal', 'closed', {expires:expire, path:'/'});
+           {% endif %}
+        });
+      })
+    }
+
+    function openEmailModalWindow () {
+      $('#email-modal').fadeIn(600, function() {
+        $('#email-modal .modal-window').fadeIn(600);
+        $('body').addClass('has-popup');
+      });
+    }
+
+  });
+  // ]]
+  // ]]></script>
+
+<div class="newsletterwrapper" data-expire="{{ settings.popup_newsletter_expire }}">
+  <div id="email-modal" style="display: none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-window" style="display: none;">
+      <div class="window-window">
+        <div class="window-content">
+          <a class="close-newsletter close-window" title="{{ 'cart.ajax_cart.close' | t }}">
+            {% render 'icon-close-big' %}
+          </a>
+          
+          <div class="right">
+            {% if settings.newsletter != blank %}
+            {%- assign img_url = settings.newsletter | img_url: 'large' -%}
+            <img src="{{ img_url }}" alt="">
+            {% else %}	
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+          
+          <div class="left">
+            {% if settings.popup_newsletter_title != blank %}
+            <h2 class="title">
+              {% render 'multilang' with settings.popup_newsletter_title %}
+            </h2>
+            {% endif %}
+            
+            {% if settings.popup_newsletter_sub_title != blank %}
+            <p class="sub-title">
+              {% render 'multilang' with settings.popup_newsletter_sub_title %}
+            </p>
+            {% endif %}
+            
+            <div id="email-subscibe">
+              <div id="email_signup">
+                {% render 'newsletter-form' %}
+              </div>
+            </div>
+            
+            {% if settings.popup_newsletter_message != blank %}
+            <p class="message">
+              {% render 'multilang' with settings.popup_newsletter_message %}
+            </p>
+            {% endif %}
+
+            {% if settings.display_popup_social %}
+            <div class="icon-social">
+              {% render 'share' %}
+            </div>
+            {% endif %}
+            
+            {% if settings.display_popup_newsletter_text_note and settings.when_to_show == 'first_time' %}
+              {% if settings.popup_newsletter_text_note != blank %}
+              <input id="dismiss" type="checkbox" name="dismiss">
+              <label for="dismiss">
+                {% render 'multilang' with settings.popup_newsletter_text_note %}
+              </label>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

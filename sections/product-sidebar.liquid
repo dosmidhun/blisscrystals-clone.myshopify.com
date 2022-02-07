@@ -1,0 +1,397 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-e1257f7f"></div>
+{% if section.settings.display_sidebar_detail_page %}
+<div class="sidebar">
+  <div class="close-sidebar">
+	{% render 'icon-close' %}
+</div>
+  
+{% for block in section.blocks %}
+  {% case block.type %}
+  {% when 'menu' %}
+    {% if block.settings.enable %}
+    <div class="widget sidebar-links no-ajax">
+      {% if block.settings.title != blank %}
+      <div class="widget-header open">
+        <h3 class="sidebar-title">
+          {% render 'multilang' with block.settings.title %}
+        </h3>
+      </div>
+      {% endif %}
+
+      <div class="widget-content">
+        <ul>
+          {% if block.settings.style_categories == 'style_show_all' %}
+          {% for category in collections %}
+          <li>
+            <a href="{{ category.url }}" {% if collection.handle == category.handle %}class="active"{% endif %}>              
+              {% render 'multilang' with category.title %}
+            </a>
+          </li>     
+          {% endfor %}
+
+          {% else %}
+          {% assign cat_link_list = block.settings.link_list | handleize %}
+
+          {% for link in linklists[cat_link_list].links %}
+          <li {% if linklists[link.handle] != empty %}class="dropdown{% if collection.handle == link.handle %} open{% endif %}"{% endif %}>
+            <a href="{{ link.url }}" {% if collection.handle == link.handle %}class="active"{% endif %}>
+              {% render 'multilang' with link.title %}
+            </a>
+
+            {% if linklists[link.handle] != empty %}
+            <span class="icon-dropdown">
+              <i class="fa fa-angle-down"></i>
+            </span>
+            {% assign link_child = link.handle %}
+            {% render 'dropdown-cat', link_child: link_child %}
+            {% endif %}
+          </li>        
+          {% endfor %}        
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+  
+  {% when 'image' %}
+  	{% if block.settings.enable %}
+    
+    {% if block.settings.image == blank and block.settings.image_1 == blank %}
+    <div class="widget sidebar-banner">
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+    {% else %}
+
+    <div class="widget sidebar-banner">
+      {% if block.settings.image != blank %}
+      <div class="banner-first banner-item">
+        <a class="animate-hvr" href="{{ block.settings.link }}">
+          <img src="{{ block.settings.image  | img_url: '100x' }}" alt=""             
+               data-src="{{ block.settings.image  | img_url: '600x' }}"
+               class="lazyload"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{  block.settings.image.aspect_ratio }}"
+               data-sizes="auto">
+        </a>
+      </div>
+      {% endif %}
+      {% if block.settings.image_1 != blank %}
+      <div class="banner-last banner-item">
+        <a class="animate-hvr" href="{{ block.settings.link_1 }}">
+          <img src="{{ block.settings.image_1  | img_url: '100x' }}" alt=""             
+               data-src="{{ block.settings.image_1  | img_url: '600x' }}"
+               class="lazyload"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{  block.settings.image_1.aspect_ratio }}"
+               data-sizes="auto">
+        </a>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    
+    {% endif %}
+  
+  {% when 'product' %}
+    {% if block.settings.enable %}
+    <div class="widget widget-featured-product" id="block-{{ block.id }}">
+      {% if block.settings.title != blank %}
+      <div class="widget-header open">   
+        <h3 class="sidebar-title">
+          {% render 'multilang' with block.settings.title %}
+        </h3>
+      </div>
+      {% endif %}
+      {% if block.settings.collection == blank %}
+      <div class="grid-view-item no-product">
+        <a href="#" class="center">
+          <div class="grid-view-item__image">
+            {% capture current %}{% cycle 1 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+          <div class="product-title"><span>Your product's name</span></div>
+        </a>
+        <div class="center">
+          <span> $200.00 </span>
+        </div>
+      </div>
+      {% else %}
+      <div class="widget-product">
+        <div class="products-grid row">
+          {% for product in collections[block.settings.collection].products limit:block.settings.limit %}
+          <div class="{% if settings.product_image_border%}grid-item-border{% endif %}{% if settings.product_image_crop%} crop_image{% else %} no_crop_image{% endif %} grid-item col-12 col-sm-6 col-md-4 col-lg-12">
+            {% render 'product-grid-item', product: product %}
+          </div>
+          {% endfor %}
+        </div> 
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  
+  {% when 'quote' %}    
+    {% if block.settings.enable %}	
+    <div class="widget sidebar-cms-custom">
+      {% if block.settings.title != blank %}
+      <div class="widget-header open">   
+        <h3 class="sidebar-title">
+          {% render 'multilang' with block.settings.title | escape  %}
+        </h3>
+      </div>
+      {% endif %}
+
+      <div class="widget-content">
+        {% if block.settings.quote != blank %}
+        {% if settings.enable_multilang %}
+        <div class="rte-setting lang1">{{ block.settings.quote | split: '|' | first }}</div>
+        <div class="rte-setting lang2">{{ block.settings.quote | split: '|' | last }}</div>
+        {% else %}
+        <div class="rte-setting">{{ block.settings.quote | split: '|' | first }}</div>
+        {% endif %}
+        {% endif %}
+      </div>
+    </div>  
+    {% endif %}
+  {% endcase %}
+{% endfor %}
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Product Sidebar",
+	  "class": "col-lg-3 col-sidebar",
+    "max_blocks": 10,
+ 	"settings": [
+	  {
+        "type": "checkbox",
+        "id": "display_sidebar_detail_page",
+        "label": "Enable Sidebar",
+        "default": true
+      },
+ 		{
+        "type": "radio",
+        "id": "show_sidebar",
+        "label": "Show sidebar on the",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "right"
+      }
+	],
+    "blocks": [
+       {
+        "type": "menu",
+        "name": "Categories",
+        "settings": [
+          {
+              "type": "checkbox",
+              "id": "enable",
+              "label": "Enable",
+              "default": true
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "radio",
+            "id": "style_categories",
+            "label": "Show all \/ Only a few categories",
+            "options": [
+              {
+                "value": "style_show_all",
+                "label": "Show all"
+              },
+              {
+                "value": "style_little",
+                "label": "Only a few categories"
+              }
+            ]
+          },
+          {
+            "type": "link_list",
+            "id": "link_list",
+            "label": "Choose a menu",
+            "default": "main-menu"
+          }
+         ]
+       },
+       {
+          "type": "product",
+          "name": "Product Slider",
+          "settings": [
+            {
+            "type": "checkbox",
+            "id": "enable",
+            "label": "Enable",
+            "default": true
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Title"
+            },
+            {
+              "id": "collection",
+              "type": "collection",
+              "label": "Collection"
+            },
+            {
+              "type": "text",
+              "id": "limit",
+              "label": "Number of products to show",
+              "default": "8"
+            }
+          ]
+        },
+        {
+        "type": "image",
+        "name": "Block Image",
+        "settings": [
+          	{
+            "type": "checkbox",
+            "id": "enable",
+            "label": "Enable",
+            "default": true
+      		},
+			{
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image 1"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link 1",
+            "info": "Optional"
+          },
+		  {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image 2"
+          },
+          {
+            "type": "url",
+            "id": "link_1",
+            "label": "Link 2",
+            "info": "Optional"
+          }
+        ]
+      },
+        {
+          "type": "quote",
+          "name": "Custom Block",
+          "settings": [
+            {
+            "type": "checkbox",
+            "id": "enable",
+            "label": "Enable",
+            "default": true
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Heading",
+              "default": "Custom Block"
+            },
+            {
+              "type": "textarea",
+              "id": "quote",
+              "label": "Text",
+              "default": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
+            }
+          ]
+        }
+      ]
+    }
+{% endschema %}
+
+<style>
+  {% unless section.settings.display_sidebar_detail_page %}
+  .template-product .sidebar-label{
+    display: none;
+  }
+  {% endunless %}  
+
+  @media (min-width: 992px) {
+    {% unless section.settings.display_sidebar_detail_page %}
+    .template-product .col-main {
+      width: 100%;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+   
+    .template-product .col-sidebar{
+      display: none;
+    }
+
+    .product-img-box.horizontal{
+      -ms-flex: 0 0 48%;
+      flex: 0 0 48%;
+      max-width: 48%;
+    }
+
+    .product-shop.horizontal {
+      -ms-flex: 0 0 52%;
+      flex: 0 0 52%;
+      max-width: 52%;
+    }
+    .product-img-box {
+      padding-left:0px;
+    }
+
+    {% else %}
+    .template-collection .sidebar {
+      display: block !important;
+    }
+
+    .product-img-box {
+      -ms-flex: 0 0 48%;
+      flex: 0 0 48%;
+      max-width: 48%;
+      padding: 0 16px 0 0;
+    }
+
+    .product-shop {
+      -ms-flex: 0 0 52%;
+      flex: 0 0 52%;
+      max-width: 52%;
+      padding-left:14px;
+    }
+
+    {% endunless %}        
+    
+  }
+
+  @media (min-width: 1025px) {
+    {% if section.settings.display_product_reviews %}
+      
+    {% endif %}
+
+    {% if section.settings.show_sidebar == 'right' %}
+    .template-product .row-bt {
+      -webkit-flex-direction: row-reverse;
+      -moz-flex-direction: row-reverse;
+      -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+    }
+    .col-sidebar {
+      padding-left: 20px;
+      padding-right: 0;
+    }
+    {% endif %}
+  }
+
+</style>

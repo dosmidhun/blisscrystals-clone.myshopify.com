@@ -1,0 +1,50 @@
+{% if settings.enable_shopify_payments_currencies %}
+<ul id="currencies">
+
+  {%- for currency in shop.enabled_currencies -%}
+  <li data-currency="{{currency.iso_code}}" {% if currency == cart.currency %} class="active" {% endif %} value="{{currency.iso_code}}">
+    <a href="#">
+      <span class="icon">
+        {% if currency.iso_code == 'XAF' or currency.iso_code == 'XOF' or currency.iso_code == 'XPF' %}
+        <img src="https://cdn.shopifycloud.com/web/assets/4714259873a1c6de6957c5a3c61bf7b4.svg" alt="{{currency.iso_code}}" />
+        {% else %}
+        <img src="https://www.countryflags.io/{{currency.iso_code | handleize | slice: 0, 2}}/flat/64.png" alt="{{currency.iso_code}}" />
+        {% endif %}
+      </span>
+      <span class="text">{{currency.iso_code}}</span>
+    </a>
+  </li>  
+  {% endfor %}
+
+</ul>
+{% else if settings.enable_multiple_currencies %}
+<ul id="currencies">
+
+  {% for i in (1..10) %}
+  {% capture currency_unit %}currency_{{ i }}_unit{% endcapture %}
+  {% capture i-currency_unit %}i-currency-{{ i }}.png{% endcapture %}
+  {% assign currency_length = settings[currency_unit] | size %}
+
+  {% if currency_length > 0 %}
+  <li data-currency="{{ settings[currency_unit] }}" {% if shop.currency == settings[currency_unit] %} class="active" {% endif %} value="{{ settings[currency_unit] }}">
+    <a href="#">
+      <span class="icon">
+        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="{{ settings.settings[currency_unit] }}" 
+             class="lazyload"
+             data-src="{{i-currency_unit | asset_url }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{"i-currency-4.png" | asset_url }}"
+             data-sizes="auto">
+      </span>
+      <span class="text">{{ settings[currency_unit] }}</span>
+    </a>
+  </li> 
+  {% endif %}  
+  {% endfor %}
+
+</ul>
+
+<div class="currencies_modal" style="display:none">
+  <div {% if settings.enable_multilang %}data-translate="general.currency.change_text"{% endif %}>{{ 'general.currency.change_text' | t }}</div><span></span>
+</div>
+{% endif %}

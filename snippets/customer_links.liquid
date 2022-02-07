@@ -1,0 +1,79 @@
+<div id="dropdown-customer" class="ct_login dropdown-border">
+  <a href="javascript:void(0)" class="close-menu">
+    {% render 'icon-close' %}
+  </a>
+  <h3 class="customer-title" {% if settings.enable_multilang %}data-translate="customer.login.title"{% endif %}>
+    {{ 'customer.login.title' | t }}
+  </h3>
+
+  <div class="content">
+    {% if customer %}
+    <div class="is-customer border_top">
+      <div class="ct-customer">
+        <a class="btn" id="customer_logout_link" href="{{ routes.account_logout_url }}" {% if settings.enable_multilang %}data-translate="layout.customer.log_out"{% endif %}>
+          {{ 'layout.customer.log_out' | t }}
+        </a>
+        <a class="btn acc" href="{{ routes.account_login_url }}" {% if settings.enable_multilang %}data-translate="customer.account.title"{% endif %}>
+          {{ 'customer.account.title' | t }}
+        </a>
+      </div>
+    </div>
+
+    {% else %}
+    <div class="login-customer">
+      <div class="ct-customer">
+        <form accept-charset="UTF-8" action="{{ routes.account_login_url }}" method="post">
+          <input name="form_type" type="hidden" value="customer_login" />
+          <input name="utf8" type="hidden" value="✓" />
+
+          <div class="ct-login">
+            <div class="form-group">
+              <label for="customer_email">
+                <span {% if settings.enable_multilang %}data-translate="customer.login.email"{%endif%}>
+                  {{ 'customer.login.email' | t }}
+                </span>
+              </label>
+              <input class="form-control" type="email" value="" name="customer[email]" placeholder="{{ 'customer.login.email_placeholder' | t }}" >
+            </div>
+            <div class="form-group">
+              <label for="customer_password">
+                <span {% if settings.enable_multilang %}data-translate="customer.login.password"{%endif%}>
+                  {{ 'customer.login.password' | t }}
+                </span>
+              </label>
+              <input class="form-control" type="password" value="" placeholder="{{ 'customer.login.password' | t }}" name="customer[password]" >
+            </div>
+
+            <div class="action-btn">
+              <input type="submit" class="btn login" {% if settings.enable_multilang %}data-translate="customer.login.login"{% endif %} value="{{ 'customer.login.login' | t }}">
+              <a class="forgot-password" href="{{ routes.account_login_url }}#recover" {% if settings.enable_multilang %}data-translate="customer.login.forgot_password"{% endif %}>{{ 'customer.login.forgot_password' | t }}</a>
+            </div>
+          </div>
+
+          <div class="ct-register">
+            <div class="action-btn">
+              <a href="{{ routes.account_register_url }}" class="btn register" {% if settings.enable_multilang %}data-translate="customer.register.title"{% endif %}>
+                {{  'customer.register.title' | t }}
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    {% endif %}
+
+  </div>
+
+    {% if settings.enable_wishlist %}
+  <div class="wishlist-text">
+    <a href="{{ pages['wish-list'].url }}" data-product-handle="{{ product.handle }}" data-id="{{ product.id }}">
+      {% render 'icon-wishlist' %}
+      <span class="wish_list" data-translate="wishlist.general.my_lists">
+        {{ 'wishlist.general.my_lists' | t }}
+      </span>
+    </a>
+  </div>
+  {% endif %}
+
+</div>

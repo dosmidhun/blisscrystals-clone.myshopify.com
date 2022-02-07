@@ -1,0 +1,20 @@
+{% render 'breadcrumb' %}
+
+<div class="row-bt pro-page halo-product-gallery">
+ 
+  <div class="block-row col-main col-lg-12">
+    {% section 'product-gallery-template' %}
+  </div>
+
+</div>
+
+{% section 'recently-viewed-products' %}
+{% if template contains 'product' %}
+<div class="themevale_popup">
+  {% section 'product-notification' %}
+  {% section 'cookie_popup' %}
+  {% if settings.display_sticky %} 
+	{% render 'sticky_add_to_cart' %}
+  {% endif %}
+</div>
+{% endif %}

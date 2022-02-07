@@ -1,0 +1,76 @@
+<div class="sticky_form">
+  {% if settings.display_countdown %}
+  {% if product.description contains '[countdown]' %}  
+  <div class="sticky-countdown sticky-item">
+    <div class="sticky_text">{% render 'multilang' with settings.text_countdown %}</div>
+    <div id="sticky_clock"></div>
+  </div>
+  {% endif %}
+  {% endif %}
+  {% form 'product', product, id: "form-sticky" %}
+  {% if settings.display_countdown %}
+  {% if product.description contains '[countdown]' %}            
+  {% assign count_down_first = product.description | split:'[/countdown]' | first %}
+  {% assign count_down_final = count_down_first | split:'[countdown]' | last %}
+  <script>
+    $(document ).ready(function() {
+      $("#sticky_clock").countdown('{{ count_down_final }}', function(event) {
+        $(this).html(event.strftime(''+ '<span>%D</span>D  :  '+ '<span>%H</span>H  :  '+ '<span>%M</span>M  :  '+ '<span>%S</span>S'));
+    });
+    });
+  </script>
+  {% endif %}
+  {% endif %}
+  <div class="pr-img sticky-item">
+    <img src="{{ product.featured_image.src  | product_img_url: '100x' }}" alt="">
+  </div>
+  
+  {% assign variantCount = product.variants | size %}
+  {% if variantCount > 1 %} 
+  <div class="pr-selectors sticky-item">
+
+    <a href="javascript:void(0)" class="pr-active" data-value="{{ product.variants[0].id }}">
+      {{ product.variants[0].title }} - {{ product.variants[0].price | money }}
+    </a>
+
+    <ul>
+      {% for variant in product.variants %}
+      {% assign value = variant.options[option_index] %}
+      <li>
+        <a {% if variant.image != null %} data-img="{{ variant.image.src | product_img_url: '100x' }}"{% endif %} data-value="{{ variant.id }}" class="pr-swatch {% if variant.available == false %}sold-out{% endif %}" {% if variant.available == false %}disabled="disabled"{% endif %} href="javascript:void(0)">{{ variant.title }} - {{ variant.price | money }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+  </div>
+  {% endif %}
+  
+
+  <div class="qty-group sticky-item extra">
+    <button class="sticky_dec des button" type="button">
+    </button>
+    <input type="text" class="number" name="quantity" name="quantity" value="1">
+    <button class="sticky_inc inc button" type="button">
+    </button>
+  </div>
+  
+  <div class="action sticky-item" data-handle="/collections/{{collection.handle}}?view=related">
+
+    {% if product.available %} 
+
+    <input type="hidden" name="id" value="{{ product.variants[0].id }}" />      
+    <input class="btn sticky-add-to-cart" type="submit" value="{{ 'products.product.add_to_cart' | t }}" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %}/>
+
+    {% else %}
+
+    <input type="submit" name="add" class="btn sticky-add-to-cart" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{% endif %} disabled value="{{ 'products.product.unavailable' | t }}">  
+
+    {% endif %}
+
+  </div>
+
+  {% render 'wishlist-product' %}
+  
+  {% endform %}
+  
+</div>

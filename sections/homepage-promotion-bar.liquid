@@ -1,0 +1,103 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-0db28ccf"></div>
+<style>
+   /* Main Promotion */
+  {% assign bg_promotion_color =  section.settings.bg_promotion_color %}
+  {% assign text_promotion_color =  section.settings.text_promotion_color %}
+  {% assign border_promotion_color =  section.settings.border_promotion_color %}
+
+  .promotion-bar {
+    background: {{bg_promotion_color}};
+  }
+  .promotion-bar .block-item-list:before,
+  .promotion-bar .block-item-list:after {
+    background: {{border_promotion_color}};
+  }
+  .promotion-bar .block-item a{
+    color: {{text_promotion_color}};
+  }
+
+</style>
+
+<div class="promotion-bar">
+  <div class="container">
+    <div class="block-item-list">
+      <div class="block-item">
+        <a href="{{ section.settings.link_1 }}" title="">
+          {% render 'multilang' with section.settings.text_1 %}
+        </a>
+      </div>
+      <div class="block-item">
+        <a href="{{ section.settings.link_2 }}" title="">
+          {% render 'multilang' with section.settings.text_2 %}
+        </a>
+      </div>
+      <div class="block-item">
+        <a href="{{ section.settings.link_3 }}" title="">
+          {% render 'multilang' with section.settings.text_3 %}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Promotion Bar",
+    "settings": [
+    {
+      "type": "color",
+      "id": "bg_promotion_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_promotion_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "border_promotion_color",
+      "label": "Border Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type" : "text",
+      "id" : "text_1",
+      "label" : "Text #01",
+      "default" : "Free Delivery Worldwide"
+    },
+    {
+      "type" : "url",
+      "id" : "link_1",
+      "label" : "Link #01",
+      "info" : "======================"
+    },
+    {
+      "type" : "text",
+      "id" : "text_2",
+      "label" : "Text #02",
+      "default" : "Free Returns InStore"
+    },
+    {
+      "type" : "url",
+      "id" : "link_2",
+      "label" : "Link #02",
+      "info" : "======================"
+    },
+    {
+      "type" : "text",
+      "id" : "text_3",
+      "label" : "Text #03",
+      "default" : "Rewards Program"
+    },
+    {
+      "type" : "url",
+      "id" : "link_3",
+      "label" : "Link #03",
+      "info" : "======================"
+    }
+  ]
+}
+{% endschema %}

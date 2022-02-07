@@ -1,0 +1,178 @@
+
+<div class="product-api-lookbook">
+  <div id="collection-list">
+  {% for collection in product.collections %}
+    <input type="hidden" value='{{ collection.url }}'>
+{% endfor %}
+  </div>
+  <div id="collection-display" class="loading">
+    
+  </div>
+</div>
+
+
+<script>
+//    url:  'http://blisscrystalslearn.com/api/shopify/v1/crystals/22',
+  
+  jQuery( document ).ready(function($) {
+
+    var all_crystals = [];
+    var crystal_api_page_fetch = function(pageno){ 
+     window.completed_task=false;
+      $.ajax({
+
+            url:  'http://blisscrystalslearn.com/api/v1/crystals',
+            type: 'GET',
+        	data: {page: pageno},
+            crossDomain: true,
+     		headers: { "api-key": "DsVaxx8O0P9qLWXR1xC2YSg9oNejYNoZDRZZn2f5" },
+            success: function (res) {
+                
+                res.data.data.forEach(function(val) {
+                  
+ 					all_crystals.push(val);
+                  
+                  
+				});
+              	
+
+            },
+            complete: function (res) {
+                var count_va=1;
+              res.responseJSON.data.data.forEach(function(api_val) {
+                $('#collection-list input').each(function(){
+                  
+                  if(api_val.purchase_url){
+                    var end_crystal_from_url= $(this).val().split( '/' );
+                  var end_crystal_path= end_crystal_from_url[ end_crystal_from_url.length - 1 ];
+
+                  var api_end_crystal_from_url= api_val.purchase_url.split( '/' );
+                  var api_end_crystal_path= api_end_crystal_from_url[ api_end_crystal_from_url.length - 1 ];
+                  
+                   if(end_crystal_path===api_end_crystal_path){
+                     if(count_va==1){
+                       
+                       $('#collection-display').removeClass('loading');
+                        console.log("Found",end_crystal_path);
+                     $('#collection-display').append('<h4>'+api_val.name+'</h4>');
+					 $('#collection-display').append('<h6>'+api_val.description+'</h6>');
+                      $('#collection-display').append('<img src='+api_val.image_url+'/>');
+                      $('#collection-display').append('<p>'+api_val.description+'</p>');
+                      count_va=0;
+                     }
+                      }else{
+                        console.log("Not Found api",api_end_crystal_path);
+                        console.log("Not Found end",end_crystal_path);
+                      }
+                    
+                  }
+                  
+              
+                  
+              
+              
+             		 });
+                  
+				});
+            },
+
+
+            error: function (xhr, status, err) {
+                console.log(err);
+            }
+        });
+       }
+//        crystal_api_page_fetch(2);
+    
+    
+    
+    
+    var initial_crystal_fetch = $.ajax({
+
+            url:  'http://blisscrystalslearn.com/api/v1/crystals',
+            type: 'GET',
+            crossDomain: true,
+     		headers: { "api-key": "DsVaxx8O0P9qLWXR1xC2YSg9oNejYNoZDRZZn2f5" },
+            success: function (res) {
+                
+              
+              	
+              
+              
+               res.data.links.forEach(function(val) {
+                  
+                 if(!isNaN(parseInt(val.label))){
+                   crystal_api_page_fetch(parseInt(val.label));
+                 }else{
+                   
+                 }
+                  
+                  
+				});
+              
+
+            },
+            complete: function (res) {
+                console.log(all_crystals);
+              window.all_crystals=all_crystals;
+              window.completed_task=true;
+//                all_crystals.forEach(function(api_val) {
+//                 $('#collection-list input').each(function(){
+                  
+//                   if(api_val.purchase_url){
+//                     var end_crystal_from_url= $(this).val().split( '/' );
+//                   var end_crystal_path= end_crystal_from_url[ end_crystal_from_url.length - 1 ];
+
+//                   var api_end_crystal_from_url= api_val.purchase_url.split( '/' );
+//                   var api_end_crystal_path= api_end_crystal_from_url[ api_end_crystal_from_url.length - 1 ];
+                  
+//                    if(end_crystal_path===api_end_crystal_path){
+                        
+//                         console.log("Found",end_crystal_path);
+//                      $('#collection-display').append('<h4>'+api_val.name+'</h4>');
+// 					 $('#collection-display').append('<h6>'+api_val.description+'</h6>');
+//                       $('#collection-display').append('<img src='+api_val.image_url+'/>');
+//                       $('#collection-display').append('<p>'+api_val.description+'</p>');
+                     
+//                       }else{
+//                         console.log("Not Found api",api_end_crystal_path);
+//                         console.log("Not Found end",end_crystal_path);
+//                       }
+                    
+//                   }
+                  
+              
+                  
+              
+              
+//              		 });
+                  
+// 				});
+              
+              
+              
+              
+              
+              
+              
+              
+               
+              
+            },
+
+
+            error: function (xhr, status, err) {
+                console.log(err);
+            }
+        });
+    
+    initial_crystal_fetch.done(function(msg) {
+  console.log( all_crystals,"done" );
+});
+
+    
+    
+    
+  });
+
+</script>

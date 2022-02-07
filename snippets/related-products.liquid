@@ -1,0 +1,34 @@
+{% assign number_of_related_products = section.settings.number_of_related_products | plus:1 %}
+
+<div id="product-recommendations">
+  <div class="">
+    <div class="related-products page-width product-recommendations js-product-recomendation" data-template="{% if template.suffix == 'gallery' or template.suffix == 'full-width' %}{{ template.suffix }}{% endif %}" data-product-id="{{ product.id }}" data-limit="{{ number_of_related_products }}" data-section-id="{{ section.id }}" data-section-type="product-recommendations" data-featured-products>
+      {% if recommendations.products_count > 0 %}
+      {% if section.settings.related_products_title %}
+      <div class="widget-title">   
+        <h3 class="box-title">
+          {% render 'multilang' with section.settings.related_products_title %}
+        </h3>
+      </div>
+      {% endif %}
+      <div class="widget-product">
+        <div class="products-grid grid grid--uniform grid--view-items row">
+          {% for product in recommendations.products limit: number_of_related_products %}
+
+          {% if section.settings.show_tab == 'horizontal' %}
+              <div class="{% if settings.product_image_border %}grid-item-border{% endif %}{% if settings.product_image_crop %} crop_image{% else %} no_crop_image{% endif %} grid-item col-6 col-md-4 col-xl-3">
+              {% render 'product-grid-item', product: product %}
+              </div>
+          {% else %}
+              <div class="{% if settings.product_image_border %}grid-item-border{% endif %}{% if settings.product_image_crop %} crop_image{% else %} no_crop_image{% endif %} grid-item col-6 col-md-4 col-lg-6 col-xl-4">
+                {% render 'product-grid-item', product: product %}
+              </div>
+          {% endif %}
+
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

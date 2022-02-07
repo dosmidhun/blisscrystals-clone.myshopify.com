@@ -1,0 +1,26 @@
+<div class="page_banner"> 
+  <div class="container">
+    <div class="banner_image_outer">
+    <img src="//cdn.shopify.com/s/files/1/0258/2102/0194/files/inner_banner.png?v=1633077288">  
+    <header class="page-header">
+      {% if settings.enable_multilang %}
+      <h1 class="lang1">{{ page.title | split: '|' | first }}</h1>
+      <h1 class="lang2">{{ page.title | split: '|' | last }}</h1>
+      {% else %}
+      <h1>{{ page.title | split: '|' | first }}</h1>
+      {% endif %}
+      {% if page.handle  == 'fluorite' %}
+      {% if section.settings.subheading != blank %}
+      <h2>{{ section.settings.subheading }}</h2>
+      {% endif %}
+      {% endif %}
+    </header>
+  </div>
+</div>
+</div>
+<div class="bg-breadcrumb">
+  <div class="container">
+    {% render 'breadcrumb' %}
+  </div>
+</div>
+{% render 'wishlist-page' %}

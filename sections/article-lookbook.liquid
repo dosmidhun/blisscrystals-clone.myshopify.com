@@ -1,0 +1,769 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-d6a3e605"></div>
+{% if section.blocks.size > 0 or section.settings.dpl_gallery_lookbook or section.settings.dpl_lookbook_description or section.settings.show_cart_best_sellers_product %}
+<div class="article-lookbook product-lookbook">
+  {% if section.blocks.size > 0 and section.settings.dpl_gallery_lookbook %}
+  <div class="gallery_lookbook-box">
+    {% for block in section.blocks %}
+    
+      {%- assign product_main = all_products[block.settings.main_pr_look] -%}    
+      
+      {%- assign img_1 = block.settings.image_1 -%}
+      {%- assign img_2 = block.settings.image_2 -%}
+      {%- assign img_3 = block.settings.image_3 -%} 
+      {%- assign img_4 = block.settings.image_4 -%}
+      {%- assign img_5 = block.settings.image_5 -%}
+            
+      {% render 'gallery_lookbook-item', block: block, img_1: img_1, img_2: img_2, img_3: img_3, img_4: img_4, img_5: img_5, product_main: product_main %}
+
+    {% endfor %}
+  </div>
+  {% endif %}
+  
+  {% if section.settings.dpl_lookbook_description %}
+    {% if section.settings.quote_title != blank or section.settings.quote_title_2 != blank or section.settings.quote_des != blank or section.settings.quote_des_2 != blank %}
+    <div class="quote-detail rte">
+      {% if section.settings.quote_title != blank %}
+      <h5>
+        {% render 'multilang' with section.settings.quote_title %}
+      </h5>
+      {% endif %}
+
+      {% if section.settings.quote_des != blank %}
+      <blockquote>
+        {% render 'multilang' with section.settings.quote_des %}
+      </blockquote>
+      {% endif %}
+
+      {% if section.settings.quote_title_2 != blank %}
+      <h5>
+        {% render 'multilang' with section.settings.quote_title_2 %}
+      </h5>
+      {% endif %}
+
+      {% if section.settings.quote_des_2 != blank %}
+      {% if settings.enable_multilang %}
+      <div class="lang1">
+        {{ section.settings.quote_des_2 | split: '|' | first | strip }}
+      </div>
+      <div class="lang2">
+        {{ section.settings.quote_des_2  | split: '|' | last | strip }}
+      </div>
+      {% else %}
+      <div>
+        {{ section.settings.quote_des_2  | split: '|' | first }}
+      </div>
+      {% endif %}
+      {% endif %}
+    </div>
+    {% endif %}
+  {% endif %}
+
+</div>
+ {% endif %}
+<script>
+  $( document ).ready(function() {
+    var productLookbook = $('.article-lookbook .gallery_lookbook-box .row');
+    
+    if(productLookbook.length) {
+      $(productLookbook).slick({
+        infinite: true,
+        slidesToShow: 3,
+        arrows: false,
+        slidesToScroll: 1,
+        autoplay: false,
+        speed : 1000,
+        dots: true,
+        responsive: [
+           {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+            }
+          },
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1
+            }
+          },                          
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              dots: true,
+            }
+          },
+          {
+            breakpoint: 380,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              dots: true,
+            }
+          }
+        ]
+      });
+    };       
+  });
+
+</script>
+
+{% schema %}
+  {
+    "name": "Article LookBook",
+	"max_blocks": 1,
+    "settings": [
+      {
+        "type": "header",
+        "content": "Lookbook Description in Blog Detail"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dpl_lookbook_description",
+        "label" : "Enable",
+        "default" : true
+      },
+      {
+        "type": "text",
+        "id": "quote_title",
+        "label": "Quote Title 1"
+      },
+      {
+        "type": "textarea",
+        "id": "quote_des",
+        "label": "Quote Description 1"
+      },
+      {
+        "type": "text",
+        "id": "quote_title_2",
+        "label": "Quote Title 2"
+      },
+      {
+        "type": "textarea",
+        "id": "quote_des_2",
+        "label": "Quote Description 2"
+      },
+      {
+        "type": "header",
+        "content": "LookBook Gallery in Blog Detail"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dpl_gallery_lookbook",
+        "label" : "Enable",
+        "default" : true
+      },
+      {
+        "type": "text",
+        "id": "image_gallery_title",
+        "label": "Title of Image Gallery",
+        "default": "Sample Image Gallery + Lightbox"
+      }
+    ],
+    "blocks" : [
+      {
+        "type": "image",
+        "name": "LookBook Gallery",
+        "settings":[                    
+          {
+            "type" : "header",
+            "content" : "Image 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label" : "Select Image",
+            "info": "Recommended Image: Width x Height (290 x 345)px"
+          },            
+          {
+            "type" : "header",
+            "content" : "Product 1"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_1_1",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_1_1",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_1_1",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_1_1",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_1_1",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 2"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_1_2",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_1_2",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_1_2",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_1_2",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_1_2",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 3"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_1_3",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_1_3",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_1_3",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_1_3",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_1_3",
+            "label" : "Select Icon Background color",
+            "default" : "#323232",
+			"info" : "======================="
+          },
+
+          {
+            "type" : "header",
+            "content" : "Image 2"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_2",
+            "label" : "Select Image",
+            "info": "Recommended Image: Width x Height (290 x 345)px"
+          },            
+          {
+            "type" : "header",
+            "content" : "Product 1"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_2_1",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_2_1",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_2_1",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_2_1",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_2_1",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 2"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_2_2",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_2_2",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_2_2",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_2_2",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_2_2",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 3"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_2_3",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_2_3",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_2_3",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_2_3",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_2_3",
+            "label" : "Select Icon Background color",
+            "default" : "#323232",
+			"info" : "======================="
+          },
+
+          {
+            "type" : "header",
+            "content" : "Image 3"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_3",
+            "label" : "Select Image",
+            "info": "Recommended Image: Width x Height (290 x 345)px"
+          },            
+          {
+            "type" : "header",
+            "content" : "Product 1"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_3_1",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_3_1",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_3_1",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_3_1",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_3_1",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 2"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_3_2",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_3_2",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_3_2",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_3_2",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_3_2",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 3"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_3_3",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_3_3",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_3_3",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_3_3",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_3_3",
+            "label" : "Select Icon Background color",
+            "default" : "#323232",
+			"info" : "======================="
+          },
+
+		  {
+            "type" : "header",
+            "content" : "Image 4"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_4",
+            "label" : "Select Image",
+            "info": "Recommended Image: Width x Height (290 x 345)px"
+          },            
+          {
+            "type" : "header",
+            "content" : "Product 1"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_4_1",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_4_1",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_4_1",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_4_1",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_4_1",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 2"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_4_2",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_4_2",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_4_2",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_4_2",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_4_2",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 3"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_4_3",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_4_3",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_4_3",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_4_3",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_4_3",
+            "label" : "Select Icon Background color",
+            "default" : "#323232",
+			"info" : "======================="
+          },
+
+		  {
+            "type" : "header",
+            "content" : "Image 5"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_5",
+            "label" : "Select Image",
+            "info": "Recommended Image: Width x Height (290 x 345)px"
+          },            
+          {
+            "type" : "header",
+            "content" : "Product 1"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_5_1",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_5_1",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_5_1",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_5_1",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_5_1",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 2"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_5_2",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_5_2",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_5_2",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_5_2",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_5_2",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"
+          },
+
+          {
+            "type" : "header",
+            "content" : "Product 3"
+          },
+          {
+            "type" : "product",
+            "id" : "lb_product_5_3",
+            "label" : "Select Product"
+          },
+          {
+            "type" : "text",
+            "id" : "top_position_5_3",
+            "label" : "Top Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "text",
+            "id" : "left_position_5_3",
+            "label" : "Left Position",
+            "default" : "10",
+            "info" : "Unit %" 
+          },
+          {
+            "type" : "color",
+            "id" : "dots_color_5_3",
+            "label" : "Select Icon Color",
+            "default" : "#fff"
+          },
+          {
+            "type" : "color",
+            "id" : "dots_bg_color_5_3",
+            "label" : "Select Icon Background color",
+            "default" : "#323232"     
+          }
+        ]
+	  }
+    ]
+  }
+{% endschema %}

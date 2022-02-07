@@ -1,0 +1,158 @@
+{% assign on_sale = false %}
+{% if item.variants[0].compare_at_price_min > item.variants[0].price_min %}
+{% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if item.available  %}
+  {% assign sold_out = false %}
+{% endif %}
+
+<!-- new product -->
+{% assign label_new = false %}
+
+{% for tag in product.tags %}
+{% assign tag_handle = tag | handle %}
+{% if tag_handle == 'new' %}
+{% assign label_new = true %}
+{% endif %}
+{% endfor %}
+
+<div id="product-{{ item.id }}" class="clear product-item grid-item{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+  <div class="product-image text-center">
+    <a href="{{ item.url | within: collection }}" class="product-list-thumb product-grid-image">
+      <img src="{{ item.featured_image.src | product_img_url: '250x' }}" alt="{{ item.featured_image.alt | escape }}">
+    </a>
+
+    {% if on_sale or sold_out or label_new %}
+    <div class="product-label">
+      {% if on_sale %}
+      <strong class="label sale-label" {% if settings.enable_multilang %}data-translate="products.product.sale"{% endif %}>
+        {{ 'products.product.sale' | t }}
+      </strong>
+      {% endif %}
+      {% if sold_out %}
+      <strong class="label sold-out-label" {% if settings.enable_multilang %}data-translate="products.product.sold_out"{% endif %}>
+        {{ 'products.product.sold_out' | t }}
+      </strong>
+      {% endif %}
+
+      {% if label_new %}
+      <strong class="label new-label" {% if settings.enable_multilang %}data-translate="products.product.new"{% endif %} >
+        {{ 'products.product.new' | t }}
+      </strong>
+      {% endif %}
+    </div>
+    {% endif %}
+    
+    <div class="product-des">
+      {% if settings.enable_quick_view %}
+      <div class="quickview-button">
+        <a href="javascript:void(0)" id="{{ item.handle }}" title="{{ 'products.product.quick_view' | t }}" {% if settings.enable_multilang %}data-translate="products.product.quick_view" translate-item="title"{% endif %}>
+          <span {% if settings.enable_multilang %}data-translate="products.product.quick_view"{% endif %}>
+            {{ 'products.product.quick_view' | t }}
+          </span>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+    
+    {% if settings.display_item_swatch %}
+    	{% render 'item-swatch', item: item %}
+    {% endif %}
+  </div>
+  
+  <div class="product-details">
+    {% if settings.show_vendor %}
+    <div class="product-vendor">
+      {{ item.vendor }}
+    </div>
+    {% endif %}
+    
+    <a class="product-title" href="{{ item.url | within: collection }}">
+      {% render 'multilang' with item.title %}
+    </a>
+    
+    <div class="price-box">
+      {% if on_sale %}
+      <p class="sale">
+        <span class="old-price">{{ item.variants[0].compare_at_price | money }}</span>
+        <span class="special-price">{{ item.variants[0].price | money }}</span>
+      </p>
+      {% else %}
+      <p class="regular-product">
+        <span>{{ item.variants[0].price | money }}</span>
+      </p>
+      {% endif %}
+    </div>
+    
+    {% if settings.display_product_reviews %}
+    <span class="shopify-product-reviews-badge" data-id="{{ item.id }}"></span>
+    {% endif %}
+    
+    <div class="short-description">
+      {% if item.description contains '[countdown]' %}
+      {% assign des = item.description | split:'[/countdown]' | last %}
+        {% if settings.enable_multilang %}
+        <span class="lang1">
+          {{ des | split: '[lang2]' | first | strip_html | truncatewords: 40 }}
+      	</span>
+        <span class="lang2">
+          {{ des | split: '[lang2]' | last | strip_html | truncatewords: 40 }}
+      	</span>
+        {% else %}
+        {{ des | split: '[lang2]' | first | strip_html | truncatewords: 40 }}
+        {% endif %}
+      
+      {% else %}
+      
+        {% if settings.enable_multilang %}
+        <span class="lang1">
+          {{ item.description | split: '[lang2]' | first | strip_html | truncatewords: 40 }}
+      	</span>
+        <span class="lang2">
+          {{ item.description | split: '[lang2]' | last | strip_html | truncatewords: 40 }}
+      	</span>
+        {% else %}
+        {{ item.description | split: '[lang2]' | first | strip_html | truncatewords: 50 }}
+        {% endif %}
+      {% endif %}
+    </div>
+    
+    <div class="clear">
+      <div class="action">
+        {% assign variantCount = item.variants | size %}
+        <form action="{{ routes.cart_url }}/add" method="post" class="variants" data-id="product-actions-{{ item.id }}" enctype="multipart/form-data" data-vendor="{{ item.vendor }}">
+          {% if sold_out %}
+          <button class="btn add-to-cart-btn" type="submit" disabled="disabled" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{% endif %}>
+            {{ 'products.product.unavailable' | t }}
+          </button>
+          {% else %}
+          {% if variantCount > 1 %}
+          <a class="btn" href="{{ item.url }}" title="{{ item.title }}" {% if settings.enable_multilang %}data-translate="products.product.select_options"{% endif %}>
+            {{ 'products.product.select_options' | t }}
+          </a>
+          {% else %}
+          <input type="hidden" name="id" value="{{ item.variants[0].id }}" /> 
+          
+          {%- assign current_variant_grid = product.selected_or_first_available_variant -%}
+          {% assign first_inventory_grid = current_variant_grid.inventory_quantity %}
+          
+          {% if first_inventory_grid > 0 %}
+          <button class="btn add-to-cart-btn" type="submit" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %}>
+            {{ 'products.product.add_to_cart' | t }}
+          </button>
+          {% else %}
+          <button class="btn add-to-cart-btn" type="submit" {% if settings.enable_multilang %}data-translate="products.product.pre_order"{% endif %}>
+            {{ 'products.product.pre_order' | t }}
+          </button>
+          {% endif %}  
+          {% endif %}
+          {% endif %}
+        </form>    
+      </div>
+
+      {% render 'wishlist-product-search' %}
+    </div>
+  </div> 
+</div>

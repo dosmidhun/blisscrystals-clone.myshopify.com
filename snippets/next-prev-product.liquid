@@ -1,0 +1,118 @@
+
+<div class="next-prev-product {% if collection.previous_product %}has-prev{% endif %} {% if collection.next_product and collection %}has-next{% endif %}">   
+  {% if collection.previous_product %}
+  <div class="popup-pro" data-popup-prev>
+    <a class="prev btn-pro" href="{{ collection.previous_product }}">
+
+      <button type="button" class="slick-prev">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 33">
+          <polygon points="0 16.5 2.1 18.5 17 33 17 29.3 5.9 18.5 3.8 16.5 5.9 14.5 17 3.7 17 0 2.1 14.5 0 16.5"/>
+        </svg>
+    </button>
+    </a>
+    <div id="prev-product-modal" class="modal-pro prev-modal-pro">
+      <a class="product-image" href="{{ collection.previous_product }}">
+        <img src="{{ collection.previous_product.images[0] | img_url: '64x90' }}" alt="{{ collection.previous_product.title }}">
+      </a>
+      <div class="column-right">
+        <a class="product-name" href="{{ collection.previous_product }}">
+          {% render 'multilang' with collection.previous_product.title %}
+        </a>
+
+        <div class="price-box">
+          {% if collection.previous_product.compare_at_price_min > collection.previous_product.price_min %}
+          <div class="sale">
+            <span class="old-price">
+              {{ collection.previous_product.compare_at_price_min | money }}
+            </span>
+            <span class="special-price">
+              {{collection.previous_product.price_min | money }}
+            </span>
+          </div>
+          {% else %}
+          <div class="regular-product">
+            {% if product.price_varies %} 
+            <div class="group-prices">
+              <span class="price-min">
+                {{ collection.previous_product.price_min | money }}
+              </span>
+              <span class="padding">-</span>
+              <span class="price-max">
+                {{ collection.previous_product.price_max | money }}
+              </span>
+            </div>
+
+            {% else %}
+
+            <span>
+              {{ collection.previous_product.price_min | money }}
+            </span>
+
+            {% endif %}
+
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>      
+  {% endif %}
+
+  {% if collection.next_product and collection %}
+  <div class="popup-pro" data-popup-next>
+    <a class="next btn-pro" href="{{ collection.next_product }}">
+      <button type="button" class="slick-next">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 17 33" xml:space="preserve">
+          <polygon points="14.9,14.5 0,0 0,3.7 11.1,14.5 13.2,16.5 11.1,18.5 0,29.3 0,33 14.9,18.5 17,16.5 "/>
+        </svg>
+      </button>
+    </a>
+
+    <div id="next-product-modal" class="modal-pro next-modal-pro">
+      <a class="product-image" href="{{ collection.next_product }}">
+        <img src="{{ collection.next_product.images[0] | img_url: '64x90' }}" alt="{{ collection.next_product.title }}">
+      </a>
+      <div class="column-right">
+        <a class="product-name" href="{{ collection.next_product }}">
+          {% render 'multilang' with collection.next_product.title %}
+        </a>
+
+        <div class="price-box">
+          {% if collection.next_product.compare_at_price_min > collection.next_product.price_min %}
+          <div class="sale">
+            <span class="old-price">
+              {{ collection.next_product.compare_at_price_min | money }}
+            </span>
+            <span class="special-price">
+              {{collection.next_product.price_min | money }}
+            </span>
+          </div>
+          {% else %}
+          <div class="regular-product">
+            {% if product.price_varies %} 
+            <div class="group-prices">
+              <span class="price-min">
+                {{ collection.next_product.price_min | money }}
+              </span>
+              <span class="padding">-</span>
+              <span class="price-max">
+                {{ collection.next_product.price_max | money }}
+              </span>
+            </div>
+
+            {% else %}
+
+            <span>
+              {{ collection.next_product.price_min | money }}
+            </span>
+
+            {% endif %}
+
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>

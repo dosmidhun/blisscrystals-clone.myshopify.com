@@ -1,0 +1,43 @@
+{% comment %}
+<div class="bg-breadcrumb">
+  {% render 'breadcrumb' %}
+</div> 
+  Regular page content goes here.
+{% endcomment %}
+<div class="page_banner"> 
+    <div class="container"> 
+        <div class="banner_image_outer">
+            <img src="https://cdn.shopify.com/s/files/1/0258/2102/0194/files/crystal--a-z.jpg?v=1641210072">  
+            <header class="page-header"> 
+              {% if settings.enable_multilang %}
+              <h1 class="lang1">{{ page.title | split: '|' | first }}</h1>
+              <h1 class="lang2">{{ page.title | split: '|' | last }}</h1>
+              {% else %}
+              <h1>{{ page.title | split: '|' | first }}</h1>
+              {% endif %}
+              {% if page.handle  == 'fluorite' %}
+              {% if section.settings.subheading != blank %}
+              <h2>{{ section.settings.subheading }}</h2>
+              {% endif %}
+              {% endif %} 
+          </header>
+        </div>
+    </div>
+</div>
+
+<div class="rte brands-page"> 
+  {% comment %}
+  <div class="page_title_outer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                
+            </div> 
+        </div>
+    </div>
+</div>
+  {% endcomment %}
+  <div class="container"> 
+  {% section 'page-brands' %}
+  </div>
+</div>

@@ -1,0 +1,202 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-c96bbf9f"></div>
+<div class="sidebar-label">
+  <div class="sidebar-button">
+    <span class="icon-filter">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" version="1.1" x="0px" y="0px" viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve"><g><path d="M6,48c-0.552,0-1-0.447-1-1v-7c0-0.553,0.448-1,1-1s1,0.447,1,1v7C7,47.553,6.552,48,6,48z"></path><path d="M6,31c-0.552,0-1-0.447-1-1V1c0-0.553,0.448-1,1-1s1,0.447,1,1v29C7,30.553,6.552,31,6,31z"></path><g><path d="M6,41c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S9.309,41,6,41z M6,31c-2.206,0-4,1.794-4,4s1.794,4,4,4s4-1.794,4-4    S8.206,31,6,31z"></path><path d="M42,48c-0.552,0-1-0.447-1-1V26c0-0.553,0.448-1,1-1s1,0.447,1,1v21C43,47.553,42.552,48,42,48z"></path><path d="M42,17c-0.552,0-1-0.447-1-1V1c0-0.553,0.448-1,1-1s1,0.447,1,1v15C43,16.553,42.552,17,42,17z"></path><path d="M42,27c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S45.309,27,42,27z M42,17c-2.206,0-4,1.794-4,4s1.794,4,4,4    s4-1.794,4-4S44.206,17,42,17z"></path><path d="M24,48c-0.552,0-1-0.447-1-1V21c0-0.553,0.448-1,1-1s1,0.447,1,1v26C25,47.553,24.552,48,24,48z"></path><path d="M24,12c-0.552,0-1-0.447-1-1V1c0-0.553,0.448-1,1-1s1,0.447,1,1v10C25,11.553,24.552,12,24,12z"></path><path d="M24,22c-3.309,0-6-2.691-6-6s2.691-6,6-6c3.309,0,6,2.691,6,6S27.309,22,24,22z M24,12c-2.206,0-4,1.794-4,4s1.794,4,4,4    s4-1.794,4-4S26.206,12,24,12z"></path></g></g></svg>
+    </span>
+     <span class="sidebar_more" {% if settings.enable_multilang %}data-translate="blogs.sidebar.sidebar_more_blog"{% endif %}>
+      {{ 'blogs.sidebar.sidebar_more_blog' | t }}
+    </span>
+  </div>
+</div>
+
+
+{% if section.settings.blog_post != blank %}
+  {% assign limit = section.settings.blog_post %}
+{% else %}
+  {% assign limit = 4 %}
+{% endif %}
+
+{% paginate blog.articles by limit %}
+
+<div class="content-blog">
+  <ul class="list-blog{% if section.settings.layout == 'list' %} blog-list{% else %} blog-grid row{% endif %}">
+
+    {% if section.settings.layout == 'grid' %}
+    {% assign blog_grid = 12 | divided_by: section.settings.grid %}
+    {% endif %}
+
+    {% for article in blog.articles %}
+    <li{% if section.settings.layout == 'grid' %} class="col-md-6 col-xl-{{ blog_grid }}"{% endif %}>
+      <h3 class="article-title">
+        <a href="{{ article.url }}">
+          {% render 'multilang' with article.title %}
+        </a>
+      </h3>
+
+      <div class="blog_author">
+
+        {% if section.settings.blog_show_date %}
+        <span class="article__date">
+         {{ article.published_at | time_tag: format: 'month_day_year' }} / 
+        </span>
+        {% endif %}
+
+        {% if section.settings.blog_show_author %}
+        <span class="article__author">Post by <span class="author_name">{{article.author}}</span></span>
+        {% endif %}
+
+        {% if section.settings.show_blog_categories %}
+        <span class="blog_category">
+            in
+            {% if article.tags.size > 0 %}
+              {%for tag in article.tags%}
+                  {% if section.settings.blog_category contains tag %}
+                      <span class="blog_category_item">{{ tag | link_to_tag: tag }}</span>
+                  {% endif %}
+              {% endfor %}
+            {% endif %}
+        </span>
+        {% endif %}
+
+        {% comment %}
+        Don't be fooled, the ? in comments_enabled? is part of the liquid tag.
+        {% endcomment %}
+        
+        {% if blog.comments_enabled? %}
+         <span class="blog_comments">
+           <span> / </span>
+            <a href="{{ article.url }}#comments"{% if settings.enable_multilang %} data-translate="blogs.comments.comments_with_count|count:{{article.comments_count}}"{%endif%}>
+              {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+            </a>
+         </span>
+        {% endif %}
+
+      </div> 
+
+      <div class="article-details">
+        {% if article.image %}
+        {% assign image_alt = article.title | escape %}
+        <div class="article-img">
+          {{ article | img_url: '1024x1024' | img_tag: image_alt, 'article__image' | link_to: article.url }}
+        </div>
+        {% endif %}
+
+        <div class="rte article-excerpt">
+          <div class="des">
+            {% if section.settings.layout == 'list' %}
+              {% if settings.enable_multilang %}
+              <div class="lang1">
+                {{ article.excerpt_or_content | strip_html | truncatewords: 80 | split:"[lang2]" | first | split:"|" |first}}
+              </div>
+              <div class="lang2">
+                {{ article.excerpt_or_content | strip_html | truncatewords: 80 | split:"[lang2]" | last | split:"|" |last }}
+              </div>
+              {% else %}
+              {{ article.excerpt_or_content | strip_html | truncatewords: 80  | split:"[lang2]" | first | split:"|" |first}}
+              {% endif %}
+            {% else %}
+              {% if settings.enable_multilang %}
+              <div class="lang1">
+                {{ article.excerpt_or_content | strip_html | truncatewords: 30 | split:"[lang2]" | first | split:"|" |first}}
+              </div>
+              <div class="lang2">
+                {{ article.excerpt_or_content | strip_html | truncatewords: 30 | split:"[lang2]" | last | split:"|" |last }}
+              </div>
+              {% else %}
+              {{ article.excerpt_or_content | strip_html | truncatewords: 30  | split:"[lang2]" | first | split:"|" |first}}
+              {% endif %}
+            {% endif %}
+          </div>
+          <p class="button">
+            <a href="{{ article.url }}" class="read-more-btn btn-secondary" {% if settings.enable_multilang %}data-translate="blogs.article.read_more"{% endif %}>
+              {{ 'blogs.article.read_more' | t }}
+            </a>
+          </p>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% if paginate.pages > 1 %}
+    {% render 'pagination', paginate: paginate %}
+  {% endif %}
+</div>
+{% endpaginate %}
+
+
+{% schema %}
+  {
+    "name": "Blog pages",
+    "settings": [
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "list",
+        "options": [
+          {
+            "value": "grid",
+            "label": "Grid"
+          },
+          {
+            "value": "list",
+            "label": "List"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "blog_post",
+        "label": "Blog post per page",
+        "default": "3"
+      },
+      {
+        "type": "select",
+        "id": "grid",
+        "label": "Blog post per row (grid only)",
+        "default": "2",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_author",
+        "label": "Show author",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_date",
+        "label": "Show date",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_blog_categories",
+        "label": "Show Blog Categories in blog author",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "blog_category",
+        "label": "Blog Categories",
+        "info": "Categories are selective tags. Mention those selective tags seperated with comma above."
+      }
+    ]
+  }
+{% endschema %}

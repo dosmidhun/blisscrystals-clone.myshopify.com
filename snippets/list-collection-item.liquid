@@ -1,0 +1,46 @@
+<div class="grid-item col-12 col-sm-10 col-md-6 col-lg-4 {% if section.settings.list_collection_results_per_row == "2" %}col-xl-6{% elsif section.settings.list_collection_results_per_row == "3"%}col-xl-4{% elsif section.settings.list_collection_results_per_row == "4"%}col-xl-3{% else %}col-xl{% endif%}">
+
+  {% comment %}
+  Use capture to put the collection title in a variable that is used in liquid filters
+  {% endcomment %}
+
+  {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+  <div class="product-top animate-hvr-translate">
+    <a href="{{ collection.url }}" title="{{ collection_title }}">
+      {% if collection.image %}
+      {{ collection.image.src | collection_img_url: 'large' | img_tag: collection_title }}
+      {% elsif collection.description contains 'img' %}
+      {% assign image = collection.description | split: '<img' | last | split: '>' | first %}
+      <img {{ image }} alt="{{ collection_title }}"/>
+      {% else %}
+      {{ collection.products.first.featured_image | product_img_url: 'large' | img_tag: collection_title }}
+      {% endif %}
+    </a>
+  </div>
+
+  <div class="collection-title-wrapper">
+    <div class="collection-title">
+      <h3 class="title">
+        <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" {% if settings.enable_multilang %}data-translate="collections.general.link_title|title:{{collection_title}}" translate-item="title"{% endif %}>
+          {% render 'multilang' with collection.title %}
+        </a>
+      </h3>
+      <span class="count-products" {% if settings.enable_multilang %}data-translate="collections.general.items_with_count|count:{{collection.all_products_count}}"{% endif %}>
+        {{ 'collections.general.items_with_count' | t: count: collection.all_products_count }}
+      </span>
+      <div class="desc">
+        {% if settings.enable_multilang and collection.description contains '[lang2]' %}
+        <div class="lang1">{{ collection.description | split: '[lang2]' | first | strip_html | truncatewords: 25 }}</div>
+        <div class="lang2">{{ collection.description | split: '[lang2]' | last | strip_html  | truncatewords: 25 }}</div>
+        {% else %}
+        <div>{{ collection.description | truncatewords: 24 | strip_html }}</div>
+        {% endif %}
+      </div>
+      <div class="btn-shadow">
+        <a href="{{ collection.url }}" class="btn" {% if settings.enable_multilang %}data-translate="collections.general.shop_the_collection"{% endif %}>
+          {{ 'collections.general.shop_the_collection' | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

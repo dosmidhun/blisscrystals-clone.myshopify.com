@@ -1,0 +1,118 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-6339dd2c"></div>
+<div class="page_banner"> 
+   <div class="container">
+     <div class="banner_image_outer"> 
+		<img src="{{ section.settings.page_banner | img_url: 'master' }}" /> 
+        
+     </div>
+  </div>
+</div>
+{% comment %}
+<div class="page_title_outer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                
+            </div> 
+        </div>
+    </div>
+</div>
+{% endcomment %}
+<div class="list-category">
+  <div class="container">
+  {% comment %}
+    Loop through each collection, except 'frontpage'
+  {% endcomment %}
+  
+  <div class="row">
+    {% if section.settings.style_categories == 'style_show_all' %}
+      {% for collection in collections %}
+      {% if collection.handle != 'frontpage' and collection.all_products_count > 0 %}
+          {% render 'list-collection-item', collection: collection %}
+      {% endif %}
+      {% endfor %}
+
+    {% else %}
+
+    {% for block in section.blocks %}
+      {% assign collection = collections[block.settings.collection] %}
+      {% render 'list-collection-item', collection: collection %}
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "List Collection pages",
+    "settings": [
+	   {
+		"type": "text",
+		"id": "coll_des",
+		"label": "Collection Title"
+	  },
+		{
+      "type": "image_picker",
+      "id": "page_banner",
+      "label": "Banner image",
+      "info": "1470px x 360px recommended"
+      },
+	   {
+        "type": "select",
+        "id": "list_collection_results_per_row",
+        "label": "Products per row",
+        "default": "3",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      },
+	  {
+        "type": "radio",
+        "id": "style_categories",
+        "label": "Show all \/ Only a few categories",
+        "options": [
+          {
+            "value": "style_show_all",
+            "label": "Show all"
+          },
+          {
+            "value": "style_little",
+            "label": "Only a few categories"
+          }
+        ]
+      }
+	  
+	],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "label": "Collection",
+            "id": "collection",
+            "type": "collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+

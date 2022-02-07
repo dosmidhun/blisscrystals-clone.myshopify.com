@@ -1,0 +1,135 @@
+
+{% if section.settings.dpl_lookbook_description or section.settings.dpl_gallery_lookbook %}
+<div class="product-lookbook">
+  {% if section.settings.dpl_gallery_lookbook %}
+  		        
+      <div class="gallery_lookbook-box">
+        {% for block in section.blocks %}
+        
+            {% if block.type == 'image' %}
+            {%- assign product_main = all_products[block.settings.main_pr_look] -%}    
+            
+            {%- assign img_1 = block.settings.image_1 -%}
+            {%- assign img_2 = block.settings.image_2 -%}
+            {%- assign img_3 = block.settings.image_3 -%} 
+            {%- assign img_4 = block.settings.image_4 -%}
+        	{%- assign img_5 = block.settings.image_5 -%}
+            
+            {% if section.settings.style_lookbook_gallery == 'different_product' %}
+            
+            {% if product.handle == product_main.handle %}
+            {% render 'gallery_lookbook-item' %}   
+            {% endif %}
+                       
+            {% else %}
+                {% if forloop.first == true %}
+                {% render 'gallery_lookbook-item' %}
+                {% endif %}
+            {% endif %}
+            {% endif %}
+        
+        {% endfor %}
+        </div>
+  {% endif %}
+
+  {% if section.settings.dpl_lookbook_description %}
+
+    {% if section.settings.style_lookbook_description == 'all_product' %}
+      {% if section.settings.quote_title != blank or section.settings.quote_title_2 != blank or section.settings.quote_des != blank or section.settings.quote_des_2 != blank %}
+      <div class="quote-detail rte">
+        {% if section.settings.quote_title != blank %}
+        <h5>
+          {% render 'multilang' with section.settings.quote_title %}
+        </h5>
+        {% endif %}
+
+        {% if section.settings.quote_des != blank %}
+        <blockquote>
+          {% render 'multilang' with section.settings.quote_des %}
+        </blockquote>
+        {% endif %}
+
+        {% if section.settings.quote_title_2 != blank %}
+        <h5>
+          {% render 'multilang' with section.settings.quote_title_2 %}
+        </h5>
+        {% endif %}
+
+        {% if section.settings.quote_des_2 != blank %}
+        {% if settings.enable_multilang %}
+        <div class="lang1">
+          {{ section.settings.quote_des_2 | split: '|' | first | strip }}
+        </div>
+        <div class="lang2">
+          {{ section.settings.quote_des_2  | split: '|' | last | strip }}
+        </div>
+        {% else %}
+        <div>
+          {{ section.settings.quote_des_2  | split: '|' | first }}
+        </div>
+        {% endif %}
+        {% endif %}
+      </div>
+      {% endif %}
+    {% elsif section.settings.style_lookbook_description == 'different_product' %}
+      {% if product.metafields.c_f['Lookbook Description'] %}
+      <div class="quote-detail rte">
+          {{ product.metafields.c_f['Lookbook Description'] }}
+      </div>
+      {% endif %}
+    {% endif %}
+
+  {% endif %}
+</div>
+{% endif %}
+
+<script>
+  $( document ).ready(function() {
+    var productLookbook = $('.product-lookbook .gallery_lookbook-box .row');
+    
+    if(productLookbook.length) {
+      $(productLookbook).slick({
+        infinite: true,
+        slidesToShow: 3,
+        arrows: false,
+        slidesToScroll: 1,
+        autoplay: false,
+        speed : 1000,
+        dots: true,
+        responsive: [
+           {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+            }
+          },
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1
+            }
+          },                          
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              dots: true,
+            }
+          },
+          {
+            breakpoint: 380,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              dots: true,
+            }
+          }
+        ]
+      });
+    };       
+  });
+
+</script>

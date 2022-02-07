@@ -1,0 +1,49 @@
+{% capture img_vendor %}{{ product.vendor | handle | append: '-sizechart.jpg' | file_url }}{% endcapture %}
+
+{% capture img_type %}{{ product.type | handle | append: '-sizechart.jpg' | file_url }}{% endcapture %}
+
+<div id="myModal_sizechar" class="size-chart modal fade" role="dialog">
+  <div class="content-size-char modal-dialog" style="{% if settings.type_size_chart == 'default' %}max-width: 800px; {% else %}max-width: max-content;{% endif %}">
+
+    <div class="modal-header">
+        <a data-dismiss="modal" href="javascript:void(0)" class="close" title="{{ 'cart.ajax_cart.close' | t }}">
+        {% render 'icon-close-big' %}
+        </a>
+      </div>
+
+    <div class="modal-content">
+      <div class="modal-body row">
+        
+        {% if settings.type_size_chart == 'product_title' %}
+        {% if product.description contains '[size chart]' %}
+        
+        {% assign size_chart = product.description | split:'[size chart]' | last | split:'[/size chart]' | first %}
+        <div class="modal-text">
+        {% if settings.enable_multilang %}
+        <div class="lang1 ">{{ size_chart | split: '[lang2]' | first }}</div>
+        <div class="lang2">{{ size_chart | split: '[lang2]' | last }}</div>
+        {% else %}
+        <div>{{ size_chart | split: '[lang2]' | first }}</div>
+        {% endif %}
+        </div>
+        {% endif %}
+        
+        {% elsif settings.type_size_chart == 'product_type' %} 
+        <div class="modal-img">
+          <img src="{{ img_type }}" alt="" />
+        </div>
+        {% elsif settings.type_size_chart == 'product_vendor' %} 
+        <div class="modal-img">
+          <img src="{{ img_vendor }}" onerror="this.style.display='none'" alt="" />
+        </div>
+       	{% elsif settings.type_size_chart == 'default' %} 
+        <div class="modal-img">
+          <img src="{{ settings.custom_size_chart | img_url: "master" }}" alt="{{ settings.custom_size_chart_title }}"/>
+        </div>
+        {% endif %}
+        
+        
+      </div>
+    </div>
+  </div>
+</div>

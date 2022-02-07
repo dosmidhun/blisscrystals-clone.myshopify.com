@@ -1,0 +1,164 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-ebece772"></div>
+{% assign total = collections[section.settings.show_slider_new_collection].all_products_count | plus:0 %}
+
+{% if section.settings.show_slider_new_products %}
+<div class="homepage-new-products {% if section.settings.display_infinite_scrolling_homepage%}show-more {% else %}no-more{% endif %}" id="section-{{section.id}}" data-new-arrivals-product>
+  <div class="container">
+    <div class="inner_wrapper">
+    {% if section.settings.slider_new_title != blank %}
+    <div class="widget-title">   
+      <h3 class="box-title">
+        {% render 'multilang' with section.settings.slider_new_title %}
+      </h3>
+      {% if section.settings.slider_new_desc_text != blank %}
+        <p class="desc-text">{% render 'multilang' with section.settings.slider_new_desc_text %}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+    
+    <div class="widget-product">
+      <div class="products-grid row five-items" data-products-to-show="{{ section.settings.slider_new_limit_all | plus:0 }}" data-total-products="{{ total }}">
+        {% if section.settings.new_collection_results_per_row != blank and section.settings.new_collection_results_per_row != '5' %}
+        {% assign product_grid = 12 | divided_by: section.settings.new_collection_results_per_row %}
+        {% assign columns = true %}
+        {% endif %}
+
+        {% for product in collections[section.settings.show_slider_new_collection].products limit:section.settings.slider_new_limit_all %}
+        <div class="item {% if settings.product_image_border %}grid-item-border {% endif %}{% if settings.product_image_crop %}crop_image {% else %}no_crop_image {% endif %}grid-item col-6 col-sm-4 {% if product_grid == 3 %} col-md-4{% endif %} {% if columns %} col-xl-{{product_grid}}{% else %} col{% endif %}">
+          {% render 'product-grid-item', product: product %}
+        </div>
+
+        {% else %}
+        {% for product in (1..section.settings.slider_new_limit_all) %}
+        <div class="item grid-item col-6 col-sm-3{% if product_grid == 3 %} col-md-3{% endif %} {% if columns %} col-lg-{{product_grid}}{% else %}col{% endif %}">
+          <div class="grid-view-item no-product">
+            <a href="#" class="grid-view-item__link">
+              <div class="grid-view-item__image">
+                {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="product-title"><span>Your product's name</span></div>
+            </a>
+            <div class="price-box">
+              <span> $250.00 </span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+      </div>
+
+      {% if section.settings.display_infinite_scrolling_homepage and section.settings.show_slider_new_collection != bank %}
+      {% assign collection = collections[section.settings.show_slider_new_collection] %} 
+      {%- assign product_limit = product_limit | default: section.settings.slider_new_limit_all | plus: 0 -%}
+      <div class="infinite-scrolling-homepage wow fadeIn">
+        <a class="btn btn--secondary-accent btn--big btn-product-show-more" data-collection="{{ collection.handle }}" data-limit="{{ product_limit }}" data-page="2" data-total="{{  }}" href="{{ paginate.next.url }}" {% if total <= product_limit %}disabled="disabled"{% endif %}>
+          {{ 'home_page.show_more' | t}}
+        </a>
+      </div>
+       {% endif %}
+    </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<style>
+  #section-{{section.id}}{
+    margin-top: {{ section.settings.space_on }}px;
+    margin-bottom: {{ section.settings.space_below }}px;
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "New Products",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_slider_new_products",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "space_on",
+        "label": "Space on",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "space_below",
+        "label": "Space below",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "collection",
+        "id": "show_slider_new_collection",
+        "label": "Collection to use"
+      },
+      {
+        "type": "text",
+        "id": "slider_new_title",
+        "label": "Title",
+        "default": "New Products"
+      },
+    {
+        "type" : "text",
+        "id" : "slider_new_desc_text",
+        "label" : "Description Text",
+        "default" : "Nulla dinterdum diverra de dacos saliduet lectus sarius"
+      },
+        {
+        "type": "text",
+        "id": "slider_new_limit_all",
+        "label": "Number of products to show",
+        "default": "8"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_infinite_scrolling_homepage",
+        "label": "Display Show More Button?",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "new_collection_results_per_row",
+        "label": "Products per row",
+        "options": [
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          }
+        ],
+        "default": "5"
+     }
+  ],
+  "presets": [
+      {
+        "name": "New Products",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

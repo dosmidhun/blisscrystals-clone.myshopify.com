@@ -1,0 +1,34 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-b9eabce0"></div>
+{% if section.settings.show_article_categories %}
+  <span class="blog_category">
+      in
+      {% if article.tags.size > 0 %}
+        {%for tag in article.tags%}
+            {% if section.settings.blog_category contains tag %}
+                <span class="blog_category_item">{{ tag | link_to_tag: tag }}</span>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+  </span>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Blog Categories",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_article_categories",
+        "label": "Show Blog Categories in blog author",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "blog_category",
+        "label": "Blog Categories",
+        "info": "Categories are selective tags. Mention those selective tags seperated with comma above."
+      }
+    ]
+  }
+{% endschema %}

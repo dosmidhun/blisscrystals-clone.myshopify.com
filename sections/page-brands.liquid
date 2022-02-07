@@ -1,0 +1,107 @@
+{% if section.settings.display_brand %}
+<div class="logo-brands">
+  <div class="slide-logo row-bt has-slick has-arrows" data-row="5" data-rowtb="4" data-rowtblg="3" data-rowbm="2">
+    {% for block in section.blocks %}
+    <div class="item col-sm-3">
+      <a title="{{ block.settings.title }}" href="/collections/vendors?q={{ block.settings.title | replace: ' ', '%20'}}">
+        {% if block.settings.image != blank %}       
+        {%- assign img_url = block.settings.image | img_url: '600x' -%}
+        <img src="{{ img_url }}" alt="{{ block.settings.image.alt }}"/>
+        {% else %}
+        <span class="not_img">210 x 74px</span>
+        {% endif %}
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<ul class="azbrandstable">
+  <li class="all-brand">
+    <a class="active readonly" href="javascript:void(0)">All</a>
+  </li>
+  {% assign array = "A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|#" | split: "|" %}
+
+  {% for item in array %} 
+  <li class="vendor-letter">
+    <a href="javascript:void(0)">{{item}}</a>
+  </li>
+  {% endfor %}
+</ul> 
+
+<div class="brands-list">
+    {% assign curr = "" %}
+    {% for collection in collections %} 
+    {% assign first = collection.title | strip_html | upcase | truncate: 1, '' %}
+  <div class="brand {% unless first == curr %} brand-{{ first }} {% endunless %}" {% if first == curr %} style="display:none" {% endif %}>
+    {% unless first == curr %} 
+    <div class="azbrands-title">
+      {% if first == '1' or first == '2' or first == '3' or first == '4' or first == '5' or first == '6' or first == '7' or first == '8' or first == '9' or first == '0' %}
+      <h3>#</h3>
+      {% else %}
+      <h3>{{ first }}</h3>
+      {% endif %}
+    </div>
+    {% endunless %}
+   {% assign curr = first %}
+     
+    <ul class='brandgrid row-bt'> 
+        {% assign collection_title = collection.title %}
+      {% if collection.metafields.accentuate.non_crystal_collection %}
+      
+      {% else %}
+         <li class='col-12 col-md-4 col-lg-4 col-xl-3'><a href="{{ collection.url }}" class="collection-list-link">{{ collection_title }}</a> 
+          </li>
+      {% endif %}
+      <!-- <li class='col-12 col-md-4 col-lg-4 col-xl-3'>{{ vendor | link_to_vendor }}</li> --> 
+    </ul> 
+    
+  </div>
+ 
+    {% endfor %}  
+</div>
+
+
+{% schema %}
+  {
+    "name": "Brands Page",
+    "max_blocks": 15,
+    "settings": [
+        {
+          "type": "header",
+          "content": "Brands Page"
+        },
+        {
+          "type": "checkbox",
+          "id": "display_brand",
+          "label": "Display Brands Slider?",
+          "default": true
+      }
+    
+   ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Your Brands",
+            "default": "Benjamin Button"
+          }
+          
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+

@@ -1,0 +1,351 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-a30e6d82"></div>
+{% if section.settings.display_sidebar_blog_page %}
+
+<div class="sidebar sidebar-blog">
+  <div class="close-sidebar">
+	{% render 'icon-close' %}
+</div>
+  
+  {% if section.settings.display_categories %}
+<div class="widget widget-categories">
+  <div class="widget-header">
+    <h3 class="sidebar-title">
+      {% render 'multilang' with section.settings.title_categories %}
+    </h3>
+  </div>
+ 
+  {%- assign blog_linklist = section.settings.blog_linklist -%}
+
+  {% if blog.all_tags.size > 0 %}
+    <div class="widget-content">
+      <ul class="blog-listing">
+        {% for tag in blog.all_tags %}
+          {% if section.settings.blog_category contains tag %}
+              {% if current_tags contains tag %}
+              <li>{{ tag }}</li>
+              {% else %}
+              <li>{{ tag | link_to_tag: tag }}</li>
+              {% endif %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+
+  {% if section.settings.sidebar_recent_art %}
+    {% render 'widget_article' %}
+  {% endif %}
+  
+  {% if section.settings.sidebar_blog_tags %}
+  <div class="widget blogs-tags sidebar-custom">
+    <div class="widget-header open">   
+      <h3 class="sidebar-title">
+        <span {% if settings.enable_multilang %}data-translate="blogs.sidebar.tag_cloud"{% endif %}>
+          {{ 'blogs.sidebar.tag_cloud' | t }}
+        </span>
+      </h3>
+    </div>
+    
+    <div class="widget-content">
+      {% for tag in blog.all_tags %}
+      <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+        {{ tag }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% for block in section.blocks %}
+    {% case block.type %}
+    {% when 'image' %}
+      {% if block.settings.image == blank and block.settings.image_1 == blank %}
+        <div class="widget sidebar-banner 123">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+        {% else %}
+        <div class="widget sidebar-banner 135">
+          {% if block.settings.image != blank %}
+          <div class="banner-first banner-item">
+            <a class="animate-hvr" href="{{ block.settings.link }}">
+              <img src="{{ block.settings.image  | img_url: '100x' }}" alt=""             
+                   data-src="{{ block.settings.image  | img_url: '600x' }}"
+                   class="lazyload"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{  block.settings.image.aspect_ratio }}"
+                   data-sizes="auto">
+            </a>
+          </div>
+          {% endif %}
+          {% if block.settings.image_1 != blank %}
+          <div class="banner-last banner-item">
+            <a class="animate-hvr" href="{{ block.settings.link_1 }}">
+              <img src="{{ block.settings.image_1  | img_url: '100x' }}" alt=""             
+                   data-src="{{ block.settings.image_1  | img_url: '600x' }}"
+                   class="lazyload"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{  block.settings.image_1.aspect_ratio }}"
+                   data-sizes="auto">
+            </a>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+
+     {% when 'product' %}
+        {% if block.settings.enable %}
+        <div class="widget widget-featured-product" id="block-{{ block.id }}">
+          {% if block.settings.title != blank %}
+          <div class="widget-header">   
+            <h3 class="sidebar-title">
+              {% render 'multilang' with block.settings.title %}
+            </h3>
+          </div>
+          {% endif %}
+          {% if block.settings.collection == blank %}
+          <div class="grid-view-item no-product">
+            <a href="#" class="center">
+              <div class="grid-view-item__image">
+                {% capture current %}{% cycle 1 %}{% endcapture %}
+                {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="product-title"><span>Your product's name</span></div>
+            </a>
+            <div class="center">
+              <span> $200.00 </span>
+            </div>
+          </div>
+          {% else %}
+          <div class="widget-product">
+            <div class="products-grid row">
+              {% for product in collections[block.settings.collection].products limit:block.settings.limit %}
+              <div class="{% if settings.product_image_border%}grid-item-border{% endif %}{% if settings.product_image_crop%} crop_image{% else %} no_crop_image{% endif %} grid-item col-12 col-sm-6 col-md-4 col-lg-12">
+                {% render 'product-grid-item', product: product %}
+              </div>
+              {% endfor %}
+            </div> 
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+  
+           
+        {% when 'quote' %}        
+        <div class="widget sidebar-cms-custom">
+          {% if block.settings.title != blank %}
+          <div class="widget-header open">   
+            <h3 class="sidebar-title">
+              {% render 'multilang' with block.settings.title | escape  %}
+            </h3>
+          </div>
+          {% endif %}
+
+          <div class="widget-content">
+            {% if block.settings.quote != blank %}
+            {% if settings.enable_multilang %}
+            <div class="rte-setting lang1">{{ block.settings.quote | split: '|' | first }}</div>
+            <div class="rte-setting lang2">{{ block.settings.quote | split: '|' | last }}</div>
+            {% else %}
+            <div class="rte-setting">{{ block.settings.quote | split: '|' | first }}</div>
+            {% endif %}
+            {% endif %}
+          </div>
+        </div>        
+    {% endcase %}
+  {% endfor %}
+</div>
+{% endif %}
+
+<style>
+  {% unless section.settings.display_sidebar_blog_page %}
+  .template-article .sidebar-label,
+  .template-blog  .sidebar-label{
+    display: none;
+  }
+  {% endunless %}  
+
+  
+  @media (min-width: 1025px) {
+    {% unless section.settings.display_sidebar_blog_page %}
+    .template-blog .col-main,
+    .template-article .col-main {
+      width: 100%;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding-right: 10px!important;
+      padding-left: 10px!important;
+    }
+    .template-blog .col-sidebar,
+    .template-article .col-sidebar{
+      display: none !important;	
+    }
+    {% else %}
+    .template-blog .sidebar,
+    .template-article .sidebar {
+      display: block !important;
+    }
+
+    {% endunless %}  
+
+    {% if section.settings.show_sidebar == 'right' %}
+    .template-blog .row-bt,
+    .template-article .row-bt {
+      -webkit-flex-direction: row-reverse;
+      -moz-flex-direction: row-reverse;
+      -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+    }
+    {% endif %}
+  }
+
+ 
+</style>
+
+
+{% schema %}
+  {
+    "name": "Sidebar Blog",
+   	"class": "col-lg-3 col-sidebar",
+    "max_blocks": 5,
+    "settings": [
+	 {
+        "type": "checkbox",
+        "id": "display_sidebar_blog_page",
+        "label": "Enable Sidebar Blog",
+        "default": true
+      },
+      {
+        "type": "radio",
+        "id": "show_sidebar",
+        "label": "Show sidebar on the",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "right"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar_recent_art",
+        "label": "Show Block Recent Article",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar_blog_tags",
+        "label": "Show Sidebar Blog tags",
+        "default": true
+      },
+      {
+        "type" : "header",
+        "content" : "Categories"
+        },
+        {
+          "type" : "checkbox",
+          "id" : "display_categories",
+          "label" : "Show Categories",
+          "default" : true
+        },
+        {
+          "type" : "text",
+          "id" : "title_categories",
+          "label" : "Title Categories",
+          "default" : "Categories"
+        },
+        {
+          "type": "textarea",
+          "id": "blog_category",
+          "label": "Blog category",
+          "info": "Categories are selective tags. Mention those selective tags seperated with comma above."
+        }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Block Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image 1",
+            "info" : "Recommended Image: Width x Height (210 x 390)PX"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link 1",
+            "info": "Optional"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image 2"
+          },
+          {
+            "type": "url",
+            "id": "link_1",
+            "label": "Link 2",
+            "info": "Optional"
+          }
+        ]
+      },
+		  {
+        "type": "product",
+        "name": "Product Slider",
+        "settings": [
+		    {
+          "type": "checkbox",
+          "id": "enable",
+          "label": "Enable",
+          "default": true
+     	  },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "limit",
+            "label": "Number of products to show",
+            "default": "8"
+          }
+        ]
+      },
+      {
+        "type": "quote",
+        "name": "Custom Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Custom Block"
+          },
+          {
+            "type": "textarea",
+            "id": "quote",
+            "label": "Text",
+            "default": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

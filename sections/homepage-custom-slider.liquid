@@ -1,0 +1,160 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-08c9beb6"></div>
+{% if section.settings.display_custom_slider %}
+<section class="custom-slider-brand-wrapper" id="section-{{section.id}}">
+  <div class="container">
+    <div class="inner_wrapper">
+    {% if section.settings.custom_slider_title != blank %}
+    <div class="widget-title">
+      <h3>
+        {% render 'multilang' with section.settings.custom_slider_title %}
+      </h3>
+    </div>
+    {% endif %}
+    
+    <div class="row-bt">
+      <div class="col-12">
+        <div class="slide_custom_slider fours-items has-slick has-arrows" data-row="4" data-rowtb="4" data-rowtblg="3" data-rowbm="2">
+          {% for block in section.blocks %}
+          <div id="custom_slider-{{ block.id }}" class="item col-6 col-md-4 col-lg-3 col4">
+            <div class="left-col">
+              {% if block.settings.ct_slider_heading != blank %}	
+              <h3 class="heading">{% render 'multilang' with  block.settings.ct_slider_heading %}</h3>
+              {% endif %}
+
+              {% if block.settings.ct_slider_collection_text != blank %}
+              <a class="collection-link" title="{{ block.settings.ct_slider_heading }}" href="{{ block.settings.ct_slider_link }}">
+              	{% render 'multilang' with  block.settings.ct_slider_collection_text %}
+              </a>
+              {% endif %}
+            </div>
+            <div class="right-col">
+            	{% if block.settings.ct_slider_collection_text != blank %}
+              <a class="collection-link" title="{{ block.settings.ct_slider_heading }}" href="{{ block.settings.ct_slider_link }}">
+              {% if block.settings.ct_slider_img != blank %}       
+              {%- assign img_url = block.settings.ct_slider_img | img_url: '210x' -%}
+              <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="{{ block.settings.ct_slider_img.alt }}"
+                   class="lazyload"
+                   data-src="https:{{ img_url }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ img_url.aspect_ratio }}"
+                   data-sizes="auto">
+              {% else %}
+              <span class="not_img">96 x 96px</span>
+              {% endif %}
+              </a>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+<style>
+  #section-{{section.id}}{
+    margin-top: {{ section.settings.space_on }}px;
+    margin-bottom: {{ section.settings.space_below }}px;
+  }
+  {% unless  template contains 'index' %}
+  .slider-brand-wrapper .container{ 
+    padding-top:35px;
+    border-top:2px solid {{settings.color_border}};
+    {% if  template contains 'page' %}
+    margin-top: 30px;
+    {% else %}
+    margin-top: 40px;
+    {% endif %}
+  }
+  .slider-brand-wrapper .widget-title{
+    display:none;
+  }
+  .slider-brand-wrapper{
+    margin-bottom: 23px!important;
+  }
+  {% endunless %}
+</style>
+{% endif %}
+{% schema %}
+  {
+    "name": "Homepage Custom Slider",
+  	"max_blocks": 10,
+    "settings": [
+    {
+	  "type": "checkbox",
+	  "id": "display_custom_slider",
+	  "label": "Display Custom Slider?",
+	  "default": true
+    },
+    {
+      "type": "range",
+      "id": "space_on",
+      "label": "Space on",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "space_below",
+      "label": "Space below",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 60
+    },
+  	{
+	  "type": "text",
+	  "id": "custom_slider_title",
+	  "label": "Title",
+	  "default": "Collections"
+    }
+    ],
+    "blocks": [
+      {
+        "type": "banner",
+        "name": "Custom Slider",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "ct_slider_img",
+            "label": "Image",
+      		"info" : "Recommended Image: Width x Height (96 x 96)px"
+          },
+          {
+            "type": "text",
+            "id": "ct_slider_heading",
+            "label": "Slider Heading",
+            "default": "Loremous"
+          },
+          {
+            "type": "text",
+            "id": "ct_slider_collection_text",
+            "label": "Collection text",
+            "default": "Collections"
+          },
+      	  {
+            "type": "url",
+            "id": "ct_slider_link",
+            "label": "Link",
+            "info": "Optional"
+          }
+    	]
+    	}
+  	],
+    "presets": [
+      {
+        "name": "Homepage Custom Slider",
+        "category": "block images",
+        "blocks": [
+        {
+          "type": "banner"
+        }
+      ]
+      }
+    ]
+  }
+{% endschema %}

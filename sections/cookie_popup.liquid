@@ -1,0 +1,162 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-3d6e4cdc"></div>
+
+{% if section.settings.display_gdpr %}
+<div id="accept-cookies" class="cookieMessage" >
+  
+  <div class="block-cookies">
+
+    <div class="des">
+       {% render 'multilang' with section.settings.content %}
+    </div>
+
+    <div class="btn-bottom">
+      {% if section.settings.policy_text != blank  %}
+      <a class="privacy_policy" href="{{section.settings.policy_link}}">{% render 'multilang' with section.settings.policy_text %}</a>
+      {% endif %}
+
+      {% if section.settings.text_btn != blank  %}
+      <a href="javascript:void(0)" class="btn-accept">
+      	{% render 'multilang' with section.settings.text_btn %}
+        <span class="icon">✔</span>
+      </a>
+      {% endif %}
+      
+    </div>
+  </div>  
+</div>
+<style>
+  #accept-cookies{
+    background: {{section.settings.bg_color | color_modify: 'alpha', 0.9 }};
+  }
+  #accept-cookies .block-cookies .des{
+    color:{{section.settings.text_color}};
+  }
+  #accept-cookies .block-cookies .btn-accept {
+    color: {{section.settings.btn_text_color}};
+  }
+  #accept-cookies .block-cookies .btn-accept .icon {
+    color: {{section.settings.btn_text_color}};
+  }
+  #accept-cookies .block-cookies .btn-accept > span:first-child {
+    border-bottom: 1px solid {{section.settings.btn_text_color}};
+  }
+  #accept-cookies .block-cookies .btn-accept:hover {
+    color: {{section.settings.btn_text_color_hover}};
+  }
+  #accept-cookies .privacy_policy {
+    color: {{section.settings.link_color}};
+  }
+  #accept-cookies .privacy_policy:hover {
+    color: {{section.settings.link_color_hover}};
+  }
+  @media (min-width: 1025px) {
+    #accept-cookies{
+      {% if section.settings.show_gdp == 'right' %}
+        right: 15px;
+      {% else %}
+        left: 15px;
+      {% endif %}
+    }
+  }
+
+</style>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "GDPR Cookie Popup",
+    "settings": [
+		{
+        "type": "checkbox",
+        "id": "display_gdpr",
+        "label": "Enable",
+        "default": true
+      },
+      {
+      "type": "radio",
+      "id": "show_gdp",
+      "label": "Show GDPR Cookie Popup on the",
+      "options": [
+      {
+      "value": "left",
+      "label": "Left"
+      },
+      {
+      "value": "right",
+      "label": "Right"
+      }
+      ],
+      "default": "right"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+	   {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#ffffff"
+      },
+		  {
+        "type": "textarea",
+        "id": "content",
+        "label": "Description text",
+        "default": "We use cookies to improve your experience on our website. Read about how we use cookies in our Privacy Policy. By browsing this website, you agree to our use of cookies."
+      },
+      {
+        "type" : "header",
+        "content" : "Accept Button"
+      },
+	    {
+        "type": "text",
+        "id": "text_btn",
+        "label": "Button text",
+        "default": "Accept"
+      },
+      {
+        "type": "color",
+        "id": "btn_text_color",
+        "label": "Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "btn_text_color_hover",
+        "label": "Text Color Hover",
+        "default": "#ffffff"
+      },
+      {
+        "type" : "header",
+        "content" : "Privacy Policy Link"
+      },
+      {
+        "type": "text",
+        "id": "policy_text",
+        "label": "Text",
+        "default": "Privacy Policy"
+      },
+	    {
+        "type": "url",
+        "id": "policy_link",
+        "label": "URL of your Privacy Policy"
+      },
+      {
+        "type": "color",
+        "id": "link_color",
+        "label": "Link Color",
+        "default": "#818181"
+      },
+      {
+        "type": "color",
+        "id": "link_color_hover",
+        "label": "Link Color Hover",
+        "default": "#ffffff"
+      }
+	]
+  }
+{% endschema %}
+
+

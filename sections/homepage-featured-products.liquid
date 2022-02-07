@@ -1,0 +1,145 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-e43fc2ae"></div>
+{% if section.settings.show_slider_featured_products %}
+<div class="homepage-featured-products" id="section-{{section.id}}">
+  <div class="container">
+    {% if section.settings.slider_featured_title != blank %}
+    <div class="widget-title">   
+      <h3 class="box-title">
+        {% render 'multilang' with section.settings.slider_featured_title %}
+      </h3>
+      {% if section.settings.slider_featured_desc_text != blank %}
+        <p class="desc-text">{% render 'multilang' with section.settings.slider_featured_desc_text %}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+    
+    <div class="widget-product">
+      <div class="products-grid row five-items has-slick" data-row="{{section.settings.featured_collection_results_per_row}}" data-rowtb="3" data-rowtblg="3" data-rowbm="2">
+        {% if section.settings.featured_collection_results_per_row != blank and section.settings.featured_collection_results_per_row != '4' %}
+        {% assign product_grid = 12 | divided_by: section.settings.featured_collection_results_per_row %}
+        {% assign columns = true %}
+        {% endif %}
+
+        {% for product in collections[section.settings.show_slider_featured_collection].products limit:section.settings.slider_featured_limit_all %}
+        <div class="item {% if settings.product_image_border %}grid-item-border {% endif %}{% if settings.product_image_crop %}crop_image {% else %}no_crop_image {% endif %}grid-item col-6 col-md-4 col-lg-3{% if product_grid == 3 %} col-xl-3{% endif %} {% if columns %} col-xl-{{product_grid}}{% else %}col-xl{% endif %}">
+          {% render 'product-grid-item', product: product %}
+        </div>
+
+        {% else %}
+        {% for product in (1..section.settings.slider_featured_limit_all) %}
+        <div class="item grid-item col-6 col-md-4 col-lg-3{% if product_grid == 3 %} col-xl-3{% endif %} {% if columns %} col-xl-{{product_grid}}{% else %}col-xl{% endif %}">
+          <div class="grid-view-item no-product">
+            <a href="#" class="grid-view-item__link">
+              <div class="grid-view-item__image">
+                {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="product-title"><span>Your product's name</span></div>
+            </a>
+            <div class="price-box">
+              <span> $250.00 </span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<style>
+  #section-{{section.id}}{
+    margin-top: {{ section.settings.space_on }}px;
+    margin-bottom: {{ section.settings.space_below }}px;
+  }
+
+</style>
+
+{% schema %}
+  {
+    "name": "Featured Products",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_slider_featured_products",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "space_on",
+        "label": "Space on",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "space_below",
+        "label": "Space below",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "collection",
+        "id": "show_slider_featured_collection",
+        "label": "Collection to use"
+      },
+      {
+        "type": "text",
+        "id": "slider_featured_title",
+        "label": "Title",
+        "default": "Featured Products"
+      },
+    {
+        "type" : "text",
+        "id" : "slider_featured_desc_text",
+        "label" : "Description Text",
+        "default" : "Nulla dinterdum diverra de dacos saliduet lectus sarius"
+      },
+      {
+        "type": "text",
+        "id": "slider_featured_limit_all",
+        "label": "Number of products to show",
+        "default": "10"
+      },
+      {
+        "type": "select",
+        "id": "featured_collection_results_per_row",
+        "label": "Products per row",
+        "options": [
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          }
+        ],
+        "default": "5"
+     }
+   
+  ],
+  "presets": [
+      {
+        "name": "Featured Products",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

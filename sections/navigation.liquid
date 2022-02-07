@@ -1,0 +1,841 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-de24b07a"></div>
+<style>
+/* Fixed Top Menu */
+  {% assign bg_fixtop_menu =  section.settings.bg_fix %}
+  {% assign color_fixed_top =  section.settings.color_fixed_top %}
+  
+/* Text Align Navigation */  
+  {% assign alignment_nav =  section.settings.alignment %}
+
+/* Main Navigation */
+  {% assign nav_bg_color =  section.settings.nav_bg_color %}
+  {% assign nav_top_menu_color =  section.settings.nav_top_menu_color %}
+  
+/*   Dropdown Menu */
+  {% assign nav_dropdown_border_style =  section.settings.nav_dropdown_border_style %}
+  {% assign nav_dropdown_border_color =  section.settings.nav_dropdown_border_color %}
+  {% assign nav_dropdown_bg_color =  section.settings.nav_dropdown_bg_color %}  
+  {% assign nav_dropdown_title_color =  section.settings.nav_dropdown_title_color %}
+  {% assign nav_dropdown_title_color_hover =  section.settings.nav_dropdown_title_color_hover %}  
+  {% assign nav_dropdown_link_color =  section.settings.nav_dropdown_link_color %}
+  {% assign nav_dropdown_link_color_hover =  section.settings.nav_dropdown_link_color_hover %}
+  
+  {% assign banner_bottom_style_3_background =  section.settings.banner_bottom_style_3_background %}
+  {% assign banner_bottom_style_3_text_color =  section.settings.banner_bottom_style_3_text_color %}
+  
+/* Cart Header */
+  {% assign cart_icon_color =  section.settings.cart_icon_color %}
+  {% assign cart_count_bg_color =  section.settings.cart_count_bg_color %}
+  {% assign cart_count_color =  section.settings.cart_count_color %}
+  {% assign bg_cart_icon_color =  section.settings.bg_cart_icon_color %}
+
+    /* Icon Cart */
+  .wrapper-navigation .wrapper-right .top-cart .cartToggle svg,
+  .wrapper-navigation .wrapper-right .searchToggle svg {
+    fill: {{ section.settings.cart_icon_color }};
+  }
+  .wrapper-navigation .wrapper-right .top-cart .cartToggle .cartCount {
+    background: {{cart_count_bg_color}};
+    color: {{cart_count_color}};
+  }
+
+   .wrapper-navigation  .site-nav .icon_sale{
+    color: {{ section.settings.color_lb_sale }};
+    background:{{ section.settings.bg_lb_sale }};
+  }
+  
+  .wrapper-navigation  .site-nav .icon_hot{
+    color: {{ section.settings.color_lb_hot }};
+    background:{{ section.settings.bg_lb_hot }};
+  }
+  
+  .wrapper-navigation  .site-nav .icon_new {
+    color: {{ section.settings.color_lb_new }};
+    background:{{ section.settings.bg_lb_new }};
+  }
+  
+/*  Navigation   */
+  .wrapper-navigation {
+    background-color: {{ nav_bg_color }};
+  }
+  .wrapper-navigation-sticky.fix-top {
+    background-color: {{ nav_bg_color }};
+  }
+  
+  .wrapper-navigation .icon-menu .icon-line,.wrapper-navigation .icon-menu .icon-line:before, .wrapper-navigation .icon-menu .icon-line:after {
+    background: {{color_title}};
+  }
+  .wrapper-navigation .wrapper-left .categories-title{
+  color:{{color_title}};
+  }
+  .wrapper-navigation .wrapper-left .icon-menu .openmnu{
+    fill:{{color_title}};
+  }
+
+  .icon-nav .icon-line,
+  .icon-nav .icon-line:before,
+  .icon-nav .icon-line:after {
+    background-color: {{ nav_top_menu_color }};
+  }
+    
+  .site-nav > li > a {
+    color: {{ nav_top_menu_color }};
+  }  
+  .site-nav  li  a .fa{
+    color: {{ nav_top_menu_color }};
+    opacity: .5;
+    font-size:20px;
+  }
+  .site-nav  li:hover > a .fa{
+    opacity: 1;
+  }
+  .site-nav > li:hover > a,
+  .site-nav > li:focus > a {
+    color: {{ section.settings.nav_hover_color }};
+  }
+  .site-nav .no-mega-menu li a .fa {
+    color: {{ nav_dropdown_link_color }};
+  }
+  
+/*  Dropdown Menu   */  
+  .site-nav-dropdown li > a,
+  .mega-menu .inner .dropdow-lv2 li > a {
+    color: {{ nav_dropdown_link_color }};
+  }
+  .no-mega-menu .site-nav-dropdown li > a:hover > span,
+  .mega-menu .inner .inner-wrap .dropdow-lv2 li > a:hover > span,
+  .mega-menu .top-brands .brandgrid li a:hover {
+    background-image: linear-gradient({{ nav_dropdown_bg_color }} 97%, {{ nav_dropdown_link_color_hover }} 3%);
+    background-repeat: repeat-x;
+    background-position-y: 0px;
+
+  }
+
+  .wrapper-navigation .nav-bar .mega-menu .site-nav-dropdown.style_1 > .container > .row::before {
+    background: {{ section.settings.nav_dropdown_border_color }};
+  }
+
+  .mega-menu .top-brands .brand-view-all > a {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  .mega-menu .top-brands .brand-view-all > a > span {
+    border-bottom: 1px solid {{ nav_dropdown_link_color_hover }};
+  }
+  .mega-menu .top-brands .brand-view-all > a > span:after {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  .mega-menu .inner > a,
+  .mega-menu .inner .inner-wrap > a,
+  .mega-menu .featured-product h3,
+  .mega-menu .featured-product .product-title,
+  .mega-menu .cate-title,
+  .mega-menu .top-brands .top-brands-heading,
+   .mega-menu .style_2 .banner-last h3{
+    color: {{ nav_dropdown_title_color }};
+  }
+  .mega-menu .inner .inner-wrap > a:hover {
+    color: {{ nav_dropdown_title_color_hover }};
+  }
+
+  .site-nav-dropdown li > a:hover,
+  .site-nav-dropdown li > a:focus,
+  .mega-menu .inner > a:hover,
+  .mega-menu .inner > a:focus,
+  .mega-menu .cate-title:hover,
+  .mega-menu .cate-title:focus {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  .mega-menu .inner .dropdow-lv2 li > a:hover {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+
+  .site-nav-dropdown .site-nav-dropdown a,
+  .mega-menu .cate-shop-now {
+    color: {{ nav_dropdown_link_color }};
+  }
+  
+  .site-nav-dropdown .site-nav-dropdown li a:hover,
+  .mega-menu .cate-shop-now:hover,
+  .mega-menu .cate-shop-now:focus {
+    color: {{ nav_dropdown_link_color_hover }};
+  }   
+    
+  .wrapper-navigation .site-nav .dropdow-lv2,
+  .site-nav .site-nav-dropdown,
+  .mega-menu:hover > a:before {
+    background-color: {{ nav_dropdown_bg_color }};
+  }
+  .no-mega-menu .site-nav-dropdown li a,
+   .site-nav-dropdown .site-nav-dropdown li a {
+    {{ nav_dropdown_link_color }}
+  }
+  .no-mega-menu .site-nav-dropdown li:hover > a,
+  .no-mega-menu .site-nav-dropdown li:focus > a {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  
+  .site-nav > li > a.sale{
+    color:{{section.settings.sale_color}};
+  }
+
+  {% if section.settings.display_fixtop_menu %}
+  .is-sticky .header-bottom {
+    z-index: 100!important;
+  }
+
+  {% endif %}
+
+/* Fixed Menu */
+ .fixed_top .fix-top .header-logo-fix .logo-title {
+    color: {{ nav_top_menu_color }};
+ }
+ .fixed_top .header-search .searchToggle {
+    border-left: 1px solid {{ nav_top_menu_color | color_modify: 'alpha', 0.15}};
+ }
+.fixed_top .header-search .searchToggle svg {
+  fill: {{ nav_top_menu_color }};
+}
+.fixed_top .fix-top .wrapper-right .top-cart {
+  border-left: 1px solid {{ nav_top_menu_color | color_modify: 'alpha', 0.15}};
+}
+
+@media (min-width:1025px) {
+  .nav-bar .site-nav {
+    text-align: {{ alignment_nav }};
+  }
+  
+  .site-nav .mega-menu .hl-shuffle-container{
+    display:block;
+    -webkit-column-count: 3;
+    column-count: 3;
+    margin: 0 -10px;
+  }
+  .site-nav .mega-menu .style_3 .hl-shuffle-container {
+    -webkit-column-count: 5;
+    column-count: 5;
+  }
+  .site-nav .mega-menu .hl-shuffle-container .inner{
+    break-inside: avoid-column;
+    page-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    max-width:100%;
+  }
+ .fixed_top .wrapper-right .top-cart {
+    border-left: 1px solid {{ nav_top_menu_color }};
+  }
+}
+
+  @media (max-width: 1024px) {
+    .wrapper-navigation .wrapper-left .nav-bar {
+      background: #fff;
+    }
+    .wrapper-navigation .site-nav .mega-menu .site-nav-dropdown .inner{
+      border-top-color: {{nav_dropdown_border_color}};
+    }
+    .wrapper-navigation .site-nav .style_4 .banner,
+    .wrapper-navigation .site-nav .mega-menu .column-right{
+      border-top:1px solid {{nav_dropdown_border_color}};
+      padding-top: 21px;
+    }    
+    .fixed_top .fix-top .wrapper-right .top-cart {
+      border-left: none;
+    }
+  }
+
+</style>
+
+<div class="wrapper-navigation">
+  <div class="wrapper-navigation-sticky {% if section.settings.display_fixtop_menu %}fix-top{% endif %}">
+    <div class="row">
+      <div class="header-logo-fix">
+        {% if section.settings.logo_fix != blank %}
+          <a href="/">
+            <img src="{{ section.settings.logo_fix | img_url: 'x48' }}" alt="{{ section.settings.logo_fix.alt | default: shop.name }}" itemprop="logo">
+          </a>
+        {% else %}
+          <a class="logo-title" href="/">{{shop.name}}</a>
+        {% endif %}
+      </div>
+      <div class="container">
+        <div class="wrapper-left">
+          <a href="javascript:void(0)" class="close-menu">
+            {% render 'icon-close' %}
+          </a>
+          <nav class="nav-bar" role="navigation">
+            {% render 'site-nav' %}
+            <div class="hd-option"></div>
+          </nav>
+        </div>
+       <div class="wrapper-right">
+          <div class="top-cart">
+            <a href="javascript:void(0)" class="cartToggle">
+              {% render 'icon-cart' %}
+              <span class="first" {% if settings.enable_multilang %}data-translate="cart.general.shopping_cart"{% endif %}>{{ 'cart.general.shopping_cart' | t }}</span>
+              <span class="cartCount">{{ cart.item_count }}</span>
+            </a>
+            <div class="wrapper-top-cart">
+              <div class="close-icon-wrap">
+                 <a href="javascript:void(0)" class="close-menu">
+                  {% render 'icon-close' %}
+                </a>
+              </div>
+              <h5 class="cart-heading" {% if settings.enable_multilang %}data-translate="cart.general.title"{% endif %}>{{'cart.general.title' | t}}:</h5>
+              {% render 'wrapper-top-cart' %}
+            </div>
+          </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.dropdowncart_type = "{{ section.settings.dropdowncart_type }}";
+  window.fixtop_menu = "{{ section.settings.display_fixtop_menu }}";
+  
+</script>
+
+{% schema %}
+  {
+    "name": "Navigation",
+  "max_blocks": 10,
+    "settings": [
+    {
+      "type": "header",
+      "content": "Fixed Top Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_fixtop_menu",
+      "label": "Display Fix Top Menu?",
+      "default": true
+    },
+    {
+        "type": "link_list",
+        "id": "horizontal_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_fix",
+      "label": "Logo image when enable Fixed Top Menu",
+      "info": "Maximum logo dimensions are 128px wide by 24px high."
+    },
+    {
+      "type": "header",
+      "content": "Navigation Text alignment"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Text alignment",
+      "default": "right",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Navigation Level Top"
+    },
+    {
+      "type": "color",
+      "id": "nav_bg_color",
+      "label": "Nav Background Color",
+      "default": "#323232"
+    },
+    {
+      "type": "color",
+      "id": "nav_top_menu_color",
+      "label": "Nav Top Menu Color Text",
+      "default": "#fff"
+    }, 
+    {
+      "type": "color",
+      "id": "nav_hover_color",
+      "label": "Nav Link Top Hover Color",
+      "default": "#fff"
+    },
+    {
+      "type" : "header",
+      "content" : "Label"
+    },
+    {
+      "type" : "checkbox",
+      "id" : "enable_sale",
+      "label" : "Display Label Sale",
+      "default" : true
+    },
+    {
+      "type" : "text",
+      "id" : "lb_sale",
+      "label" : "Label sale",
+      "default" : "Sale"
+    },
+    {
+      "type" : "textarea",
+      "id" : "sale_item_1",
+      "label" : "Label Sale Items"
+    },
+    {
+      "type" : "color",
+      "id" : "bg_lb_sale",
+      "label" : "Background color label sale",
+      "default" : "#e02858"
+    },
+    {
+      "type" : "color",
+      "id" : "color_lb_sale",
+      "label" : "Text Color label sale",
+      "default" : "#fff"
+    },
+    {
+      "type" : "checkbox",
+      "id" : "enable_new_1",
+      "label" : "Display Label New",
+      "default" : true
+    },
+    {
+      "type" : "text",
+      "id" : "lb_new",
+      "label" : "Label New",
+      "default" : "New"
+    },
+    {
+      "type" : "textarea",
+      "id" : "new_item",
+      "label" : "Label New Items"
+    },
+    {
+      "type" : "color",
+      "id" : "bg_lb_new",
+      "label" : "Background color label New",
+      "default" : "#1fade6"
+    },
+    {
+      "type" : "color",
+      "id" : "color_lb_new",
+      "label" : "Text Color label New",
+      "default" : "#fff"
+    },
+    {
+      "type" : "checkbox",
+      "id" : "enable_hot",
+      "label" : "Display Label Hot",
+      "default" : true
+    },
+    {
+      "type" : "text",
+      "id" : "lb_hot",
+      "label" : "Label Hot",
+      "default" : "Hot"
+    },
+    {
+      "type" : "textarea",
+      "id" : "hot_item",
+      "label" : "Label Hot Items"
+    },
+    {
+      "type" : "color",
+      "id" : "bg_lb_hot",
+      "label" : "Background color label Hot",
+      "default" : "#f79555"
+    },
+    {
+      "type" : "color",
+      "id" : "color_lb_hot",
+      "label" : "Text Color label Hot",
+      "default" : "#fff"
+    },
+    {
+      "type": "header",
+      "content": "Cart"
+    },
+    {
+      "type" : "color",
+      "id": "cart_icon_color",
+      "label" : "Cart Icon Color",
+      "default" : "#fff"
+    },
+    {
+      "type" : "color",
+      "id": "cart_count_bg_color",
+      "label" : "Background Cart count",
+      "default" : "#e02858"
+    },
+    {
+      "type": "color",
+      "id": "cart_count_color",
+      "label": "Cart Count Text Color",
+      "default": "#fff"
+    },
+    {
+      "type": "header",
+      "content": "Dropdown Menu"
+    },
+    {
+      "type": "color",
+      "id": "nav_dropdown_bg_color",
+      "label": "Dropdown Menu Background Color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "nav_dropdown_link_color",
+      "label": "Dropdown Menu Link Color",
+      "default": "#505050"
+    },
+    {
+      "type": "color",
+      "id": "nav_dropdown_link_color_hover",
+      "label": "Dropdown Menu hover color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "nav_dropdown_title_color",
+      "label": "Mega menu Title Color",
+      "default": "#191919"
+    },
+    {
+      "type": "color",
+      "id": "nav_dropdown_title_color_hover",
+      "label": "Mega menu Title Color Hover",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "nav_dropdown_border_color",
+      "label": "Mega menu Style 1 line Color",
+      "default": "#dddddd"
+    },
+    {
+      "type": "header",
+      "content": "Mega Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_megamenu",
+      "label": "Display Mega Menu?",
+      "default": true
+    } 
+  ],
+  "blocks": [
+    {
+      "type": "style_1",
+      "name": "Style 1",
+      "settings": [
+      {
+      "type": "text",
+      "id": "megamenu_items_1",
+      "label": "Mega Menu Items for Style 1",
+      "default": "Catalog"
+      },
+      {
+        "type" : "header",
+        "content" : "Column Left"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dpl_column_first_style_left",
+        "label" : "Display column left",
+        "default" : true
+      },
+      {
+        "type": "text",
+        "id": "top_brands_title",
+        "label": "Brand Title",
+        "default": "Top Brands"
+      },
+      {
+        "type": "text",
+        "id": "top_brands_view_all_text",
+        "label": "View All Text",
+        "default": "View All Brands"
+      },
+      {
+        "type": "url",
+        "id": "top_brands_view_all_link",
+        "label": "View All Link"
+      },
+      {
+      "type" : "header",
+      "content" : "Column Middle"
+      },
+      {
+        "type": "select",
+        "id": "style_1_per_row",
+        "label": "The number of category columns per now",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ],
+        "default": "2",
+        "info": "you can choose 1,2,3,4 or 5 category columns for mega menu"
+      },
+      {
+        "type" : "header",
+        "content" : "Column right 1"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dpl_column_first_style_1",
+        "label" : "Display column right 1",
+        "default" : true
+      },
+      {
+        "type" : "header",
+        "content" : "Product"
+      },
+      {
+        "type": "text",
+        "id": "title_featured_product",
+        "label": "Title Product",
+        "default" : "Featured Products"
+      },
+      {
+        "type": "collection",
+        "id": "featured_product",
+        "label": "Collection to use"
+      },
+      {
+        "type": "text",
+        "id": "featured_product_limit_all",
+        "label": "Number of products to show",
+        "default": "5"
+      },
+      {
+        "type" : "header",
+        "content" : "Column right 2"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dpl_column_second_style_1",
+        "label" : "Display column right 2",
+        "default" : true
+      },
+      {
+        "type" : "header",
+        "content" : "Banner"
+      },    
+      {
+        "type": "image_picker",
+        "id": "banner_first_style_1",
+        "label": "Upload a new image",
+        "info": "210px x 390px recommended"
+      },
+      {
+        "type": "url",
+        "id": "link_banner_first_style_1",
+        "label": "Link image "
+      }
+    ]
+    },    
+    {
+      "type": "style_2",
+        "name": "Style 2",
+        "settings": [
+        {
+        "type" : "header",
+        "content" : "Column Left"
+      },
+      {
+        "type": "text",
+        "id": "megamenu_items_2",
+        "label": "Mega Menu Items for Style 2",
+        "default": "Catalog"
+      },
+      {
+        "type": "select",
+        "id": "style_2_per_row",
+        "label": "The number of category columns per now",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ],
+        "default": "2",
+        "info": "you can choose 1,2,3,4 or 5 category columns for mega menu"
+      },
+      {
+        "type" : "header",
+        "content" : "Column right 1"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dpl_column_first_style_2",
+        "label" : "Display column right 1",
+        "default" : true
+      },    
+      {
+            "type": "image_picker",
+            "id": "banner_first_style_2",
+            "label": "Upload a new image",
+            "info": "185px x 225px recommended" 
+          },
+
+        {
+            "type": "image_picker",
+            "id": "banner_first_style2_2",
+            "label": "Upload a new image",
+            "info": "185px x 225px recommended" 
+          },
+           
+      {
+        "type": "url",
+        "id": "link_banner_first_style_2",
+        "label": "Link image "
+      },
+      {
+        "type": "url",
+        "id": "link_banner_first_style2_link",
+        "label": "Link image "
+      },
+          {
+            "type": "text",
+            "id": "banner_first_style_2_title",
+            "label": "Title",
+            "default": "Title"
+          },
+      {
+        "type" : "header",
+        "content" : "Column right 2"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dpl_column_second_style_2",
+        "label" : "Display column right 2",
+        "default" : true
+      },  
+      {
+        "type" : "header",
+                "content" : "Featured Collections Block"
+      },
+             
+        {
+            "type": "text",
+            "id": "banner_second_style_2_title",
+            "label": "Title",
+            "default": "Featured Collections"
+          },
+      {
+        "type": "textarea",
+        "id": "banner_second_style_2_desc",
+        "label": "Description Content",
+        "default": "Phasellus aliquet nulla justo demo cosmodo lorem varius deugiatos metus vehicula de donec duer ligula sollicitudin an milos mitos amet cosmo milancelos."
+      },
+      {
+        "type": "text",
+        "id": "banner_second_style_2_btn",
+        "label": "Button text",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "banner_second_style_2_btn_link",
+        "label": "Button link"
+      }
+    ]
+    },      
+    {
+      "type": "style_3",
+      "name": "Style 3",
+      "settings": [     
+      {
+        "type": "text",
+        "id": "megamenu_items_3",
+        "label": "Mega Menu Items for Style 3",
+        "default": "Catalog"
+      },
+      {
+        "type" : "header",
+        "content" : "Bottom Banner"
+      },
+      {
+        "type" : "checkbox",
+        "id" : "dpl_banner_bottom_style_3",
+        "label" : "Display bottom banner",
+        "default" : true
+      },
+      {
+        "type": "textarea",
+        "id": "banner_bottom_style_3_text",
+        "label": "Bottom Banner Text",
+        "default": "Special Offer: SaLe Up To 40% Off On Selected Items*"
+      },
+      {
+        "type": "text",
+        "id": "banner_bottom_style_3_btn",
+        "label": "Button text",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "banner_bottom_style_3_btn_link",
+        "label": "Button link"
+      },
+      {
+        "type": "color",
+        "id": "banner_bottom_style_3_background",
+        "label": "Banner Bottom Style 3 Background Color",
+        "default": "#942b7a"
+      },
+      {
+        "type": "color",
+        "id": "banner_bottom_style_3_text_color",
+        "label": " Banner Bottom Style 3 Text Color",
+        "default": "#ffffff"
+      }
+    ]
+  }
+  ]
+}
+{% endschema %}

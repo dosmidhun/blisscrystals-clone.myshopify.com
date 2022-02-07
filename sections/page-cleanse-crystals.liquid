@@ -1,0 +1,86 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-40afe3b2"></div>
+<div class="page_banner"> 
+	<div class="container"> 
+      <div class="banner_image_outer"> 
+		<img src="{{ section.settings.page_banner | img_url: 'master' }}" />   
+      </div>
+      </div>
+</div>
+
+{% comment %}
+  Regular page content goes here.
+{% endcomment %}
+<div class="page_title_outer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <header class="page-header"> 
+                  {% if settings.enable_multilang %}
+                  <h1 class="lang1">{{ page.title | split: '|' | first }}</h1>
+                  <h1 class="lang2">{{ page.title | split: '|' | last }}</h1>
+                  {% else %}
+                  <h1>{{ page.title | split: '|' | first }}</h1>
+                  {% endif %}
+                  {% if page.handle  == 'fluorite' %}
+                  {% if section.settings.subheading != blank %}
+                  <h2>{{ section.settings.subheading }}</h2>
+                  {% endif %}
+                  {% endif %} 
+               </header>
+            </div> 
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row"> 
+        {% if settings.enable_multilang %}
+        <div class="rte lang1 page_inner_cont">
+            <div class="widget-title">
+                {{ page.content | split: '[lang2]' | first }}
+            </div> 
+        </div>
+        <div class="rte lang2">
+          {{ page.content | split: '[lang2]' | last }}
+        </div>
+        {% else %}
+        <div class="rte">
+            <div class="widget-title">
+          {{ page.content | split: '[lang2]' | first }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Cleanse Crystals",
+    "settings": [
+	{
+    "type" : "header",
+    "content" : "Page Banner"
+    },
+	{
+    "type": "image_picker",
+    "id": "page_banner",
+    "label": "Banner image",
+    "info": "1470px x 360px recommended"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    }
+
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

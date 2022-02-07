@@ -1,0 +1,40 @@
+<div class="wishlist-page" data-wishlist-content>
+  <div class="container wrapper-overflow">
+    
+    <div class="wishlist-header">
+      <div class="row">
+        <div class="col-md-2 item">
+          <span {% if settings.enable_multilang %} data-translate="wishlist.general.product_image" {% endif %}>{{ 'wishlist.general.product_image' | t }}</span>
+        </div>
+        <div class="col-md-4 item">
+          <span {% if settings.enable_multilang %} data-translate="wishlist.general.product_name" {% endif %}>{{ 'wishlist.general.product_name' | t }}</span>
+        </div>
+        <div class="col-md-2 item text-center">
+          <span {% if settings.enable_multilang %} data-translate="wishlist.general.unit_price" {% endif %}> {{ 'wishlist.general.unit_price' | t }}</span>
+        </div>
+        <div class="col-md-3 item text-center">
+          <span {% if settings.enable_multilang %} data-translate="wishlist.general.add" {% endif %}>{{ 'wishlist.general.add' | t }}</span>
+        </div>
+        <div class="col-md-1 item text-right">
+          <span {% if settings.enable_multilang %} data-translate="cart.general.remove" {% endif %}>{{ 'cart.general.remove' | t }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="wishlist-content t-body" data-wishlist-container>
+
+    </div>
+
+    <div class="wishlist-footer t-footer">
+        <a class="share" href="mailto:?subject={{ subject }}&amp;body={{ body | remove: ' ' | replace: '"',"'" | strip_newlines}}">
+            {% render 'icon-email' %}
+            <span {% if settings.enable_multilang %} data-translate="wishlist.general.share_wishlist" {% endif %}>
+                {{ 'wishlist.general.share_wishlist' | t }}            
+            </span>
+        </a>
+
+        <ul id="wishlist-paginate" class="wishlist-pagination"></ul>
+    </div>
+    
+  </div>
+</div>

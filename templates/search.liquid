@@ -1,0 +1,106 @@
+{% comment %}
+The {{ content_for_header }} in theme.liquid will output the following stylesheet just for this page:
+- <link rel="stylesheet" href="/global/search.css" type="text/css">
+
+It has a few helpers in there, but this theme writes its own styles so there
+are no dependencies or conflicts. You can ignore that file.
+
+Return only products or pages in results:
+- http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
+- Or manually add type=product or type=page to the search URL as a parameter
+{% endcomment %}
+
+{% comment %}
+  If you're only showing products with the method above, why not show them off in a grid instead?
+  Set grid_results to true and see your updated results page for the new layout.
+{% endcomment %}
+
+<div class="page_banner"> 
+  <div class="container">
+	<img src="//cdn.shopify.com/s/files/1/0258/2102/0194/files/inner_banner.png?v=1633077288">
+  </div>
+</div>
+{% assign grid_results = true %}
+
+<div class="search-page">
+	<div class="container">
+  {% if search.performed %}
+
+  {% comment %}
+  Avoid accessing search.results before the opening paginate tag.
+  If you do, the pagination of results will be broken.
+  {% endcomment %}
+
+  {% paginate search.results by 12 %}
+
+  {% comment %}
+  We don't have any results to show. Feel free to show off featured products
+  or suggested searches here.
+  {% endcomment %}
+
+    {% if search.results_count == 0 %}
+    <header class="page-header">
+      <h2>
+      {% render 'multilang' with settings.search_1 %}
+      <strong> &nbsp;"{{ search.terms|replace:'*','' }}"&nbsp; </strong>
+      {% render 'multilang' with settings.search_2 %}
+    </h2>
+    </header>
+  
+    {% else %}
+
+    <header class="page-header">
+      <h2>
+      {% render 'multilang' with settings.search_3 %}
+      <strong> &nbsp;"{{ search.terms|replace:'*','' }}"&nbsp; </strong>
+      {% render 'multilang' with settings.search_4 %}
+    </h2>
+    </header>
+
+    {% comment %}
+    Each result template, based on the grid_layout variable above
+    {% endcomment %}
+  
+    <div class="block-row col-main">
+      {% if grid_results == false %}
+      <div class="product-list">      
+        {% for item in search.results %}
+        {% render 'search-result', item: item %}
+        {% endfor %}
+      </div>
+      
+      {% else %}
+      
+      <div class="products-grid product-search row">      
+        {% for product in search.results %}
+        <div class="{% if settings.product_image_border%}grid-item-border {% endif %}{% if settings.product_image_crop%}crop_image{% else %}no_crop_image{% endif %} grid-item col-6 col-md-4 col-lg-3">
+          {% render 'search-result-grid', product: product %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  	{% endif %}
+
+  {% if paginate.pages > 1 %}
+  <div class="padding">
+    {% render 'pagination-page', paginate: paginate %}
+  </div>
+  {% endif %}
+  {% endpaginate %}
+
+  {% else %}
+
+  {% comment %}
+  If search.performed is false, someone either accessed the page without
+  the q parameter, or it was blank.
+  Be sure to show a search form here, along with anything else you want to showcase.
+  {% endcomment %}
+
+  <header class="page-header search-no-query">
+    <h2 {% if settings.enable_multilang %}data-translate="general.search.title"{%endif%}>{{ 'general.search.title' | t }}</h2>
+    {% render 'search-bar' %}
+  </header>
+  {% endif %}
+</div>
+</div>

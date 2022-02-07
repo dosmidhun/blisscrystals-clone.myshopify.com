@@ -1,0 +1,43 @@
+{% comment %}
+{% render 'breadcrumb' %}
+{% endcomment %}
+<div class="page_banner"> 
+	<div class="container"> 
+      <div class="banner_image_outer">
+		<img src="//cdn.shopify.com/s/files/1/0258/2102/0194/files/inner_banner.png?v=1633077288">   
+		<header class="page-header"> 
+                  {% if current_tags %}    
+                    <h2><a href="{{ blog.url }}">{% render 'multilang' with page_title %}</a> &raquo; {{ current_tags.first }}</h2>
+                  {% else %}    
+                    <h2>{% render 'multilang' with page_title %}</h2>
+                  {% endif %}
+                </header>
+      </div>
+	</div>
+</div>
+{% comment %}
+<div class="page_title_outer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                
+            </div>  
+        </div>
+    </div>
+</div>
+{% endcomment %}
+<div class="blog_outer"> 
+	<div class="container"> 
+		<div class="row-bt">  
+
+		  {% section 'sidebar-blog' %}
+		  
+		  <div class="blog-page block-row col-main col-lg-9">
+		    {% section 'blog-template' %}  
+		  </div>
+
+		  
+		</div>
+	</div>
+</div>
+

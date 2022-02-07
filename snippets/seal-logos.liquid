@@ -1,0 +1,35 @@
+<div class="seal-logos">
+  <ul>
+    {% if settings.dpl_seal_logo_1 %}
+    <li>
+      <a href="javascript:void(0)">
+        <img src="{{ settings.seal_logo_1 | img_url: 'x36' }}" alt=""/>
+      </a>
+    </li>
+    {% endif %}
+    
+    {% if settings.dpl_seal_logo_2 %}
+    <li>
+      <a href="javascript:void(0)">
+        <img src="{{ settings.seal_logo_2 | img_url: 'x36' }}" alt=""/>
+      </a>
+    </li>
+    {% endif %}
+    
+    {% if settings.dpl_seal_logo_3 %}
+    <li>
+      <a href="javascript:void(0)">
+        <img src="{{ settings.seal_logo_3 | img_url: 'x36' }}" alt=""/>
+      </a>
+    </li>
+    {% endif %}
+    
+    {% if settings.dpl_seal_logo_4 %}
+    <li>
+      <a href="javascript:void(0)">
+        <img src="{{ settings.seal_logo_4 | img_url: 'x36' }}" alt=""/>
+      </a>
+    </li>
+    {% endif %}       
+  </ul>
+</div>

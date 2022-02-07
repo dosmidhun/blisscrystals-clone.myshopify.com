@@ -1,0 +1,250 @@
+{% comment %}
+  Comments will not appear right after they are submitted, either to be checked for spam
+  or to await moderation. When a comment is submitted, the browser is redirected to a page
+  that renders the new comment id in its URL.
+    Example: http://shopname.myshopify.com/blogs/news/2022072-my-post?comment=3721372
+
+  More information:
+    - http://docs.shopify.com/themes/liquid-variables/comment
+{% endcomment %}
+
+{% comment %}
+  We're going to reference the number of comments below, so let's hold it in a variable.
+{% endcomment %}
+{% assign number_of_comments = article.comments_count %}
+
+{% comment %}
+  If a comment was just submitted and it has no blank fields, we have an extra comment to count.
+{% endcomment %}
+{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count | plus: 1 %}
+{% endif %}
+{% comment %}
+{% render 'breadcrumb' %}
+{% endcomment %}
+<div class="page_banner"> 
+    <div class="container"> 
+        <div class="banner_image_outer"> 
+        <img src="//cdn.shopify.com/s/files/1/0258/2102/0194/files/inner_banner.png?v=1633077288">   
+        <header class="page-header">
+          {% if current_tags %}
+            {% if settings.enable_multilang %}  
+            <h2 class="lang1">{{ blog.title | split: '|' | first | link_to: blog.url }} &raquo; {{ current_tags.first }}</h2>
+            <h2 class="lang2">{{ blog.title | split: '|' | last | link_to: blog.url }} &raquo; {{ current_tags.first }}</h2>
+            {% else %}
+            <h2>{{ blog.title | split: '|' | first | link_to: blog.url }} &raquo; {{ current_tags.first }}</h2>
+            {% endif %}
+          {% else %}
+          <h2>
+            {% render 'multilang' with blog.title %}
+          </h2>
+          {% endif %}
+        </header>
+        </div>
+    </div>
+</div>
+
+<div class="blog_outer">
+    
+
+<div class="container"> 
+
+<div class="sidebar-label">
+  <div class="sidebar-button">
+    <span class="icon-filter">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" version="1.1" x="0px" y="0px" viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve"><g><path d="M6,48c-0.552,0-1-0.447-1-1v-7c0-0.553,0.448-1,1-1s1,0.447,1,1v7C7,47.553,6.552,48,6,48z"></path><path d="M6,31c-0.552,0-1-0.447-1-1V1c0-0.553,0.448-1,1-1s1,0.447,1,1v29C7,30.553,6.552,31,6,31z"></path><g><path d="M6,41c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S9.309,41,6,41z M6,31c-2.206,0-4,1.794-4,4s1.794,4,4,4s4-1.794,4-4    S8.206,31,6,31z"></path><path d="M42,48c-0.552,0-1-0.447-1-1V26c0-0.553,0.448-1,1-1s1,0.447,1,1v21C43,47.553,42.552,48,42,48z"></path><path d="M42,17c-0.552,0-1-0.447-1-1V1c0-0.553,0.448-1,1-1s1,0.447,1,1v15C43,16.553,42.552,17,42,17z"></path><path d="M42,27c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S45.309,27,42,27z M42,17c-2.206,0-4,1.794-4,4s1.794,4,4,4    s4-1.794,4-4S44.206,17,42,17z"></path><path d="M24,48c-0.552,0-1-0.447-1-1V21c0-0.553,0.448-1,1-1s1,0.447,1,1v26C25,47.553,24.552,48,24,48z"></path><path d="M24,12c-0.552,0-1-0.447-1-1V1c0-0.553,0.448-1,1-1s1,0.447,1,1v10C25,11.553,24.552,12,24,12z"></path><path d="M24,22c-3.309,0-6-2.691-6-6s2.691-6,6-6c3.309,0,6,2.691,6,6S27.309,22,24,22z M24,12c-2.206,0-4,1.794-4,4s1.794,4,4,4    s4-1.794,4-4S26.206,12,24,12z"></path></g></g></svg>
+    </span>
+    <span class="sidebar_more" {% if settings.enable_multilang %}data-translate="blogs.sidebar.sidebar_more_blog"{% endif %}>
+      {{ 'blogs.sidebar.sidebar_more_blog' | t }}
+    </span>
+  </div>
+</div>
+<div class="row-bt">
+  <!-- Begin sidebar -->
+   {% section 'sidebar-blog' %}
+  <!-- End sidebar -->
+ 
+  <div class="col-lg-9 blog-detail col-main">
+    <h1 class="article-title">
+      {% render 'multilang' with article.title %}
+    </h1>
+    
+    <div class="blog_author">
+
+      {% capture date %}<time datetime='{{ article.published_at | date: '%Y-%m-%d' }}'>{{ article.published_at | date: '%b %d, %Y' }}</time> {% endcapture %}
+
+      {% capture author %}{{ article.author }}{% endcapture %}
+      <span class="blog-date-author" {% if settings.enable_multilang %}data-translate="blogs.article.author_on_date_html|date:{{date}},author:{{author}}" translate-item="blog-date-author"{%endif%}>
+        {{ 'blogs.article.author_on_date_html' | t: date: date, author: author }}        
+      </span>
+
+      {% section 'blog-in-categories' %}
+        
+      {% if blog.comments_enabled? %}
+      <span class="blog_comments">
+        <span class="separator">/</span>
+        <a href="{{ article.url }}#comments" {% if settings.enable_multilang %}data-translate="blogs.comments.comments_with_count|count:{{article.comments_count}}"{%endif%}>
+          {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+        </a>
+      </span>
+      {% endif %}
+
+    </div>
+    {% if article.image %}
+        {% assign image_alt = article.title | escape %}
+        <div class="article-img">
+          {{ article | img_url: '1024x1024' | img_tag: image_alt, 'article__image' | link_to: article.url }}
+        </div>
+        {% endif %}
+    
+
+    {% if settings.enable_multilang %}
+    <div class="rte lang1">
+      {{ article.content | split: '[lang2]' | first}}
+    </div>
+    <div class="rte lang2">
+      {{ article.content | split: '[lang2]' | last}}
+    </div>
+    {% else %}
+    <div class="rte">
+      {{ article.content | split: '[lang2]' | first}}
+    </div>
+    {% endif %}
+
+    {% section 'article-lookbook' %} 
+
+    {% comment %}
+      Show off meta information like comments and tags.
+    {% endcomment %}
+    
+    <ul class="user-tags">
+      {% render 'tags-article' %}
+    </ul>
+    
+    {% render 'share' %}
+
+    {% if blog.next_article or blog.previous_article %}
+
+    <div class="action-btn">
+      {% if blog.previous_article %}
+       {{ 'blogs.article.older_post' | t | link_to: blog.previous_article }}
+      {% endif %}
+      {% if blog.next_article %}
+        {{ 'blogs.article.newer_post' | t | link_to: blog.next_article }}
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if blog.comments_enabled? %}
+
+    {% comment %}
+      Just like our blog.liquid page, define how many comments should be on each page.
+    {% endcomment %}
+    
+    <h2 class="title-comment">
+      {{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}
+    </h2>
+
+      {% paginate article.comments by 5 %}
+
+      {% comment %}
+        #comments is required, it is used as an anchor link by Shopify.
+      {% endcomment %}
+      <div id="comments">
+
+        {% if comment and comment.created_at %}
+        <p class="note form-success">
+          {% if blog.moderated? %}
+          <span {% if settings.enable_multilang %}data-translate="blogs.comments.success_moderated"{%endif%}>
+            {{ 'blogs.comments.success_moderated' | t }}
+          </span>
+          {% else %}
+          <span {% if settings.enable_multilang %}data-translate="blogs.comments.success"{%endif%}>
+            {{ 'blogs.comments.success' | t }}
+          </span>
+          {% endif %}
+        </p>
+        {% endif %}
+
+        {% if number_of_comments > 0 %}
+        <ul>
+          {% comment %}If a comment was just submitted with no blank field, let's show it.{% endcomment %}
+          {% if comment and comment.created_at %}
+          <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+            {% render 'comment' %}
+          </li>
+          {% endif %}
+
+          {% comment %}
+            Showing the rest of the comments.
+          {% endcomment %}
+          {% for comment in article.comments %}
+          <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+            {% render 'comment' %}
+          </li>
+          {% endfor %}
+        </ul>
+        
+        {% if paginate.pages > 1 %}
+        <div class="text-center">
+          {% render 'pagination', paginate: paginate %}
+        </div>
+        {% endif %}
+        {% endif %}
+
+        {% comment %}
+          Comment submission form
+        {% endcomment %}
+        
+        {% form article %}
+        {% comment %}
+          #add-comment-title is used simply as an anchor link
+        {% endcomment %}
+        <h3 id="add-comment-title" {% if settings.enable_multilang %}data-translate="blogs.comments.title"{%endif%}>{{ 'blogs.comments.title' | t }}</h3>
+        {% render 'form-errors-custom' %}
+        <div class="comment-form">
+          <div class="form-group">
+            <label for="comment-author" {% if settings.enable_multilang %}data-translate="blogs.comments.name"{%endif%}>
+              {{ 'blogs.comments.name' | t }}
+            </label>
+            <input {% if form.errors contains "author" %}class="error"{% endif %} type="text" name="comment[author]" id="comment-author" value="{{ form.author }}">
+          </div>
+          
+          <div class="form-group">
+            <label for="comment-email" {% if settings.enable_multilang %}data-translate="blogs.comments.email"{%endif%}>
+              {{ 'blogs.comments.email' | t }}
+            </label>
+            <input {% if form.errors contains "email" %}class="error"{% endif %} type="email" name="comment[email]" id="comment-email" value="{{ form.email }}">
+          </div>
+        </div>
+        
+        <div class="message form-group">
+          <label for="comment-body" {% if settings.enable_multilang %}data-translate="blogs.comments.message"{%endif%}>{{ 'blogs.comments.message' | t }}</label>
+          <textarea rows="7" {% if form.errors contains "body" %}class="error"{% endif %} name="comment[body]" id="comment-body">{{ form.body }}</textarea>
+        </div>
+        
+        <p class="note" {% if settings.enable_multilang %}data-translate="blogs.comments.note"{%endif%}>
+          {{ 'blogs.comments.note' | t }}
+        </p>
+        
+        
+        <input type="submit" class="btn-secondary" value="{{ 'blogs.comments.post' | t }}">
+        {% if form.errors %}
+        <script>
+          window.location.hash = '#add-comment-title';
+        </script>
+        {% endif %}
+        
+        {% if form.posted_successfully? %}
+        <script>
+          window.location.hash = '#comments';
+        </script>
+        {% endif %}
+        {% endform %}
+    </div>
+    {% endpaginate %}
+    {% endif %}
+  </div>
+</div>
+</div>
+</div>

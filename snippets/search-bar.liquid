@@ -1,0 +1,16 @@
+<a href="javascript:void(0)" class="searchToggle">
+  {% render 'icon_search' %}
+</a>
+<div class="search-form">
+  <form action="{{ routes.search_url }}" method="get" class="search-bar" role="search">
+    <input type="hidden" name="type" value="product">
+    <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="search for products" class="input-group-field" aria-label="Search Site" autocomplete="off">
+    <button type="submit" class="btn btn-search">
+      {% render 'icon_search' %}
+    </button>
+    <div class="icon-close-fix">
+  		{% render 'icon-close-big' %}
+  	</div>
+  </form>
+  <div class="bg-search"></div>
+</div>

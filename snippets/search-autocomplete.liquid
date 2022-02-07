@@ -1,0 +1,213 @@
+{% comment %} Width of results box {% endcomment %}
+{% assign results_box_width = '100%' %}
+
+{% comment %} Background color of results box {% endcomment %}
+{% assign results_box_background_color = '#ffffff' %}
+
+{% comment %} Border color of results box {% endcomment %}
+{% assign results_box_border_color = '#e7e7e7' %}
+
+<script>
+  $(function() {
+    // Current Ajax request.
+    var currentAjaxRequest = null;
+    // Grabbing all search forms on the page, and adding a .search-results list to each.
+    var searchForms = $('form[action="' + window.router + '/search"]').css('position','relative').each(function() {
+      // Grabbing text input.
+      var input = $(this).find('input[name="q"]');
+      // Adding a list for showing search results.
+      var offSet = input.position().top + input.innerHeight();
+      $('<ul class="search-results"></ul>').css( { 'position': 'absolute', 'right': '0px', 'top': offSet } ).appendTo($(this)).hide();    
+      // Listening to keyup and change on the text field within these search forms.
+      input.attr('autocomplete', 'off').bind('keyup change', function() {
+          debugger;
+
+        // What's the search term?
+        var term = $(this).val();
+        // What's the search form?
+        var form = $(this).closest('form');
+        // What's the search URL?
+        var searchURL = '/search?type=product&q=' + term;
+        // What's the search results list?
+        var resultsList = form.find('.search-results');
+        // If that's a new term and it contains at least 3 characters.
+        if (term.length > 3 && term != $(this).attr('data-old-term')) {
+          // Saving old query.
+          $(this).attr('data-old-term', term);
+          // Killing any Ajax request that's currently being processed.
+          if (currentAjaxRequest != null) currentAjaxRequest.abort();
+          // Pulling results.
+          currentAjaxRequest = $.getJSON(searchURL + '&view=json', function(data) {
+            // Reset results.
+            resultsList.empty();
+            // If we have no results.
+            if(data.results_count == 0) {
+              // resultsList.html('<li><span class="title">No results.</span></li>');
+              // resultsList.fadeIn(200);
+              resultsList.hide();
+            } else {
+              // If we have results.
+              $.each(data.results, function(index, item) {
+                var link = $('<a></a>').attr('href', item.url);
+                link.append('<span class="thumbnail"><img src="' + item.thumbnail + '" /></span>');
+                link.append('<span class="title">' + item.title + '</span>');
+
+                link.wrap('<li></li>');
+                resultsList.append(link.parent());
+              });
+              // The Ajax request will return at the most 10 results.
+              // If there are more than 10, let's link to the search results page.
+              if(data.results_count > 10) {
+                resultsList.append('<li><span class="title"><a href="' + searchURL + '">See all results (' + data.results_count + ')</a></span></li>');
+              }
+              resultsList.fadeIn(200);
+            }        
+          });
+        }
+      });
+    });
+
+    // Clicking outside makes the results disappear.
+
+    $(document).off('click.hideSearchResults').on('click.hideSearchResults', function(e) {
+      if (!$(e.target).closest('.search-results').length && $('.search-results').is(':visible')) {
+        $('.search-results').hide();
+      }        
+    });
+  });
+</script>
+
+<!-- Some styles to get you started. -->
+<style>
+  .search-results {
+    top: 100%!important;
+    z-index: 8889;
+    list-style-type: none;   
+    width: {{ results_box_width }};
+    margin: 0;
+    padding: 0;
+    background: {{ results_box_background_color }};
+    border: 1px solid {{ results_box_border_color }};
+    border-radius: 0px;
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2);
+    overflow: auto;
+    max-height: calc(100vh - 35vh);
+    right:0px;
+    right: initial!important;
+    top: -moz-calc(100% + 4px) !important;
+    top: -webkit-calc(100% + 4px) !important;
+    top: calc(100% + 4px) !important;
+  }
+
+  .search-results::-webkit-scrollbar-track {
+    background-color: #D9D9D9; 
+  }
+  .search-results::-ms-scrollbar-track {
+    background-color: #D9D9D9; 
+  }
+  .search-results::-webkit-scrollbar-thumb {
+    background-color: #646464;             
+  }
+  .search-results::-ms-scrollbar-thumb {
+    background-color: #646464;             
+  }
+
+  .search-results::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .search-results::-ms-scrollbar {
+    width: 0px;
+  }
+  .search-results:hover::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .search-results:hover::-ms-scrollbar {
+    width: 5px;
+  }
+  .search-results li + li {
+    border-top: 1px solid {{ results_box_border_color }};
+  }
+
+  .search-results li {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .search-results li:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+  .search-results li a {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 12px;
+    max-width: 100%;
+    width: 100%;
+  }    
+
+  .search-results .thumbnail {
+    float: left;
+    border-radius: 0px;
+    display: block;
+    width: 42px;
+    height: 50px;    
+    margin: 10px 0 10px 10px;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .search-results .title {
+    float: left;
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-align: left;
+    height: 40px;
+    line-height: 40px;
+    width: -webkit-calc({{ results_box_width }} - 58px);
+      width: -moz-calc({{ results_box_width }} - 58px);
+        width: calc({{ results_box_width }} - 58px);
+          }
+
+  .search-results .title a {
+    font-family: Karla, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2c8cce;
+    margin-left: 5px;
+  }
+
+  .search-results li:hover a,
+  .search-results li:hover .title {
+    color: {{ settings.link_color_hover }};
+  }
+
+  @media (min-width: 992px) {
+    .search-results {
+      width: 100%;
+      min-width: 300px;
+      right: 0 !important;
+      right: initial;
+    }
+  }
+</style>

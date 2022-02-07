@@ -1,0 +1,197 @@
+<ul class="site-nav">
+  {% if section.settings.horizontal_linklist != blank %}
+  {% assign menu = linklists[section.settings.horizontal_linklist].links %}
+  {% else %}
+  {% assign menu = linklists.main-menu.links %}
+  {% endif %}
+  {% for link in menu %}
+  {%- assign i = forloop.index | downcase -%}
+  {%- assign cat = link.title | handleize -%}
+
+  {% if section.settings.display_megamenu %}
+
+  {%- assign is_megamenu = false -%}
+  {% for block in section.blocks %}
+  {% for i in (1..5) %}
+
+  {% capture cap_megamenu_item %}megamenu_items_{{ i }}{% endcapture %}
+  
+  {% capture cap_banner_first_style %}banner_first_style_{{ i }}{% endcapture %}
+  
+  {% capture cap_link_banner_first_style %}link_banner_first_style_{{ i }}{% endcapture %}
+  
+  {% if block.settings[cap_megamenu_item] != blank %}
+  {%- assign megamenu_item = block.settings[cap_megamenu_item] | handleize -%}
+  {% if megamenu_item == cat %}
+
+  {%- assign is_megamenu = true -%}
+  {%- assign block_style = block.type -%}
+
+  {%- assign top_brands_title = block.settings.top_brands_title -%}
+  {%- assign top_brands_view_all_text = block.settings.top_brands_view_all_text -%}
+  {%- assign top_brands_view_all_link = block.settings.top_brands_view_all_link -%}
+  
+  {%- assign featured_product = block.settings.featured_product -%}
+  {%- assign featured_product_limit_all = block.settings.featured_product_limit_all -%}
+  {%- assign title_featured_product = block.settings.title_featured_product -%}  			 
+
+
+  {%- assign banner_first_style = block.settings[cap_banner_first_style] -%}
+  {%- assign banner_third_style = block.settings[cap_banner_third_style] -%}
+
+  {%- assign link_banner_first_style = block.settings[cap_link_banner_first_style] -%}
+  {%- assign banner_first_style_2_title = block.settings.banner_first_style_2_title -%}
+
+  {%- assign banner_second_style_2_title = block.settings.banner_second_style_2_title -%}
+  {%- assign banner_second_style_2_desc = block.settings.banner_second_style_2_desc -%}
+  {%- assign banner_second_style_2_button = block.settings.banner_second_style_2_btn -%}
+  {%- assign banner_second_style_2_button_link = block.settings.banner_second_style_2_btn_link -%}
+
+  {%- assign dpl_column_left_style = block.settings.dpl_column_first_style_left -%}
+  {%- assign dpl_column_first_style = block.settings.dpl_column_first_style_1 -%}
+  {%- assign dpl_column_second_style = block.settings.dpl_column_second_style_1 -%}
+
+  {%- assign dpl_column_first_style_2 = block.settings.dpl_column_first_style_2 -%}
+  {%- assign dpl_column_second_style_2 = block.settings.dpl_column_second_style_2 -%}
+  {%- assign dpl_column_second_style_2 = block.settings.dpl_column_second_style_2 -%}
+  
+  {%- assign dpl_banner_bottom_style_3 = block.settings.dpl_banner_bottom_style_3 -%}
+
+  {%- assign banner_bottom_style_3_text = block.settings.banner_bottom_style_3_text -%}
+  {%- assign banner_bottom_style_3_button = block.settings.banner_bottom_style_3_btn -%}
+  {%- assign banner_bottom_style_3_button_link = block.settings.banner_bottom_style_3_btn_link -%}
+  {%- assign banner_bottom_style_3_background = block.settings.banner_bottom_style_3_background -%}
+  {%- assign banner_bottom_style_3_text_color = block.settings.banner_bottom_style_3_text_color -%}
+
+  {%- assign per_row_1 = block.settings.style_1_per_row -%}
+  {%- assign per_row_2 = block.settings.style_2_per_row -%}
+  {%- assign per_row_3 = block.settings.style_3_per_row -%}
+  
+  {%- assign height_1 = block.settings.min_height_style_1 -%}
+  {%- assign height_2 = block.settings.min_height_style_2 -%}
+  {%- assign height_3 = block.settings.min_height_style_3 -%}
+  
+  {% endif %}
+  {% endif %}  
+
+  {% endfor %}
+  {% endfor %}
+
+  {% endif %}  
+
+  
+   {% if section.settings.enable_sale %}
+    {% assign sale_item_1 = section.settings.sale_item_1 | split:"," | strip | downcase | handle %}
+    {% assign sale = link.title | downcase | handle  %}
+  {% endif %}
+  
+  {% if section.settings.enable_new_1 %}
+    {% assign new_item = section.settings.new_item | split:"," | strip | downcase | handle %}
+    {% assign new = link.title | downcase | handle  %}
+  {% endif %}
+  
+  {% if section.settings.enable_hot %}
+    {% assign hot_item = section.settings.hot_item | split:"," | strip | downcase | handle %}
+    {% assign hot = link.title | downcase | handle  %}
+  {% endif %}
+  
+  
+    {% assign sale_item = section.settings.megamenu_items_new | split:"," | strip | downcase | handle %}
+    {% assign sale = link.title | downcase | handle  %}
+
+  <li class="item{% if is_megamenu %} dropdown mega-menu{% else %}{% if linklists[link.handle] != empty %} dropdown no-mega-menu{% endif %}{% endif %}{% if section.settings.enable_new and items_list_new contains new %} icon_new{% endif %}">
+    <a class="{%if linklists[link.handle] != empty %}menu__moblie {% endif %}{% if link.active %}current {% endif %}{% if sale_item contains sale %}sale{% endif %}"  href="{{ link.url }}">
+      {% render 'multilang' with link.title %}
+            
+      {% if sale_item_1 contains sale %}
+      <label class="icon_sale label_menu">
+        {% render 'multilang' with section.settings.lb_sale %}
+      </label>
+      {% endif %}
+      
+      {% if new_item contains new %}
+      <label class="icon_new label_menu">
+        {% render 'multilang' with section.settings.lb_new %}
+      </label>
+      {% endif %}
+      
+      {% if hot_item contains hot %}
+      <label class="icon_hot label_menu">
+        {% render 'multilang' with section.settings.lb_hot %}
+      </label>
+      {% endif %}        
+      {% if linklists[link.handle] != empty %}
+      <span class="icon-dropdown">
+      	<i class="fa fa-angle-right" aria-hidden="true"></i>
+      </span>
+      {% endif %}
+      
+    </a> 
+    
+    {%- assign link_child = link.handle -%}
+    {% if section.settings.display_megamenu %}  
+
+    {% if is_megamenu %}
+    <div class="site-nav-dropdown shadow {{ block_style }}" style ="max-width:{% if block_style == "style_1"%}{{height_1}}{% elsif block_style == "style_2"%}{{height_2}}{% elsif block_style == "style_3"%}{{height_3}}{% elsif block_style == "style_4"%}{{height_4}}{% endif %};">
+      <div class="menu-mb-title" style="display: none;">
+        <span class="icon-dropdown no-event">
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </span>
+        {% render 'multilang' with link.title %}
+      </div>
+      {% render 'mega-menu', 
+         link_child: link_child,
+         link: link,
+         is_megamenu: is_megamenu,
+         block_style: block_style,
+         top_brands_title: top_brands_title,
+         top_brands_view_all_text: top_brands_view_all_text,
+         top_brands_view_all_link: top_brands_view_all_link,
+         featured_product: featured_product,
+         featured_product_limit_all: featured_product_limit_all,
+         title_featured_product: title_featured_product,
+         banner_first_style: banner_first_style,
+         banner_third_style: banner_third_style,
+         link_banner_first_style: link_banner_first_style,
+      	 banner_first_style_2_title: banner_first_style_2_title,
+         banner_second_style_2_title: banner_second_style_2_title,
+         banner_second_style_2_desc: banner_second_style_2_desc,
+         banner_second_style_2_button: banner_second_style_2_button,
+         banner_second_style_2_button_link: banner_second_style_2_button_link,
+         dpl_column_left_style: dpl_column_left_style,
+         dpl_column_first_style: dpl_column_first_style,
+         dpl_column_second_style: dpl_column_second_style,
+         dpl_column_first_style_2: dpl_column_first_style_2,
+         dpl_column_second_style_2: dpl_column_second_style_2,
+         dpl_banner_bottom_style_3: dpl_banner_bottom_style_3,
+         banner_bottom_style_3_text: banner_bottom_style_3_text,
+         banner_bottom_style_3_button: banner_bottom_style_3_button,
+         banner_bottom_style_3_button_link: banner_bottom_style_3_button_link,
+         banner_bottom_style_3_background: banner_bottom_style_3_background,
+         banner_bottom_style_3_text_color: banner_bottom_style_3_text_color,
+         per_row_1: per_row_1,
+         per_row_2: per_row_2,
+         per_row_3: per_row_3,
+         height_1: height_1,
+         height_2: height_2,
+         height_3: height_3
+      %}
+    </div>
+
+    {% else %}
+    
+    {% if linklists[link.handle] != empty %}
+    {% render 'dropdown-menu', link_child: link_child %}
+    {% endif %}
+    
+    {% endif %}
+    
+    {% else %}
+    {% if linklists[link.handle] != empty %}
+    {% render 'dropdown-menu', link_child: link_child %}
+    {% endif %}
+    
+    {% endif %}     
+  </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,101 @@
+{% comment %}
+  Set the extension of your color files below. Use 'png', 'jpeg', 'jpg' or 'gif'.
+{% endcomment %}
+
+{% assign file_extension = 'png' %}
+
+{% if swatchqv == blank %}
+  <div class="swatch error">
+    <p>You must render the snippet swatch.liquid with the name of a product option.</p> 
+    <p>Use: <code>{% raw %}{% render 'swatchqv' with 'name of your product option here' %}{% endraw %}</code></p>
+    <p>Example: <code>{% raw %}{% render 'swatchqv' with 'Color' %}{% endraw %}</code></p>
+  </div>
+{% else %}
+
+  {% assign found_option = false %}
+  {% assign is_color = false %}
+  {% assign option_index = 0 %}
+  {% assign size = false %}
+
+  {% for option in product.options %}
+    {% if option == swatchqv %}
+      {% assign found_option = true %}
+      {% assign option_index = forloop.index0 %}
+      <style>
+        label[for="product-select-option-{{ option_index }}"] { display: none; }
+        #add-to-cart-form .selector-wrapper {display:none}
+        #product-select-option-{{ option_index }} { display: none; }
+        #product-select-option-{{ option_index }} + .custom-style-select-box { display: none !important; }
+      </style>
+
+      <script>//jQuery(window).load(function() { jQuery('.product-shop .selector-wrapper:eq({{ option_index }})').hide(); });</script>
+
+      {% assign downcased_option = swatchqv | downcase %}
+      {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+        {% assign is_color = true %}
+      {% endif %}
+
+	  {% assign downcased_option = swatchqv | downcase %}
+      {% if downcased_option contains 'size' %}
+        {% assign size = true %}
+      {% endif %}
+
+    {% endif %}
+  {% endfor %}
+
+  {% unless found_option %}
+  <div class="swatch error">
+    <p>You renderd the snippet swatch.liquid with the name of a product option — <code>'{{ swatchqv }}'</code> — that does not belong to your product.</p>
+    <p>Use <code>{% raw %}{% render 'swatchqv' with 'name of your product option here' %}{% endraw %}</code></p>
+    <p>Example: <code>{% raw %}{% render 'swatchqv' with 'Color' %}{% endraw %}</code></p>
+    <p><strong>This is case-sensitive!</strong> Do not put in <code>'color'</code> if your product option name is <code>'Color'</code>.</p>
+  </div>
+
+  {% else %}
+  <div class="swatch clearfix" data-option-index="{{ option_index }}">           
+    
+    <div class="header">{{ swatchqv }}<em>*</em></div>
+    {% assign values = '' %}
+    {% for variant in product.variants %}
+      {% assign value = variant.options[option_index] %}
+      {% unless values contains value %}
+        {% assign values = values | join: ',' %}	
+        {% assign values = values | append: ',' | append: value %} 
+        {% assign values = values | split: ',' %}
+        <div data-value="{{ value | escape }}" class="swatch-element{% if is_color %} color{% endif %} {{ value | handle }}{% if variant.available %} available{% else %} soldout{% endif %}">
+          {% if is_color %}
+          <div class="tooltip">{{ value }}</div>
+          {% endif %}
+          <input class="tric" id="quick-view-swatch-{{ option_index }}-{{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}" {% if forloop.first %} checked="checked" {% endif %} {% unless variant.available %}disabled{% endunless %}/>
+          {% if is_color %}
+          {% if settings.use_variant_swatch %}
+          
+          <label for="quick-view-swatch-{{ option_index }}-{{ value | handle }}"{% if variant.image.src != blank %} class="has-image" style="background-image: url({{ variant.image.src | product_img_url: '34x34' }})"{% else %}style="background-color: {{ value | split: ' ' | last | handle }}; background-image: url({{ value | handle | append: '.' | append: file_extension | file_url }})"{% endif %}>
+          {%else%}
+          <label for="quick-view-swatch-{{ option_index }}-{{ value | handle }}" style="background-color: {{ value | split: ' ' | last | handle }};background-image: url({{ value | handle | append: '.' | append: file_extension | file_url }});">
+          {% endif %}
+            
+            <span class="crossed-out"> </span>
+          </label>
+          {% else %}
+          <label for="quick-view-swatch-{{ option_index }}-{{ value | handle }}">
+            {{ value }}
+            <span class="crossed-out"> </span>
+          </label>
+          {% endif %}
+        </div>
+      {% endunless %}
+
+      <input class="text" data-value="{{ value | escape }}" type="hidden" data-v="{{variant.id}}" />
+
+      {% if variant.available %}
+      <script>
+        $('.swatch[data-option-index="{{ option_index }}"] .{{ value | handle }}').removeClass('soldout').addClass('available').find(':radio').removeAttr('disabled');
+      </script>
+      {% endif %}    
+    {% endfor %}
+  </div>
+
+  {% endunless %}
+
+{% endif %}

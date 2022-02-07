@@ -1,0 +1,408 @@
+{%layout none%}
+
+{% assign on_sale = false %}
+{% if product.compare_at_price_min > product.price_min %}
+{% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available  %}
+{% assign sold_out = false %}
+{% endif %}
+
+<!-- new product -->
+{% assign label_new = false %}
+
+{% for tag in product.tags %}
+{% assign tag_handle = tag | handle %}
+{% if tag_handle == 'new' %}
+{% assign label_new = true %}
+{% endif %}
+{% endfor %}
+
+<!-- Custom label product -->
+{% assign label_custom = false %}
+
+{% for tag in product.tags %}
+{% assign tag_handle = tag | handle %}
+{% if tag_handle == 'Custom Label' %}
+{% assign label_custom = true %}
+{% endif %}
+{% endfor %}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<div class="row">
+  <div class="col-md-6 col-lg-6 col-xl-6 product-img-box" data-item="5">
+    <div class="productView-nav-wrapper">
+      <div class="quickview-featured-image product-photo-container slider-for">
+        {% for image in product.images %}
+        <div class="thumb">
+          <a class="fancybox" rel="gallery1" href="{{ image | product_img_url: '1200x'}}" data-fancybox="imagess">
+            <img id="product-featured-image-{{image.id}}" src="{{ image | product_img_url: 'original' }}" alt="{{ image.alt | escape }}" />
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      {% if on_sale or sold_out or label_new or label_custom %}
+      <div class="product-label">
+        {% if label_new %}
+        <strong class="label label-new" {% if settings.enable_multilang %}data-translate="products.product.new"{% endif %} >
+          {{ 'products.product.new' | t }}
+        </strong>
+        <br>
+        {% endif %}
+
+        {% if on_sale %}
+        {% assign variantCount = product.variants | size %}
+        <strong class="label label-sale" {% if variantCount > 1 %} style="display: none"{% endif %}>
+          -{{ product.compare_at_price | minus:product.price | times:100 | divided_by:product.compare_at_price }}%
+
+        </strong>
+        <br>
+        {% endif %}
+
+        {% if sold_out %}
+        <strong class="sold-out label" {% if settings.enable_multilang %}data-translate="products.product.sold_out"{% endif %}>
+          {{ 'products.product.sold_out' | t }}
+        </strong>
+        <br>
+        {% endif %}
+
+        {% if label_custom %}
+        <strong class="label label-custom" {% if settings.enable_multilang %}data-translate="products.product.custom"{% endif %} >
+          {{ 'products.product.custom' | t }}
+        </strong>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {%  if product.description contains 'iframe' %}
+        {% if settings.video_product %}
+          {% render 'video-product' %}  
+        {% endif %}
+      {% endif %}
+
+      <div class="click-to-zoom">
+        {% render 'icon-zoom' %}
+        <span class="text">{{settings.click_to_zoom}}</span>
+      </div>
+    </div>
+    
+    <ul class="slider-nav hl-list horizontal-tab" id="more_view">
+      {% for image in product.images %}
+      <li class="item">
+        <a href="javascript:void(0)">
+          <img src="{{ image.src | product_img_url: '70x70' }}" alt="{{ image.alt | escape }}">
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <div class="col-md-6 col-lg-6 col-xl-6 product-shop">
+    <div class="product-item" id="product-{{product.id}}">
+
+      <header class="product-title {% if section.settings.display_prev_next_product  %}{% if collection.previous_product or collection.next_product and collection %}has-next{% endif %}{% endif %}">
+        <h2 itemprop="name">
+          <a href="{{product.url}}">{% render 'multilang' with product.title %}</a>
+        </h2>
+      </header>
+
+      {% if settings.display_quickview_availability or settings.display_quickview_product_type or settings.show_vendor or settings.display_quickview_product_sku %}
+      <div class="product-infor">
+        {% if settings.display_quickview_availability %}
+        <div class="product-inventory">
+          {% if settings.quickview_text_availability != blank %}
+          {% if settings.enable_multilang %}
+          <label class="lang1">
+            {{ settings.quickview_text_availability | split: '|' | first }}
+          </label>
+          <label class="lang2">
+            {{ settings.quickview_text_availability | split: '|' | last }}
+          </label>
+          {% else %}
+          <label>
+            {{ settings.quickview_text_availability | split: '|' | first }}
+          </label>
+          {% endif %}
+          {% endif %}
+
+          <span>  
+            {% if product.selected_or_first_available_variant.inventory_management %}
+            {% assign first_inventory = product.selected_or_first_available_variant.inventory_quantity %}
+            {% if first_inventory > 0 %}
+            {{ 'products.product.in_stock' | t }}
+            {% else %}
+            {{ 'products.product.out_of_stock' | t }}
+            {% endif %}
+            {% else %}
+            {{ 'products.product.many_in_stock' | t }}
+            {% endif %}
+          </span>
+        </div>
+        {% endif %}
+
+        {% if settings.display_quickview_product_sku %}
+        <div class="sku-product">
+          {% if settings.text_quickview_product_sku != blank %}
+          {% if settings.enable_multilang %}
+          <label class="lang1">
+            {{ settings.text_quickview_product_sku | split: '|' | first }}
+          </label>
+          <label class="lang2">
+            {{ settings.text_quickview_product_sku | split: '|' | last }}
+          </label>
+          {% else %}
+          <label>
+            {{ settings.text_quickview_product_sku | split: '|' | first }}
+          </label>
+          {% endif %}
+          {% endif %}
+          {% assign current_variant = product.selected_or_first_available_variant %}
+          <span>{{ current_variant.sku }}</span>
+        </div>
+        {% endif %}
+
+        {% if settings.display_quickview_product_type %}
+        <div class="product-type">
+          {% if settings.quickview_text_product_type != blank %}
+          {% if settings.enable_multilang %}
+          <label class="lang1">
+            {{ settings.quickview_text_product_type | split: '|' | first }}
+          </label>
+          <label class="lang2">
+            {{ settings.quickview_text_product_type | split: '|' | last }}
+          </label>
+          {% else %}
+          <label>
+            {{ settings.quickview_text_product_type | split: '|' | first }}
+          </label>              
+          {% endif %}
+          {% endif %}
+         <span>{{ product.type }}</span>
+        </div>
+        {% endif %}  
+
+        {% if settings.display_quickview_vendor %}
+        <div class="vendor-product">
+          {% if settings.quickview_text_vendor != blank %}
+          {% if settings.enable_multilang %}
+          <label class="lang1">
+            {{ settings.quickview_text_vendor | split: '|' | first }}
+          </label>
+          <label class="lang2">
+            {{ settings.quickview_text_vendor | split: '|' | last }}
+          </label>
+          {% else %}
+          <label>
+            {{ settings.quickview_text_vendor | split: '|' | first }}
+          </label>
+          {% endif %}
+          {% endif %}
+
+          <span>{{ product.vendor }}</span>
+        </div>
+        {% endif %}
+
+      </div>
+      {% endif %}
+
+      {% if settings.display_quickview_countdown %}
+        {% if product.description contains '[countdown]' %}            
+          {% assign count_down_first = product.description | split:'[/countdown]' | first %}
+          {% assign count_down_final = count_down_first | split:'[countdown]' | last %}
+          <div class="countdown">
+            {% render 'multilang' with settings.text_quickview_countdown %}
+            <div id="clock">{{ count_down_final }}</div>
+          </div>
+          <script>
+            $(document ).ready(function() {
+              $("#clock").countdown('{{ count_down_final }}', function(event) {
+                                    $(this).html(event.strftime(''
+                                                                + '<span>%D</span>d : '
+                                                                + '<span>%H</span>h : '
+                                                                + '<span>%M</span>m : '
+                                                                + '<span>%S</span>s'));
+            });
+            });
+          </script>
+        {% endif %}
+      {% endif %}
+
+      {%assign des = product.description %}
+      {% if des contains '[countdown]' %}
+      {% assign des = des | split:'[/countdown]' | last %}
+      {%endif%}
+
+      {% if des contains '[Custom Product Tab]'%}
+      {% assign des = des | split:'[Custom Product Tab]' | first %}
+      {% endif %}
+
+      {% if settings.display_quickview_short_desc and des != blank %}
+      {%assign des = product.description %}
+      {% if des contains '[countdown]' %}
+      {% assign des = des | split:'[/countdown]' | last %}
+      {%endif%}
+
+      {% if des contains '[Custom Product Tab]'%}
+      {% assign des = des | split:'[Custom Product Tab]' | first %}
+      {% endif %}
+
+
+      {% if settings.enable_multilang and des contains '[lang2]' %}
+      <div class="short-description">
+        <div class="lang1">
+          {{ des | split: '[lang2]' | first | strip_html | strip |truncate: 100 }}
+        </div>
+        <div class="lang2">
+          {{ des | split: '[lang2]' | last | strip_html | strip | truncate: 100 }}
+        </div>
+      </div>
+      {% else %}
+      <div class="short-description">
+        {{ des | split: '[lang2]' | first | strip_html | replace: '&nbsp;', ' ' | truncate: 200 }}
+      </div>
+      {% endif %}
+      {% endif %}
+
+      <form action="/cart/add" method="post" class="variants" data-id="product-actions-{{product.id}}">
+        <div id="product-variants">                                    
+          {% assign variantCount = product.variants | size %}
+          {% if product.available %} 
+            {% if variantCount > 1 %} 
+              <select id="product-select-{{product.id}}" name="id" style="display:none">
+                {% for variant in product.variants %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                  {{ variant.title }} - {{ variant.price | money }}
+                </option>
+                {% endfor %}
+              </select>
+
+              {% if settings.use_color_swatch %}
+                {% for option in product.options %}
+                  {% render 'swatchqv' with option %}
+                {% endfor %}
+              {% endif %}
+            {% else %}
+            <input type="hidden" name="id" value="{{ product.variants[0].id }}" />
+            {% endif %}
+          {% endif %}                                    
+        </div>
+
+
+        <div class="prices">
+          {% if product.compare_at_price > product.price %}
+          <span class="compare-price">
+            {{ product.compare_at_price_max | money }}
+          </span>
+          <span class="price on-sale" itemprop="price">
+            {{ product.price | money }}
+          </span>
+          {% else %}
+          <span class="price" itemprop="price">
+            {{ product.price | money }}
+          </span>
+          {% endif %}
+          <input type="hidden" id="product_regular_price" name="product_regular_price" value="{{ product.price }}">
+        </div>
+
+        <div class="chart-group">
+          <label class="qty-label" for="quantity" {% if settings.enable_multilang %}data-translate="cart.label.quantity"{%endif%}>
+            {{ 'cart.label.quantity' | t }}: 
+          </label>
+
+          <div class="qty-group">
+            <button class="des button" type="button">
+            </button>
+            <input type="text" class="quantity" name="quantity" value="1">
+            <button class="inc button" type="button">
+            </button>
+          </div>
+
+          {% if settings.display_size_chart  %}
+            <a data-toggle="modal" data-target="#myModal_sizechar" class="size-chart-open-popup">
+              {% render 'multilang' with settings.custom_size_chart_title %}
+            </a>
+          {% endif %}
+        </div>
+
+        {% if settings.display_quickview_subtotal %}
+        <div class="total-price">
+          <label {% if settings.enable_multilang %}data-translate="cart.general.subtotal"{%endif%}>
+            {{ 'cart.general.subtotal' | t }}:
+          </label>
+          <span class="total-money">{{ product.price | money }}</span>
+        </div>
+        {% endif %}
+
+        {% if sold_out %}
+          <div class="addToCart">
+            <button type="button" class="btn add-to-cart-btn" {% if settings.enable_multilang %}data-translate="products.product.unavailable"{% endif %} {%unless product.available %}disabled value=""{%endunless%}>
+            {{ 'products.product.unavailable' | t }}
+            </button>
+          </div>
+          {% else %}
+            <div class="addToCart">
+
+              {% if current_variant.inventory_management %}
+              {% assign first_inventory = current_variant.inventory_quantity %}
+
+              {% if first_inventory > 0 %}
+              <button type="button" class="btn add-to-cart-btn" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %} {%unless product.available %}disabled value=""{%endunless%}>
+                {{ 'products.product.add_to_cart' | t }}
+              </button>
+              {% else %}
+              <button type="button" class="btn add-to-cart-btn" {% if settings.enable_multilang %}data-translate="products.product.pre_order"{% endif %} {%unless product.available %}disabled value=""{%endunless%}>
+                {{ 'products.product.pre_order' | t }}
+              </button>
+              {% endif %}
+
+              {% else %}
+              <button type="button" class="btn add-to-cart-btn" {% if settings.enable_multilang %}data-translate="products.product.add_to_cart"{% endif %} {%unless product.available %}disabled value=""{%endunless%}>
+                {{ 'products.product.add_to_cart' | t }}
+              </button>
+              {% endif %}
+
+
+            </div>
+          {% endif %}
+
+        <div class="groups-btn">
+          {% render 'wishlist-product' %}
+        </div>
+
+      </form>  
+
+      {% if settings.dpl_customers_view %}
+      <div id="customers_view">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+          <path d="M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035
+            c-4.332,5.936-4.332,13.987,0,19.923c4.569,6.257,113.557,153.206,252.748,153.206s248.174-146.95,252.748-153.201
+            C513.083,260.028,513.083,251.971,508.745,246.041z M255.997,385.406c-102.529,0-191.33-97.533-217.617-129.418
+            c26.253-31.913,114.868-129.395,217.617-129.395c102.524,0,191.319,97.516,217.617,129.418
+            C447.361,287.923,358.746,385.406,255.997,385.406z"/>
+          <path d="M255.997,154.725c-55.842,0-101.275,45.433-101.275,101.275s45.433,101.275,101.275,101.275
+            s101.275-45.433,101.275-101.275S311.839,154.725,255.997,154.725z M255.997,323.516c-37.23,0-67.516-30.287-67.516-67.516
+            s30.287-67.516,67.516-67.516s67.516,30.287,67.516,67.516S293.227,323.516,255.997,323.516z"/>
+      </svg>
+        <label>104</label> {% render 'multilang' with settings.title_view %}
+      </div>
+      {% endif %}
+
+      {% if settings.display_quickview_share %} 
+        {% render 'share' with product %}
+      {% endif %}
+
+      {% if settings.dpl_quickview_seal_logo %}
+        {% render 'seal-logos' %}      
+      {% endif %}
+
+    </div>
+  </div>
+  
+  <a href="javascript:void(0)" class="close-window close" title="{{ 'cart.ajax_cart.close' | t }}">
+    {% render 'icon-close' %}
+  </a>
+</div>

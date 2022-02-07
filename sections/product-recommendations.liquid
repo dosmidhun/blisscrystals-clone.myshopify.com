@@ -1,0 +1,58 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-cbeb7534"></div>
+{% if section.settings.display_related_products %}
+{% assign number_of_related_products = section.settings.number_of_related_products | plus:1 %}
+
+<div id="product-recommendations">
+  <div class="">
+    <div class="related-products page-width product-recommendations js-product-recomendation" data-template="{% if template.suffix == 'gallery' or template.suffix == 'full-width' %}{{ template.suffix }}{% endif %}" data-product-id="{{ product.id }}" data-limit="{{ number_of_related_products }}" data-section-id="{{ section.id }}" data-section-type="product-recommendations" data-featured-products>
+      {% if recommendations.products_count > 0 %}
+      {% if section.settings.related_products_title %}
+      <div class="widget_title">   
+        <h2 class="box-title">
+          {% render 'multilang' with section.settings.related_products_title %}
+        </h2>
+      </div>
+      {% endif %}
+      <div class="widget-product">
+        <div class="products-grid grid grid--uniform grid--view-items row">
+          {% for product in recommendations.products limit: number_of_related_products %}
+
+          <div class="{% if settings.product_image_border %}grid-item-border{% endif %}{% if settings.product_image_crop %} crop_image{% else %} no_crop_image{% endif %} grid-item col-6 col-md-4 col-xl-3">
+              {% render 'product-grid-item', product: product %}
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Products Recomendation",
+	"class": "col-12",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "display_related_products",
+            "label": "Display Related Products?",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "related_products_title",
+            "label": "Title of related products block",
+            "default": "Related Products"
+        },
+        {
+            "type": "text",
+            "id": "number_of_related_products",
+            "label": "Number of related products",
+            "default": "8"
+        }
+  ]
+  }
+{% endschema %}

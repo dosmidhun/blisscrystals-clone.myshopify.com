@@ -1,0 +1,45 @@
+<ul class="site-nav-dropdown nav-dropdown">
+  <li class="menu-mb-title" style="display: none;">
+    <span class="icon-dropdown no-event">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </span>
+    {% render 'multilang' with link_child %}
+  </li>
+
+  {% for link_child_item in linklists[link_child].links %}
+  <li {% if linklists[link_child_item.handle] != empty %}class="dropdown"{% endif %}>
+    <a {% if linklists[link_child_item.handle] != empty %}class="menu__moblie"{% endif %} href="{{ link_child_item.url }}">
+      {% render 'multilang' with link_child_item.title %}
+
+      {% if linklists[link_child_item.handle] != empty %}
+      <span class="icon-dropdown">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      </span>
+      {% endif %}
+    </a>
+    {% if linklists[link_child_item.handle] != empty %}
+    <ul class="site-nav-dropdown nav-dropdown">
+      <li class="menu-mb-title" style="display: none;">
+        <span class="icon-dropdown no-event">
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </span>
+        {% render 'multilang' with link_child_item.title %}
+      </li>
+      {% for n in linklists[link_child_item.handle].links %}
+      <li {% if linklists[n.handle] != empty %}class="dropdown"{% endif %}>
+        <a {% if linklists[n.handle] != empty %}class="menu__moblie"{% endif %} href="{{ n.url }}">
+          {% render 'multilang' with n.title %}
+
+          {% if linklists[n.handle] != empty %}
+          <span class="icon-dropdown">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </span>
+          {% endif %}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>

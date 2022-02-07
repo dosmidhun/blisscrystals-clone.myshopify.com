@@ -1,0 +1,625 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-368249df"></div>
+<div data-section-id="{{ section.id }}" class="lookbook">
+  <div class="lookbook_page">
+    <div id="slick_{{ section.id }}" class="single-item slideslick" data-auto="{% if section.settings.lb_autoplay %}true{% else %}false{% endif %}" data-speed="{{ section.settings.lb_slideshow_speed }}" data-transition="{{section.settings.lb_slideshow_transition }}">
+      
+      {% for block in section.blocks %}
+      
+      {% if block.type == 'image' %}
+      <div class="item">
+        {% if block.settings.lb_slideshow != blank %}
+        <a href="{{ block.settings.lb_image_link }}" >
+        <img src="{{ block.settings.lb_slideshow | img_url : "2000x" }}"  data-url="{{ block.settings.lb_image_link }}" class="slide-img" alt="{{ block.settings.image.alt }}"/>
+        </a>
+        {% else %}
+        {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+        {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+        
+        {% if block.settings.display_slide_content %}
+        <div class="slide-content{% if block.settings.lb_slideshow_align == 'left' %} text-left{% elsif block.settings.lb_slideshow_align == 'right' %} text-right{% else %} text-center{% endif %}{% if block.settings.lb_slideshow_position == 'left' %} position-left{% elsif block.settings.lb_slideshow_position == 'right' %} position-right{% else %} position-center{% endif %}">  
+          {% if block.settings.sub_title != blank %}
+            <h5 class="slide-sub-heading" 
+              style="{% if block.settings.lb_slide_sub_heading_size != blank %} 
+                     font-size: {{ block.settings.lb_slide_sub_heading_size }}px;
+                     {% endif %}
+                     {% if block.settings.lb_slide_sub_heading_color != blank %} 
+                     color: {{ block.settings.lb_slide_sub_heading_color }}; border-bottom: 1px solid {{ block.settings.lb_slide_sub_heading_color }};
+                     {% endif %}">
+            {% render 'multilang' with block.settings.sub_title %}
+            </h5>
+          {% endif %}       
+          {% if block.settings.title != blank %}
+          <h2 class="slide-heading" 
+              style="{% if block.settings.lb_slide_heading_size != blank %} 
+                     font-size: {{ block.settings.lb_slide_heading_size }}px;
+                     {% endif %}
+                     {% if block.settings.lb_slide_heading_color != blank %} 
+                     color: {{ block.settings.lb_slide_heading_color }};
+                     {% endif %}">
+            {% render 'multilang' with block.settings.title %}
+          </h2>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+      
+      {% elsif block.type == 'lookbook' %}
+
+        {% if block.settings.dpl_lookboob_slide %}
+        <div class="item" id="slide-{{ block.id }}" {{ block.shopify_attributes }}> 
+          <div class="lazy-images-contain" >
+            
+            {% if block.settings.lb_image_slide != blank %}
+            {%- assign img_url_1 = block.settings.lb_image_slide | img_url: 'master' -%}
+            
+            <img src="{{img_url_1}}" alt=""
+                 class="lazyload"
+                 data-src="https:{{ img_url_1 }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-sizes="auto">
+            {% else %}
+            {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+            {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}                 
+            {% endif %}
+            
+            {% if block.settings.lb_product_1 != blank %}
+            <div class="lookbook-item" style="top:{{ block.settings.top_position_1 }}%; left:{{ block.settings.left_position_1 }}%;">
+             <span class="glyphicon pr-lb item_1_{{ block.id }}" data-handle="{{ block.settings.lb_product_1 }}">+</span>
+            </div>
+            {% endif %}
+            
+            {% if block.settings.lb_product_2 != blank %}
+            <div class="lookbook-item" style="top:{{ block.settings.top_position_2 }}%; left:{{ block.settings.left_position_2 }}%;">
+             <span class="glyphicon pr-lb item_2_{{ block.id }}" data-handle="{{ block.settings.lb_product_2 }}">+</span>
+            </div>
+            {% endif %}
+            
+            {% if block.settings.lb_product_3 != blank %}
+            <div class="lookbook-item" style="top:{{ block.settings.top_position_3 }}%; left:{{ block.settings.left_position_3 }}%;">
+             <span class="glyphicon pr-lb item_3_{{ block.id }}" data-handle="{{ block.settings.lb_product_3 }}">+</span>
+            </div>
+            {% endif %}
+            
+            {% if block.settings.lb_product_4 != blank %}
+            <div class="lookbook-item" style="top:{{ block.settings.top_position_4 }}%; left:{{ block.settings.left_position_4 }}%;">
+             <span class="glyphicon pr-lb item_4_{{ block.id }}" data-handle="{{ block.settings.lb_product_4 }}" >+</span>
+            </div>
+            {% endif %}
+            <style type="text/css">
+              #slide-{{ block.id }} .item_1_{{ block.id }}{
+                color:{{ block.settings.dots_color_1 }};
+                background: {{ block.settings.dots_bg_color_1 }};
+              }
+              #slide-{{ block.id }} .item_1_{{ block.id }}:before{
+                 color: {{ block.settings.dots_bg_color_1 }};
+              }
+              #slide-{{ block.id }} .item_2_{{ block.id }}{
+                color:{{ block.settings.dots_color_2 }};
+                background: {{ block.settings.dots_bg_color_2 }};
+              }
+              #slide-{{ block.id }} .item_2_{{ block.id }}:before{
+                 color: {{ block.settings.dots_bg_color_2 }};
+              }
+              #slide-{{ block.id }} .item_3_{{ block.id }}{
+                color:{{ block.settings.dots_color_3 }};
+                background: {{ block.settings.dots_bg_color_3 }};
+              }
+              #slide-{{ block.id }} .item_3_{{ block.id }}:before{
+                 color: {{ block.settings.dots_bg_color_3 }};
+              }
+              #slide-{{ block.id }} .item_4_{{ block.id }}{
+                color:{{ block.settings.dots_color_4 }};
+                background: {{ block.settings.dots_bg_color_4 }};
+              }
+              #slide-{{ block.id }} .item_4_{{ block.id }}:before{
+                 color: {{ block.settings.dots_bg_color_4 }};
+              }
+            </style>
+          </div>	
+        {% if block.settings.display_slide_content %}
+          <div class="slide-content{% if block.settings.lb_slideshow_align == 'left' %} text-left{% elsif block.settings.lb_slideshow_align == 'right' %} text-right{% else %} text-center{% endif %}{% if block.settings.lb_slideshow_position == 'left' %} position-left{% elsif block.settings.lb_slideshow_position == 'right' %} position-right{% else %} position-center{% endif %}">  
+            {% if block.settings.sub_title != blank %}
+              <h5 class="slide-sub-heading" 
+                style="{% if block.settings.lb_slide_sub_heading_size != blank %} 
+                       font-size: {{ block.settings.lb_slide_sub_heading_size }}px;
+                       {% endif %}
+                       {% if block.settings.lb_slide_sub_heading_color != blank %} 
+                       color: {{ block.settings.lb_slide_sub_heading_color }}; border-bottom: 1px solid {{ block.settings.lb_slide_sub_heading_color }};
+                       {% endif %}">
+              {% render 'multilang' with block.settings.sub_title %}
+              </h5>
+            {% endif %}       
+            {% if block.settings.title != blank %}
+            <h2 class="slide-heading" 
+                style="{% if block.settings.lb_slide_heading_size != blank %} 
+                       font-size: {{ block.settings.lb_slide_heading_size }}px;
+                       {% endif %}
+                       {% if block.settings.lb_slide_heading_color != blank %} 
+                       color: {{ block.settings.lb_slide_heading_color }};
+                       {% endif %}">
+              {% render 'multilang' with block.settings.title %}
+            </h2>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        </div>
+        {% endif %}
+      
+      {% endif %}
+      
+      
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if section.settings.display_product_detail_share %}
+  {% render 'share' %}
+  {% endif %}
+
+  {% if section.settings.button != blank %}
+  <p class="bottom">
+    <a href="{{ section.settings.link }}" class="btn">
+      {% render 'multilang' with section.settings.button %}
+    </a>
+  </p>
+  {% endif %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Lookbook",
+	 "max_blocks": 10,
+    "settings": [
+	  {
+        "type": "header",
+        "content": "Lookbook Slideshow"
+      },
+      {
+        "type": "paragraph",
+        "content": "IMPORTANT: For best results, upload images that are at least 1880px wide. Try to keep your slideshow images the same size."
+      },
+      {
+        "type": "checkbox",
+        "id": "lb_autoplay",
+        "label": "Auto-rotate slides",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "lb_slideshow_speed",
+        "label": "Show slideshow images for",
+        "options": [
+		      {
+            "value": "10000",
+            "label": "10 seconds"
+          },
+		      {
+            "value": "9000",
+            "label": "9 seconds"
+          },
+          {
+            "value": "8000",
+            "label": "8 seconds"
+          },
+          {
+            "value": "7000",
+            "label": "7 seconds"
+          },
+          {
+            "value": "6000",
+            "label": "6 seconds"
+          },
+          {
+            "value": "5000",
+            "label": "5 seconds"
+          },
+          {
+            "value": "4000",
+            "label": "4 seconds"
+          },
+          {
+            "value": "3000",
+            "label": "3 seconds"
+          },
+          {
+            "value": "2000",
+            "label": "2 seconds"
+          },
+          {
+            "value": "1000",
+            "label": "1 seconds"
+          }
+        ],
+        "default": "5000"
+      },
+      {
+        "type": "select",
+        "id": "lb_slideshow_transition",
+        "label": "Slideshow transition effect:",
+        "options": [
+          {
+            "value": "false",
+            "label": "Slide"
+          },
+          {
+            "value": "true",
+            "label": "Fade"
+          }
+        ],
+        "default": "true"
+       },
+	     {
+          "type": "checkbox",
+          "id": "display_product_detail_share",
+          "label": "Display Product Share?",
+          "default": true
+       },
+	     {
+          "type": "text",
+          "id": "button",
+          "label": "Lookbook Button"
+       },
+       {
+          "type": "url",
+          "id": "link",
+          "label": "Lookbook link"
+       }
+
+	],
+	"blocks" :[
+	  {
+        "type": "image",
+        "name": "Image Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "lb_slideshow",
+            "label": "Slideshow Image"
+          },
+          {
+            "type": "url",
+            "id": "lb_image_link",
+            "label": "URL for Image click"
+          },
+          {
+            "type": "checkbox",
+            "id": "display_slide_content",
+            "label": "Show Slide Content?",
+            "default": true
+          },
+          {
+            "type": "select",
+            "id": "lb_slideshow_align",
+            "label": "Slide Content text align",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "select",
+            "id": "lb_slideshow_position",
+            "label": "Slide Content position",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "right"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading for Image",
+            "default": "Milancélos"
+          },
+          {
+            "type": "color",
+            "id": "lb_slide_heading_color",
+            "label": "Heading color for Image",
+            "default": "#ffffff",
+            "info": "Default Value: #ffffff"
+          },
+          {
+            "type": "text",
+            "id": "lb_slide_heading_size",
+            "label": "Heading size for Image",
+            "default": "50",
+            "info": "Default Value: 50"
+          },
+          {
+            "type": "text",
+            "id": "sub_title",
+            "label": "Sub Heading for Image",
+            "default": "New Arrivals"
+          },
+          {
+            "type": "color",
+            "id": "lb_slide_sub_heading_color",
+            "label": "Sub heading color for Image",
+            "default": "#fae3ca",
+            "info": "Default Value: #fae3ca"
+          },
+          {
+            "type": "text",
+            "id": "lb_slide_sub_heading_size",
+            "label": "Sub heading size for Image",
+            "default": "12",
+            "info": "Default Value: 12"
+          }
+         
+        ]
+	  },
+	  {
+        "type": "lookbook",
+        "name": "Lookbook Slide",
+        "settings": [
+    		  {
+    			"type" : "checkbox",
+    			"id" : "dpl_lookboob_slide",
+    			"label" : "Enable",
+    			"default" : true
+    		  },
+          {
+            "type": "image_picker",
+            "id": "lb_image_slide",
+			       "label": "Select Image"
+          },
+		      {
+            "type": "checkbox",
+            "id": "display_slide_content",
+            "label": "Show Slide Content?",
+            "default": true
+          },
+          {
+            "type": "select",
+            "id": "lb_slideshow_align",
+            "label": "Slide Content text align",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "center"
+          },
+          {
+            "type": "select",
+            "id": "lb_slideshow_position",
+            "label": "Slide Content position",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "right"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading for Image",
+            "default": "Milancélos"
+          },
+          {
+            "type": "color",
+            "id": "lb_slide_heading_color",
+            "label": "Heading color for Image",
+            "default": "#ffffff",
+            "info": "Default Value: #ffffff"
+          },
+          {
+            "type": "text",
+            "id": "lb_slide_heading_size",
+            "label": "Heading size for Image",
+            "default": "50",
+            "info": "Default Value: 50"
+          },
+          {
+            "type": "text",
+            "id": "sub_title",
+            "label": "Sub Heading for Image",
+            "default": "New Arrivals"
+          },
+          {
+            "type": "color",
+            "id": "lb_slide_sub_heading_color",
+            "label": "Sub heading color for Image",
+            "default": "#fae3ca",
+            "info": "Default Value: #fae3ca"
+          },
+          {
+            "type": "text",
+            "id": "lb_slide_sub_heading_size",
+            "label": "Sub heading size for Image",
+            "default": "12",
+            "info": "Default Value: 12"
+          },
+  		  {
+  			"type" : "header",
+  			"content" : "Product 1"
+  		  },
+  		  {
+  			"type" : "product",
+  			"id" : "lb_product_1",
+  			"label" : "Select Product 1"
+  		  },
+  		  {
+  			"type" : "text",
+  			"id" : "top_position_1",
+  			"label" : "Top Position 1",
+  			"default" : "10",
+  			"info" : "Unit %" 
+  		  },
+  		  {
+  			"type" : "text",
+  			"id" : "left_position_1",
+  			"label" : "Left Position 1",
+  			"default" : "10",
+  			"info" : "Unit %" 
+  		  },
+  		  {
+  			"type" : "color",
+  			"id" : "dots_color_1",
+  			"label" : "Color 1",
+  			"default" : "#fff"
+  		  },
+  		  {
+  			"type" : "color",
+  			"id" : "dots_bg_color_1",
+  			"label" : "Dots background color 1",
+  			"default" : "#0f0f0f",
+  			"info" : "======================="
+  		  },
+  		  {
+  			"type" : "header",
+  			"content" : "Product 2"
+  		  },
+  		  {
+  			"type" : "product",
+  			"id" : "lb_product_2",
+  			"label" : "Select Product 2"
+  		  },
+  		  {
+  			"type" : "text",
+  			"id" : "top_position_2",
+  			"label" : "Top Position 2",
+  			"default" : "10",
+  			"info" : "Unit %" 
+  		  },
+  		  {
+  			"type" : "text",
+  			"id" : "left_position_2",
+  			"label" : "Left Position 2",
+  			"default" : "10",
+  			"info" : "Unit %" 
+  		  },
+  		  {
+  			"type" : "color",
+  			"id" : "dots_color_2",
+  			"label" : "Color 2",
+  			"default" : "#fff"
+  		  },
+  		  {
+  			"type" : "color",
+  			"id" : "dots_bg_color_2",
+  			"label" : "Dots background color 2",
+  			"default" : "#0f0f0f",
+  			"info" : "======================="
+  		  },
+  		  {
+  			"type" : "header",
+  			"content" : "Product 3"
+  		  },
+  		  {
+  			"type" : "product",
+  			"id" : "lb_product_3",
+  			"label" : "Select Product 3"
+  		  },
+  		  {
+  			"type" : "text",
+  			"id" : "top_position_3",
+  			"label" : "Top Position 3",
+  			"default" : "10",
+  			"info" : "Unit %" 
+  		  },
+  		  {
+  			"type" : "text",
+  			"id" : "left_position_3",
+  			"label" : "Left Position 3",
+  			"default" : "10",
+  			"info" : "Unit %" 
+  		  },
+  		  {
+  			"type" : "color",
+  			"id" : "dots_color_3",
+  			"label" : "Color 3",
+  			"default" : "#fff"
+  		  },
+  		  {
+  			"type" : "color",
+  			"id" : "dots_bg_color_3",
+  			"label" : "Dots background color 3",
+  			"default" : "#0f0f0f",
+  			"info" : "======================="
+  		  },
+  		  {
+  			"type" : "header",
+  			"content" : "Product 4"
+  		  },
+  		  {
+  			"type" : "product",
+  			"id" : "lb_product_4",
+  			"label" : "Select Product 4"
+  		  },
+  		  {
+  			"type" : "text",
+  			"id" : "top_position_4",
+  			"label" : "Top Position 4",
+  			"default" : "10",
+  			"info" : "Unit %" 
+  		  },
+  		  {
+  			"type" : "text",
+  			"id" : "left_position_4",
+  			"label" : "Left Position 4",
+  			"default" : "10",
+  			"info" : "Unit %" 
+  		  },
+  		  {
+  			"type" : "color",
+  			"id" : "dots_color_4",
+  			"label" : "Color 4",
+  			"default" : "#fff"
+  		  },
+  		  {
+  			"type" : "color",
+  			"id" : "dots_bg_color_4",
+  			"label" : "Dots background color 4",
+  			"default" : "#0f0f0f"
+  		  }
+  		]
+	   }
+	]
+  }
+{% endschema %}

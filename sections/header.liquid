@@ -1,0 +1,323 @@
+<style>
+  /*  Header Bottom  */
+  {% assign bg_header_color =  section.settings.bg_header_color %}
+  {% assign header_text_color =  section.settings.header_text_color %}
+  {% assign header_border_left_color =  section.settings.header_border_left_color %}
+
+  {% assign bg_header_search_color =  section.settings.bg_header_search_color %}
+  {% assign header_search_text_color =  section.settings.header_search_text_color %}
+  {% assign header_search_icon_color =  section.settings.header_search_icon_color %}
+
+  .header-wrapper{
+    background:{{bg_header_color}};
+  }
+
+  .header-wrapper .logo-title{
+    color:{{header_text_color}};
+    font-size: 20px;
+  }
+  .header-wrapper svg {
+    width: 16px;
+    height: 16px;
+  }
+  .header-wrapper .column-right .text_order,
+  .header-wrapper a.userToggle,
+  .header-wrapper .wishlist-text a {
+    color:{{header_text_color}};
+  }
+  .header-wrapper .column-right > div {
+    border-left: 1px solid  {{section.settings.header_text_color | color_modify: 'alpha', 0.5 }};
+  }
+  .header-wrapper .column-right > div a:hover span:before, .header-wrapper .column-right .customer-links .userToggle.is-open span:before{
+    background: {{header_text_color}};
+  }
+  .header-wrapper .column-right .customer-links .userToggle svg {
+    fill: {{header_text_color}};
+  }
+  .header-wrapper .column-right .header-search .search-form .input-group-field {
+    color: {{header_search_text_color}};
+    background: {{bg_header_search_color}};
+  }
+
+  .header-wrapper .column-right .header-search .search-form .input-group-field::-webkit-input-placeholder{
+    color:{{section.settings.header_search_text_color}};
+    opacity: 0.6;
+  }
+  .header-wrapper .column-right .header-search .search-form .input-group-field::-moz-placeholder{
+    color:{{section.settings.header_search_text_color}};
+    opacity: 0.6;
+  }
+  .header-wrapper .column-right .header-search .search-form .input-group-field:-ms-input-placeholder{
+    color:{{section.settings.header_search_text_color}};
+  }
+  
+  .header-wrapper .column-right .header-search .search-form .btn-search svg{
+    fill:{{header_search_icon_color}};
+  }
+
+  @media (max-width:1024px){
+    .header-wrapper .logo img{ 
+      max-height: {{section.settings.min_height_logo}};
+    }
+    .header-wrapper .icon-menu .icon-line,.header-wrapper .icon-menu .icon-line:before, 
+    .header-wrapper .icon-menu .icon-line:after {
+      background: {{header_text_color}};
+    }
+    .header-wrapper .menu-mobile svg {
+      fill: {{header_text_color}};
+    }
+  }
+
+  @media (min-width:1025px){
+    .header-wrapper .logo img{ 
+      height: {{section.settings.min_height_logo_dk}};
+    }
+  }
+  .logo a.logo-title {
+    color: {{ section.settings.logo_text_color }};
+  }
+</style>
+
+<header class="site-header" role="banner">
+  <div class="header-wrapper">
+    <div class="container">
+        <div class="menu-mobile mobile-items">
+          <a href="javascript:void(0)" class="menuToggle icon-menu" id="showLeftPush">
+            <span class="icon-line"></span>
+          </a>
+
+          <a href="javascript:void(0)" class="searchToggle">
+            {% render 'icon_search' %}
+            {% render 'icon-close' %}
+          </a>
+         
+        </div>
+        
+        <div class="hd-items column-left logo" itemscope itemtype="http://schema.org/Organization">
+          <meta itemprop="url" content="{{ shop.url }}">
+          <a class="icon-menu" href="javascript:void(0)">
+            <span class="icon-line"></span>
+          </a>
+          {% if section.settings.brand_type == 'image' and section.settings.logo != blank %}
+          <a href="{{ routes.cart_url | split: 'cart' | first }}">
+            
+          {% if section.settings.logo != blank %} 
+          <img itemprop="logo" src="{{ section.settings.logo | img_url: '150x' }}" alt="{{ section.settings.logo.alt | default: shop.name }}"
+               class="lazyload logo-desktop"
+               itemprop="logo"
+               data-src="{{ section.settings.logo | img_url: 'master'  }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ section.settings.logo | img_url: 'master' }}"
+               data-sizes="auto">
+          {% else %}
+          <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">{{shop.name}}</a>           
+          {% endif %}
+
+          {% if section.settings.enable_retina %}
+          {% if section.settings.logo_2x != blank %}
+            <img src="{{ section.settings.logo_2x | img_url: '150x'  }}" alt="{{ section.settings.logo.alt | default: shop.name }}"
+               class="lazyload logo-mobile"
+               itemprop="logo"
+               data-src="{{ section.settings.logo_2x | img_url: 'master'  }}"
+               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+               data-aspectratio="{{ section.settings.logo_2x | img_url: 'master' }}"
+               data-sizes="auto">
+          {% else %}
+          {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | img_url: '100x' }}" alt="{{ section.settings.logo.alt | default: shop.name }}"
+             class="lazyload logo-mobile"
+             itemprop="logo"
+             data-src="{{ section.settings.logo | img_url: 'master'  }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ section.settings.logo | img_url: 'master' }}"
+             data-sizes="auto">
+          {% else %}
+          <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">{{shop.name}}</a>
+          {% endif %}
+          {% endif %}
+          {% endif %}
+          </a>
+          {% elsif section.settings.brand_text != "" %}
+          <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">{{ section.settings.brand_text }}</a>
+          {% else %}
+          <a class="logo-title" href="{{ routes.cart_url | split: 'cart' | first }}">{{shop.name}}</a>
+          {% endif %}
+          
+        </div>
+
+        <div class="hd-items column-right">
+          {% if section.settings.display_header_text_order and section.settings.header_text_order != blank %}
+          {% if settings.enable_multilang %}
+          <div class="text_order">
+            <span class="lang1">{{ section.settings.header_text_order | split: '|' | first }}</span>
+            <span class="lang2">{{ section.settings.header_text_order | split: '|' | last }}</span>
+          </div>
+          {% else %}
+          <div class="text_order">{{ section.settings.header_text_order | split: '|' | first }}</div>
+          {% endif %}
+          {% endif %}
+          <div class="customer-links">
+            <a href="javascript:void(0)" class="userToggle">
+              {% render 'icon_user' %}
+              <span {% if settings.enable_multilang %}data-translate="customer.account.title"{% endif %}>{{ 'customer.account.title' | t }}</span>
+            </a>
+            <div class="nav-customer">
+              {% render 'customer_links' %}
+            </div>
+          </div>
+          {% if settings.enable_wishlist %}
+          <div class="wishlist-text">
+              <a href="https://blisscrystals-clone.myshopify.com/pages/wish-list" data-product-handle="{{ product.handle }}" data-id="{{ product.id }}">
+                <span class="wish_list" data-translate="wishlist.general.my_lists">
+                  {{ 'wishlist.general.my_lists' | t }}
+                </span>
+              </a>
+          </div>
+          {% endif %}
+          {% if section.settings.show_header_search %}
+          <div class="header-search">
+            {% render 'search-bar' %}
+          </div>
+          {% endif %}
+        </div>
+    </div>
+  </div>
+
+</header>
+
+{% if settings.enable_multilang %}
+<script>
+  translator.doTranslate(".site-header");
+</script>
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+    {
+      "type": "color",
+      "id": "bg_header_color",
+      "label": "Background Color",
+      "default": "#0f0f0f"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Header Text Color",
+      "default": "#fff"
+    },
+    {
+      "type" : "header",
+      "content" : "Header Text Order"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_header_text_order",
+      "label": "Display Header Text Order?",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "header_text_order",
+      "label": "Header Text Order",
+      "default": "Order Online +1900 000 JEWELIAS | Online bestellen +1900 000 JUWELIEN"
+    },
+    {
+      "type" : "header",
+      "content" : "Search"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header_search",
+      "label": "Display Search Form?",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bg_header_search_color",
+      "label": "Search Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "header_search_text_color",
+      "label": "Search Text Color",
+      "default": "#5a5a5a"
+    },
+    {
+      "type": "color",
+      "id": "header_search_icon_color",
+      "label": "Search Icon Color",
+      "default": "#333333"
+    },
+    {
+    "type" : "header",
+    "content" : "LOGO"
+    },
+    {
+        "type": "radio",
+        "id": "brand_type",
+        "label": "Use image or text for logo?",
+        "options": [
+          {
+            "value": "text",
+            "label": "Text"
+          },
+          {
+            "value": "image",
+            "label": "Image"
+          }
+        ],
+        "default": "text"
+      },
+      {
+        "type": "text",
+        "id": "brand_text",
+        "label": "Logo text"
+      },
+      {
+        "type": "color",
+        "id": "logo_text_color",
+        "label": "Logo Text Color",
+        "default": "#000"
+      },
+      {
+       "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image",
+        "info": "170px x 32px recommended"
+      },
+      {
+        "type": "text",
+        "id": "min_height_logo_dk",
+        "label": "Min Height of Logo desktop",
+        "default": "32px" 
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_retina",
+        "label": "Use Logo Mobile",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_2x",
+        "label": "Logo Mobile",
+        "info": "133px x 25px recommended"
+      },
+      {
+        "type": "text",
+        "id": "min_height_logo",
+        "label": "Min Height of Logo Mobile",
+        "default": "25px" 
+      },
+      {
+        "type": "paragraph",
+        "content": "Maximum logo dimensions are 500px wide by 200px high.Your uploaded file will be resized to fit within those constraints."
+      }
+    ]
+  }
+{% endschema %}

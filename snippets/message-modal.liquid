@@ -1,0 +1,57 @@
+<div class="loading-modal modal" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.loading"{% endif %}></div>
+
+<div class="lookbook-modal">
+  <a href="javascript:void(0)" class="close-modal" data-close-lookbook-modal>{% render 'icon-close' %}</a>
+  <div class="lookbook-content"></div>
+</div>
+
+<div class="ajax-error-modal modal">
+  <div class="modal-inner">
+    <div class="ajax-error-title" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.error"{% endif %}>
+      {{ 'cart.ajax_cart.error' | t }}
+    </div>
+    
+    <div class="ajax-error-message"></div>
+  </div>
+</div>
+
+<div class="ajax-success-modal modal">
+  <div class="overlay"></div>
+  <div class="content clear">
+    <div class="ajax-left">
+      <img class="ajax-product-image" alt="&nbsp;" src=""/>
+    </div>
+
+    <div class="ajax-right">
+      <div class="ajax-product-title"></div>
+      <p class="success-message message-added-cart" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.success_text"{% endif %}>
+        {{ 'cart.ajax_cart.success_text' | t }}
+      </p>
+      <div class="actions">
+        <button class="btn continue-shopping" onclick="javascript:void(0)" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.continue_shopping"{% endif %}>{{ 'cart.ajax_cart.continue_shopping' | t }}</button>
+        <button class="btn btn-go-to-cart" onclick="window.location='{{ routes.cart_url }}'" {% if settings.enable_multilang %}data-translate="cart.ajax_cart.go_to_cart"{% endif %}>{{ 'cart.ajax_cart.go_to_cart' | t }}</button>
+      </div>
+    </div>
+    <a href="javascript:void(0)" class="close-modal close" title="{{ 'cart.ajax_cart.close' | t }}">
+      {% render 'icon-close' %}
+    </a>
+  </div>    
+</div>
+
+<div class="newsletter-success-modal">
+    <div class="modal-overlay"></div>
+    <div class="halo-modal-content">
+      <a class="close close-modal" title="{{ 'cart.ajax_cart.close' | t }}">
+        {% render 'icon-close' %}
+      </a>
+
+      <div class="halo-modal-body success">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        <span>{{settings.newssletter_success_text}}</span>
+      </div>
+      <div class="halo-modal-body error">
+        <i class="fa fa-times"></i> 
+        <span>{{settings.newssletter_error_text}}</span>
+      </div>
+    </div> 
+</div>

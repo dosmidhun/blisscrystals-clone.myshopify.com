@@ -1,0 +1,278 @@
+{% include 'gravityadmin' %}
+<div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-0d9b1b9e"></div>
+<div class="page_banner"> 
+  <div class="container"> 
+    <div class="banner_image_outer"> 
+	<img src="//cdn.shopify.com/s/files/1/0258/2102/0194/files/inner_banner.png?v=1633077288"> 
+      <header class="page-header">
+        {% if settings.enable_multilang %}
+        <h1 class="lang1">
+          {{ page.title | split: '|' | first }}
+        </h1>
+        <h1 class="lang2">
+          {{ page.title | split: '|' | last }}
+        </h1>
+        {% else %}
+        <h1>
+          {{ page.title | split: '|' | first }}
+        </h1>
+        {% endif %}
+      </header>
+    </div>
+  </div>
+</div>
+
+<section id="faqs">
+  {% comment %}
+  <div class="page_title_outer">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-12">
+                  
+              </div> 
+          </div>
+      </div>
+  </div>
+  {% endcomment %}
+	<div class="container">
+		
+	
+  {% if section.settings.des_faqs != blank %}
+  <div class="des_faqs">
+    {% render 'multilang' with section.settings.des_faqs %}
+  </div>
+  {% endif %}
+  
+  <div class="panel-group">
+    {% for block in section.blocks %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="{% unless forloop.first %}collapsed{% endunless %}" data-toggle="collapse" href="#faqs-{{block.id}}" >
+            {% render 'multilang' with block.settings.question_faqs %}
+          </a>
+        </h4>    
+      </div>
+      <div id="faqs-{{block.id}}" class="panel-collapse collapse{% if forloop.first %} show{% endif %}">
+        <div class="panel-body">
+          {% render 'multilang' with block.settings.answer_faqs %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+  {% if section.settings.contact_text != blank or section.settings.contact_link_text != blank %}
+  <div class="contact-link">
+    {% if section.settings.contact_text != blank %}
+    <span class="text">
+      {% render 'multilang' with section.settings.contact_text  %}
+    </span>
+    {% endif %}
+    {% if section.settings.contact_link_text != blank %}
+    <a href="{{ section.settings.contact_link }}" class="btn">
+      {% render 'multilang' with section.settings.contact_link_text  %}
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
+  </div>
+</section>
+
+<style>
+  #faqs .panel-title {
+  	font-size: {{ section.settings.font_size_qs }}px;
+  }
+  
+  #faqs .panel-title > a {
+    color: {{ section.settings.color_question }};
+    background-color: {{ section.settings.bg_question }};
+  }
+  
+  #faqs .panel-title > a:before {
+    content: "{{ section.settings.icon_faqs }}";
+  }
+  
+  #faqs .panel-title > a.collapsed:before {
+  	background-color: {{ section.settings.bg_icon_qs }};
+    color: {{ section.settings.color_icon_qs }};
+  }
+  
+  #faqs .panel-title > a:not(.collapsed):before {
+  	background-color: {{ section.settings.bg_question_acitve }};
+    color: {{ section.settings.color_question_acitve }};
+  }
+  #faqs .panel-title > a:after {
+    color: {{ section.settings.color_hide_show_text }};
+  }
+  #faqs .panel-group .panel-body {
+  	font-size: {{ section.settings.font_size_answer }}px;
+    color: {{ section.settings.color_question_answer }};
+  }
+  
+  #faqs .panel-group .panel-body:before {
+  	content: "{{ section.settings.icon_answer }}";
+    background-color: {{ section.settings.bg_icon_answer }};
+    color: {{ section.settings.color_icon_answer }};
+    border-color: {{ section.settings.color_icon_answer }};
+  }
+  
+  #faqs .panel-group .panel-body a,
+  #faqs .des_faqs a {
+    color: {{ section.settings.color_question_link }};
+    border-bottom: 1px solid {{section.settings.color_question_link | color_modify: 'alpha', 0.8 }};
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "FAQS Page",
+    "settings": [
+      {
+       "type": "textarea",
+       "id" : "des_faqs",
+       "label" : "Description"
+      },
+	  {
+        "type" : "header",
+        "content" : "Contact"
+      },
+	  {
+       "type" : "textarea",
+       "id" : "contact_text",
+       "label" : "Contact Text",
+       "default" : "Unable to find satisfactory answers ?"
+      },
+	  {
+       "type" : "textarea",
+       "id" : "contact_link_text",
+       "label" : "Contact Link Text",
+       "default" : "Contact Support"
+      },
+	  {
+        "type" : "url",
+        "id" : "contact_link",
+        "label" : "Contact link"
+      },
+
+      {
+        "type": "header",
+        "content": "Question"
+      },
+      {
+       "type" : "text",
+       "id" : "icon_faqs",
+       "label" : "Icon Faqs",
+       "default" : "Q"
+      },
+      {
+       "type" : "color",
+       "id" : "bg_icon_qs",
+       "label" : "Background Icon",
+       "default" : "#f79555"
+      },
+      {
+       "type" : "color",
+       "id" : "color_icon_qs",
+       "label" : "Icon Color",
+       "default" : "#fff"
+      },
+      {
+       "type" : "color",
+       "id" : "bg_question",
+       "label" : "Background Question",
+       "default" : "#fafafa"
+      },
+      {
+       "type" : "color",
+       "id" : "color_question",
+       "label" : "Color Question",
+       "default" : "#191919"
+      },
+	    {
+       "type" : "text",
+       "id" : "font_size_qs",
+       "label" : "Font size Question",
+       "default" : "12"
+      },
+      {
+       "type" : "color",
+       "id" : "bg_question_acitve",
+       "label" : "Background Icons Question Active",
+       "default" : "#f79555"
+      },
+      {
+       "type" : "color",
+       "id" : "color_question_acitve",
+       "label" : "Color Question Active",
+       "default" : "#fff"
+      },
+      {
+       "type" : "color",
+       "id" : "color_hide_show_text",
+       "label" : "Color Show/Hide text",
+       "default" : "#969696"
+      },
+      {
+        "type": "header",
+        "content": "Answer"
+      },
+      {
+       "type" : "text",
+       "id" : "icon_answer",
+       "label" : "Icon Answer",
+       "default" : "A"
+      },
+      {
+       "type" : "color",
+       "id" : "bg_icon_answer",
+       "label" : "Background Icon Answer",
+       "default" : "#1fade6"
+      },
+      {
+       "type" : "color",
+       "id" : "color_icon_answer",
+       "label" : "Icon Color",
+       "default" : "#fff"
+      },      
+      {
+       "type" : "color",
+       "id" : "color_question_answer",
+       "label" : "Color Answer",
+       "default" : "#5a5a5a"
+      },
+	  {
+       "type" : "text",
+       "id" : "font_size_answer",
+       "label" : "Font size Answer",
+       "default" : "12"
+      },
+      {
+       "type" : "color",
+       "id" : "color_question_link",
+       "label" : "Color Link",
+       "default" : "#FF8B21"
+      }
+  
+ 	],
+    "blocks": [
+      {
+        "type" : "text",
+		"name" : "Question",
+        "settings":[
+          {
+            "type" : "textarea",
+            "id" : "question_faqs",
+            "label" : "Question"
+          },
+          {
+            "type" : "textarea",
+            "id" : "answer_faqs",
+            "label" : "Answer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
