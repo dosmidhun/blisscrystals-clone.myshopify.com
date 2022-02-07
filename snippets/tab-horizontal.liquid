@@ -85,15 +85,6 @@
     {% if section.settings.display_custom_tab %}
     <div id="collapse-tab4" class="tab-pane fade">
 
-      {% assign custom_tab = product.description | split:'[Custom Product Tab]' | last | split:'[/Custom Product Tab]' | first %}
-      {% if settings.enable_multilang %}
-      <div class="lang1">{{ custom_tab | split: '[lang2]' | first }}</div>
-      <div class="lang2">{{ custom_tab | split: '[lang2]' | last }}</div>
-      {% else %}
-      <div>{{ custom_tab | split: '[lang2]' | first }}</div>
-      {% endif %}
-
-      
        {% render 'product-api-lookbook' %}
     </div>
     {% endif %}       
