@@ -45,22 +45,20 @@
 
     <div id="collapse-tab1" class="tab-pane fade show active">
       {% if settings.enable_multilang %}
-<!--       <div class="lang1">{{ des | split: '[lang2]' | first }}</div>
-      <div class="lang2">{{ des | split: '[lang2]' | last }}</div> -->
-      {% render 'product-api-lookbook' %}
+           <div class="lang1">{{ des | split: '[lang2]' | first }}</div>
+      <div class="lang2">{{ des | split: '[lang2]' | last }}</div> 
       {% else %}
-<!--       <div>{{ des | split: '[lang2]' | first }}</div> -->
-      {% render 'product-api-lookbook' %}
+       <div>{{ des | split: '[lang2]' | first }}</div> 
       {% endif %}
-<!--       {% render 'product-detail-lookbook' %}  -->
+      {% render 'product-detail-lookbook' %} 
     </div>
     {% endif %}
 
     {% if section.settings.display_product_reviews %}       
     <div id="collapse-tab2" class="tab-pane fade">
       <div id="shopify-product-reviews" data-id="{{product.id}}">
-<!--         {{ product.metafields.spr.reviews }} -->
-         {% render 'product-api-lookbook' %}
+         {{ product.metafields.spr.reviews }} 
+        
       </div>
     </div>
     {% endif %}
@@ -84,9 +82,9 @@
     </div>
     {% endif %} 
 
-    {% if section.settings.display_custom_tab and product.description contains '[Custom Product Tab]' %}
+    {% if section.settings.display_custom_tab %}
     <div id="collapse-tab4" class="tab-pane fade">
-<!--       {% if product.description contains '[Custom Product Tab]' %}
+
       {% assign custom_tab = product.description | split:'[Custom Product Tab]' | last | split:'[/Custom Product Tab]' | first %}
       {% if settings.enable_multilang %}
       <div class="lang1">{{ custom_tab | split: '[lang2]' | first }}</div>
@@ -94,7 +92,7 @@
       {% else %}
       <div>{{ custom_tab | split: '[lang2]' | first }}</div>
       {% endif %}
-      {% endif %} -->
+
       
        {% render 'product-api-lookbook' %}
     </div>
