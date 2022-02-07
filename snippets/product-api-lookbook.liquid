@@ -204,13 +204,13 @@
      		headers: { "api-key": "DsVaxx8O0P9qLWXR1xC2YSg9oNejYNoZDRZZn2f5" },
             success: function (res) {
                console.log(res,"zodiac info");
-              
+              if(res.data.origin.length){
               var orgin;
               orgin=res.data.origin;
                var htmlvalorgin='<h6>Origin: ';
               $('#collection-desc-body').append('<span>'+orgin+'</span>');
-              
-              
+            }
+              if(res.data.colors.length){
               var colours=[];
               colours=res.data.colors;
               var htmlvalcolors='<h6>Colors: ';
@@ -228,8 +228,8 @@
               
               });
                $('#collection-desc-body').append(htmlvalcolors);
-              
-              
+            }
+              if(res.data.chakras.length){
               
               var htmlvalchakra='<h6>Chakra: ';
               var chakra=[];
@@ -246,7 +246,9 @@
                 }
 			});
               $('#collection-desc-body').append(htmlvalchakra);
+            }
               
+              if(res.data.zodiacs.length){
               
               var htmlvalzodiacs='<h6>Zodiac: ';
               var zodiacs=[];
@@ -263,6 +265,9 @@
                 }
 			});
               $('#collection-desc-body').append(htmlvalzodiacs);
+              
+              
+              } 
               
               
 
