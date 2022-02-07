@@ -231,7 +231,21 @@
               
               
               
-              
+              var htmlvalchakra='<h6>Chakra: ';
+              var chakra=[];
+              chakra=res.data.chakras;
+              chakra.forEach(function (item, index) {
+  				  if(index<colours.length-1){
+                  htmlvalchakra+='<span>'+item.name+', </span>';
+                   
+                }
+                else{
+                  
+                  htmlvalchakra+='<span>'+item.name+'</span>';
+                  
+                }
+			});
+              $('#collection-desc-body').append(htmlvalchakra);
               
               
               var htmlvalzodiacs='<h6>Zodiac: ';
