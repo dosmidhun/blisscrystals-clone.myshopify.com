@@ -7,10 +7,17 @@
       </a>
     </li>
     {% endif %}
+    {% if section.settings.display_product_detail_add_description %}
+    <li>
+      <a data-toggle="tab" href="#collapse-tab2" class="active">
+        {% render 'multilang' with section.settings.product_description_add_title %}
+      </a>
+    </li>
+    {% endif %}
 
     {% if section.settings.display_product_reviews %}       
     <li>
-      <a data-toggle="tab" href="#collapse-tab2">
+      <a data-toggle="tab" href="#collapse-tab3">
         {% render 'multilang' with section.settings.product_review_title %}
       </a>
     </li>
@@ -18,7 +25,7 @@
 
     {% if section.settings.display_shipping_returns %}
     <li>
-      <a data-toggle="tab" href="#collapse-tab3">
+      <a data-toggle="tab" href="#collapse-tab4">
         {% render 'multilang' with section.settings.shipping_returns_title %}
       </a>
     </li>
@@ -26,7 +33,7 @@
 
     {% if section.settings.display_custom_tab and product.description contains '[Custom Product Tab]' %}
     <li>
-      <a data-toggle="tab" href="#collapse-tab4">
+      <a data-toggle="tab" href="#collapse-tab5">
         {% render 'multilang' with section.settings.custom_tab_title %}
       </a>
     </li>
@@ -46,19 +53,35 @@
 
     <div id="collapse-tab1" class="tab-pane fade show active">
       {% if settings.enable_multilang %}
-<!--       <div class="lang1">{{ des | split: '[lang2]' | first }}</div>
-      <div class="lang2">{{ des | split: '[lang2]' | last }}</div> -->
-      {% render 'product-api-lookbook' %}
+       <div class="lang1">{{ des | split: '[lang2]' | first }}</div>
+       <div class="lang2">{{ des | split: '[lang2]' | last }}</div> 
+     
       {% else %}
-<!--       <div>{{ des | split: '[lang2]' | first }}</div> -->
-      {% render 'product-api-lookbook' %}
+       <div>{{ des | split: '[lang2]' | first }}</div> 
+      
       {% endif %}
-<!--       {% render 'product-detail-lookbook' %}  -->
+	 {% render 'product-detail-lookbook' %} 
     </div>
     {% endif %}
+    
+    
+    {% if section.settings.display_product_detail_add_description %}
+  
+
+     <div id="collapse-tab2" class="tab-pane fade">
+
+      {% render 'product-api-lookbook' %}
+
+    </div>
+    </div>
+    {% endif %}
+    
+    
+    
+    
 
     {% if section.settings.display_product_reviews %}       
-    <div id="collapse-tab2" class="tab-pane fade">
+    <div id="collapse-tab3" class="tab-pane fade">
       <div id="shopify-product-reviews" data-id="{{product.id}}">
         {{ product.metafields.spr.reviews }}
       </div>
@@ -66,7 +89,7 @@
     {% endif %}
 
     {% if section.settings.display_shipping_returns %}
-    <div id="collapse-tab3" class="tab-pane fade">
+    <div id="collapse-tab4" class="tab-pane fade">
       {% if section.settings.shipping_returns_content != blank %}
       {% if settings.enable_multilang %}
       <div class="lang1">
@@ -85,7 +108,7 @@
     {% endif %} 
 
     {% if section.settings.display_custom_tab and product.description contains '[Custom Product Tab]' %}
-    <div id="collapse-tab4" class="tab-pane fade">
+    <div id="collapse-tab5" class="tab-pane fade">
       {% if product.description contains '[Custom Product Tab]' %}
       {% assign custom_tab = product.description | split:'[Custom Product Tab]' | last | split:'[/Custom Product Tab]' | first %}
       {% if settings.enable_multilang %}
