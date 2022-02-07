@@ -206,7 +206,13 @@
                console.log(res,"zodiac info");
               console.log(res.data.image,"zodiac image");
               console.log(JSON.parse(res.data.image),"zodiac json");
-              
+              var images= JSON.parse(res.data.image);
+              for (var key in images) {
+  				if (images.hasOwnProperty(key)) {
+    				var val = images[key];
+    				console.log(val);
+  				}
+				}
               
               
               if(res.data.origin.length){
