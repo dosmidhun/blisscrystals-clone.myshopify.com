@@ -208,13 +208,29 @@
               console.log(JSON.parse(res.data.image),"zodiac json");
               var images= JSON.parse(res.data.image);
               var htmlvalimage='';
+              var c=0;
               for (var key in images) {
   				if (images.hasOwnProperty(key)) {
-    				var val = images[key];
-    				htmlvalimage+='<img src="https://blisscrystalslearn.com/storage/'+val+'">';
+                  var val = images[key];
+                  if(key==1){
+                    htmlvalimage+='<img src="https://blisscrystalslearn.com/storage/'+val+'">';
+                    $('#collection-image1').append(htmlvalimage);
+                  }
+                  else if(key==2){
+                    htmlvalimage+='<img src="https://blisscrystalslearn.com/storage/'+val+'">';
+                    $('#collection-image2').append(htmlvalimage);
+                    
+                  }else{
+                    htmlvalimage+='<img src="https://blisscrystalslearn.com/storage/'+val+'">';
+                  }
+    				c=key;
+    				
   				}
 				}
-              $('#collection-image2').append(htmlvalimage);
+              if(c>2){
+                  $('#collection-image3').append(htmlvalimage);
+              }
+            
               
               if(res.data.origin.length){
               var orgin;
