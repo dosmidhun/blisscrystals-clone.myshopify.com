@@ -207,14 +207,14 @@
               console.log(res.data.image,"zodiac image");
               console.log(JSON.parse(res.data.image),"zodiac json");
               var images= JSON.parse(res.data.image);
-              var htmlvalorgin='';
+              var htmlvalimage='';
               for (var key in images) {
   				if (images.hasOwnProperty(key)) {
     				var val = images[key];
-    				console.log(val);
+    				htmlvalimage+='<img src="'+val+'">';
   				}
 				}
-              
+              $('#collection-image2').append(htmlvalimage);
               
               if(res.data.origin.length){
               var orgin;
