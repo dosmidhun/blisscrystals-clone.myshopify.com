@@ -1,0 +1,101 @@
+<div class="panel-group">
+  <ul class="nav nav-tabs" id="myTab">
+    {% if section.settings.display_product_detail_description %}
+    <li>
+      <a data-toggle="tab" href="#collapse-tab1" class="active show">
+        {% render 'multilang' with section.settings.product_description_title %}
+      </a>
+    </li>
+    {% endif %}
+
+    {% if section.settings.display_product_reviews %}       
+    <li>
+      <a data-toggle="tab" href="#collapse-tab2">
+        {% render 'multilang' with section.settings.product_review_title %}
+      </a>
+    </li>
+    {% endif %}
+
+    {% if section.settings.display_shipping_returns %}
+    <li>
+      <a data-toggle="tab" href="#collapse-tab3">
+        {% render 'multilang' with section.settings.shipping_returns_title %}
+      </a>
+    </li>
+    {% endif %}
+
+    {% if section.settings.display_custom_tab and product.description contains '[Custom Product Tab]' %}
+    <li>
+      <a data-toggle="tab" href="#collapse-tab4">
+        {% render 'multilang' with section.settings.custom_tab_title %}
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+
+  <div id="myTabContent" class="tab-content">
+    {% if section.settings.display_product_detail_description %}
+    
+    {% assign des = product.description %}
+    {% if des contains '[countdown]' or product.description contains '[Custom Product Tab]' or product.description contains '[size chart]' or product.description contains '<iframe'  %}            
+    {% assign des = product.description | split:'[/countdown]</p>' | last %}
+    {% assign des = des | split:'[Custom Product Tab]' | first %}
+    {% assign des = des | split:'[size chart]' | first %}
+    {% assign des = des | split:'<iframe' | first %}
+    {% endif %}
+
+    <div id="collapse-tab1" class="tab-pane fade show active">
+      {% if settings.enable_multilang %}
+<!--       <div class="lang1">{{ des | split: '[lang2]' | first }}</div>
+      <div class="lang2">{{ des | split: '[lang2]' | last }}</div> -->
+      {% render 'product-api-lookbook' %}
+      {% else %}
+<!--       <div>{{ des | split: '[lang2]' | first }}</div> -->
+      {% render 'product-api-lookbook' %}
+      {% endif %}
+<!--       {% render 'product-detail-lookbook' %}  -->
+    </div>
+    {% endif %}
+
+    {% if section.settings.display_product_reviews %}       
+    <div id="collapse-tab2" class="tab-pane fade">
+      <div id="shopify-product-reviews" data-id="{{product.id}}">
+        {{ product.metafields.spr.reviews }}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if section.settings.display_shipping_returns %}
+    <div id="collapse-tab3" class="tab-pane fade">
+      {% if section.settings.shipping_returns_content != blank %}
+      {% if settings.enable_multilang %}
+      <div class="lang1">
+        {{ section.settings.shipping_returns_content | split: '[lang2]' | first }}
+      </div>
+      <div class="lang2">
+        {{ section.settings.shipping_returns_content | split: '[lang2]' | last }}
+      </div>
+      {% else %}
+      <div>
+        {{ section.settings.shipping_returns_content | split: '[lang2]' | first }}
+      </div>
+      {% endif %}
+      {% endif %}
+    </div>
+    {% endif %} 
+
+    {% if section.settings.display_custom_tab and product.description contains '[Custom Product Tab]' %}
+    <div id="collapse-tab4" class="tab-pane fade">
+      {% if product.description contains '[Custom Product Tab]' %}
+      {% assign custom_tab = product.description | split:'[Custom Product Tab]' | last | split:'[/Custom Product Tab]' | first %}
+      {% if settings.enable_multilang %}
+      <div class="lang1">{{ custom_tab | split: '[lang2]' | first }}</div>
+      <div class="lang2">{{ custom_tab | split: '[lang2]' | last }}</div>
+      {% else %}
+      <div>{{ custom_tab | split: '[lang2]' | first }}</div>
+      {% endif %}
+      {% endif %}
+    </div>
+    {% endif %}       
+  </div>
+</div>
