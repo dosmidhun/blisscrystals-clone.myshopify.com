@@ -58,6 +58,8 @@
 					 $('#collection-display').append('<h6>'+api_val.description+'</h6>');
                       $('#collection-display').append('<img src='+api_val.image_url+'/>');
                       $('#collection-display').append('<p>'+api_val.description+'</p>');
+                       zodiac_fetch(api_val.id);
+                       
                       count_va=0;
                      }
                       }else{
@@ -166,9 +168,35 @@
             }
         });
     
-    initial_crystal_fetch.done(function(msg) {
-  console.log( all_crystals,"done" );
-});
+    
+    
+    
+    var zodiac_fetch = function(z_id){ 
+      
+      $.ajax({
+
+            url:  'http://blisscrystalslearn.com/api/shopify/v1/crystals/'+z_id,
+            type: 'GET',
+            crossDomain: true,
+     		headers: { "api-key": "DsVaxx8O0P9qLWXR1xC2YSg9oNejYNoZDRZZn2f5" },
+            success: function (res) {
+               console.log(res,"zodiac info");
+              
+              
+
+            },
+            complete: function (res) {
+                
+
+            },
+
+
+            error: function (xhr, status, err) {
+                console.log(err);
+            }
+        });
+    
+    }
 
     
     
