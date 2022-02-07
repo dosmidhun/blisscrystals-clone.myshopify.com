@@ -241,6 +241,25 @@
                htmlvalorgin+='<span>'+orgin+'</span>';
               $('#collection-desc-body').append(htmlvalorgin);
             }
+              
+              if(res.data.healing.length){
+              var htmlvalhealing;
+              healing=res.data.healing;
+               var htmlvalhealing='<h6>Healing: ';
+               htmlvalhealing+='<span>'+healing+'</span>';
+              $('#collection-healings').append(htmlvalhealing);
+            }
+              
+              if(res.data.uses.length){
+              var htmlvaluses;
+              uses=res.data.uses;
+               var htmlvaluses='<h6>Uses: ';
+               htmlvaluses+='<span>'+uses+'</span>';
+              $('#collection-uses').append(htmlvaluses);
+            }
+              
+              
+              
               if(res.data.colors.length){
               var colours=[];
               colours=res.data.colors;
