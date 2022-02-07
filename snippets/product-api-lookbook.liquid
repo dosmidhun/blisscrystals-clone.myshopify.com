@@ -234,7 +234,7 @@
               }
             
               
-              if(res.data.origin == null){
+              if(res.data.origin != null){
               var orgin;
               orgin=res.data.origin;
                var htmlvalorgin='<h6>Origin: ';
@@ -242,7 +242,7 @@
               $('#collection-desc-body').append(htmlvalorgin);
             }
               
-              if(res.data.healing== null){
+              if(res.data.healing!= null){
               var htmlvalhealing;
               healing=res.data.healing;
                var htmlvalhealing='<h6>Healing: ';
@@ -250,7 +250,7 @@
               $('#collection-healings').append(htmlvalhealing);
             }
               
-              if(res.data.uses== null){
+              if(res.data.uses!= null){
               var htmlvaluses;
               uses=res.data.uses;
                var htmlvaluses='<h6>Uses: ';
@@ -258,7 +258,7 @@
               $('#collection-uses').append(htmlvaluses);
             }
               
-              if(res.data.product_description == null){
+              if(res.data.product_description != null){
               var htmlvalproduct_description;
               product_description=res.data.uses;
                var htmlvalproduct_description='<p> ';
