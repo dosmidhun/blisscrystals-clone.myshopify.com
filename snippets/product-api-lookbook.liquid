@@ -184,7 +184,9 @@
               
               var zodiacs=[];
               zodiacs=res.data.zodiacs;
-              console.log(zodiacs);
+              zodiacs.forEach(function (item, index) {
+  				console.log(item,'te');
+			});
 
             },
             complete: function (res) {
