@@ -724,7 +724,7 @@ div#collection-body {display: grid;grid-template-areas:
 'collection-image3 collection-image3 collection-image3'
 'collection-uses collection-uses collection-uses'
 'collection-healings collection-healings collection-healings'
-'collection-product-description collection-product-description collection-product-description';grid-gap: 30px;}
+'collection-product-description collection-product-description collection-product-description';grid-column-gap: 30px;}
 
 div#collection-image1 {
     grid-area:collection-image1;
