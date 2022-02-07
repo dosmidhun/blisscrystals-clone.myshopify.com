@@ -205,6 +205,35 @@
             success: function (res) {
                console.log(res,"zodiac info");
               
+              var orgin;
+              orgin=res.data.origin;
+              $('#collection-desc-body').append('<h6>Origin: <p>'+orgin+'</p></h6>');
+              
+              
+              var colours=[];
+              colours=res.data.colors;
+              var htmlvalcolors='<h6>Colors: ';
+              colours.forEach(function (item, index) {
+  				 if(index<colours.length-1){
+                  htmlvalcolors+='<span>'+item.name+', </span>';
+                   
+                }
+                else{
+                  
+                  htmlvalcolors+='<span>'+item.name+'</span>';
+                  
+                }
+              
+              
+              }
+               $('#collection-desc-body').append(htmlvalcolors);
+              
+              
+              
+              
+              
+              
+              
               var zodiacs=[];
               zodiacs=res.data.zodiacs;
               zodiacs.forEach(function (item, index) {
