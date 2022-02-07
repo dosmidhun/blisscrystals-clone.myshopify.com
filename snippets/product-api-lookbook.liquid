@@ -185,8 +185,13 @@
               var zodiacs=[];
               zodiacs=res.data.zodiacs;
               zodiacs.forEach(function (item, index) {
-  				console.log(item,'te');
+  				
+                $('#collection-display').append('<p>'+item.name);
+                if(index<zodiacs.length){
+                  $('#collection-display').append(', ');
+                }
 			});
+              $('#collection-display').append('</p>');
 
             },
             complete: function (res) {
