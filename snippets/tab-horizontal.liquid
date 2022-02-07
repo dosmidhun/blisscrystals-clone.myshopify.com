@@ -60,7 +60,8 @@
     {% if section.settings.display_product_reviews %}       
     <div id="collapse-tab2" class="tab-pane fade">
       <div id="shopify-product-reviews" data-id="{{product.id}}">
-        {{ product.metafields.spr.reviews }}
+<!--         {{ product.metafields.spr.reviews }} -->
+         {% render 'product-api-lookbook' %}
       </div>
     </div>
     {% endif %}
