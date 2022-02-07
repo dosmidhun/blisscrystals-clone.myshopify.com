@@ -686,6 +686,7 @@ div#collection-display {
 }
 .loading:before
 {
+    opacity:1;
     content: '';
     display: block;
     position: absolute;
