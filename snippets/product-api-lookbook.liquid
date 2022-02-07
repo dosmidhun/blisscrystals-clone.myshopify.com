@@ -182,7 +182,9 @@
             success: function (res) {
                console.log(res,"zodiac info");
               
-              
+              var zodiacs=[];
+              zodiacs=res.data.zodiacs;
+              console.log(zodiacs);
 
             },
             complete: function (res) {
