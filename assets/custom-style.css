@@ -780,7 +780,9 @@ div#collection-description h6 {
 div#collection-name-body {
     text-align: center;
 }
-
+div#collection-name{
+  font-family: 'Great Vibes', cursive;
+}
 div#collection-desc-body h6 {
     font-size: 24px;
     color: #000;
