@@ -140,7 +140,7 @@
                     if (res.data.origin != null) {
                         var orgin;
                         orgin = res.data.origin;
-                        var htmlvalorgin = '<h6>Origin: ';
+                        var htmlvalorgin = '<h6 class="api_orgin">Origin: ';
                         htmlvalorgin += '<span>' + orgin + '</span>';
                         $('#collection-desc-body').append(htmlvalorgin);
                         $('#api_info').append(htmlvalorgin);
@@ -148,14 +148,14 @@
                     if (res.data.healing != null) {
                         var htmlvalhealing;
                         healing = res.data.healing;
-                        var htmlvalhealing = '<h6>Healing: ';
+                        var htmlvalhealing = '<h6 class="api_healing">Healing: ';
                         htmlvalhealing += '<span>' + healing + '</span>';
                         $('#collection-healings').append(htmlvalhealing);
                     }
                     if (res.data.uses != null) {
                         var htmlvaluses;
                         uses = res.data.uses;
-                        var htmlvaluses = '<h6>Uses: ';
+                        var htmlvaluses = '<h6 class="api_uses">Uses: ';
                         htmlvaluses += '<span>' + uses + '</span>';
                         $('#collection-uses').append(htmlvaluses);
                     }
@@ -169,7 +169,7 @@
                     if (res.data.colors.length) {
                         var colours = [];
                         colours = res.data.colors;
-                        var htmlvalcolors = '<h6>Colors: ';
+                        var htmlvalcolors = '<h6 class="api_colors">Colors: ';
                         colours.forEach(function (item, index) {
                             if (index < colours.length - 1) {
                                 htmlvalcolors += '<span>' + item.name + ', </span>';
@@ -182,7 +182,7 @@
                       	$('#api_info').append(htmlvalcolors);
                     }
                     if (res.data.chakras.length) {
-                        var htmlvalchakra = '<h6>Chakra: ';
+                        var htmlvalchakra = '<h6 class="api_chakra">Chakra: ';
                         var chakra = [];
                         chakra = res.data.chakras;
                         chakra.forEach(function (item, index) {
@@ -197,7 +197,7 @@
                       	$('#api_info').append(htmlvalchakra);
                     }
                     if (res.data.zodiacs.length) {
-                        var htmlvalzodiacs = '<h6>Zodiac: ';
+                        var htmlvalzodiacs = '<h6 class="api_zodiac">Zodiac: ';
                         var zodiacs = [];
                         zodiacs = res.data.zodiacs;
                         zodiacs.forEach(function (item, index) {
