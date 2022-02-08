@@ -559,7 +559,7 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 }
 
 @media (max-width: 767px) {
-div#collection-body {display:block;}
+div#collection-body {display:block!important;}
 #shopify-section-header .site-header .header-wrapper { height: inherit; }
 .wrapper-navigation .wrapper-right { top: 20px; }
 #shopify-section-header .header-wrapper .logo img {  max-height: 45px; }
