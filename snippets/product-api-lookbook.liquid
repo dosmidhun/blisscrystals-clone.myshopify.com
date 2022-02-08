@@ -143,6 +143,7 @@
                         var htmlvalorgin = '<h6>Origin: ';
                         htmlvalorgin += '<span>' + orgin + '</span>';
                         $('#collection-desc-body').append(htmlvalorgin);
+                        $('#api_info').append(htmlvalorgin);
                     }
                     if (res.data.healing != null) {
                         var htmlvalhealing;
@@ -178,6 +179,7 @@
                             }
                         });
                         $('#collection-desc-body').append(htmlvalcolors);
+                      	$('#api_info').append(htmlvalcolors);
                     }
                     if (res.data.chakras.length) {
                         var htmlvalchakra = '<h6>Chakra: ';
@@ -192,6 +194,7 @@
                             }
                         });
                         $('#collection-desc-body').append(htmlvalchakra);
+                      	$('#api_info').append(htmlvalchakra);
                     }
                     if (res.data.zodiacs.length) {
                         var htmlvalzodiacs = '<h6>Zodiac: ';
@@ -206,6 +209,7 @@
                             }
                         });
                         $('#collection-desc-body').append(htmlvalzodiacs);
+                      	$('#api_info').append(htmlvalzodiacs);
                     }
                 }
                 , complete: function (res) {
