@@ -730,7 +730,11 @@ div#collection-body,div#collection-image3 {display:block!important;}
    line-height: 60px;
    font-family: 'Great Vibes', cursive;
 }
-
+div#collection-image3 img {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+}
 div#collection-description h6 {
   
       font-size: 15px;
