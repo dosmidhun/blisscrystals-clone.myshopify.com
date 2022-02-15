@@ -166,6 +166,13 @@
                         htmlvalproduct_description += '<span>' + product_description + '</span>';
                         $('#collection-product-description').append(htmlvalproduct_description);
                     }
+                  if (res.data.content != null) {
+                        var htmlvalcontent;
+                        cont = res.data.content;
+                        var htmlvalproduct_description = '<p> ';
+                        htmlvalcontent += '<span>' + cont + '</span>';
+                        $('#collection-product-description').append(htmlvalcontent);
+                    }
                     if (res.data.colors.length) {
                         var colours = [];
                         colours = res.data.colors;
