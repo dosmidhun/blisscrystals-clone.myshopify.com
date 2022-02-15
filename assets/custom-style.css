@@ -562,7 +562,9 @@ div#api_info span {
 }
 
 
-
+#api_info .api_orgin,#api_info .api_colors{
+  display:none;
+}
 
 /********************** Responsive *************************/
 
