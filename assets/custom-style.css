@@ -519,7 +519,10 @@ div#collection-healings {
 div#collection-product-description {
     grid-area:collection-product-description;
 }
-
+div#collection-product-description p{
+    font-size: 18px;
+    line-height: 28px;
+}
 div#collection-image3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
