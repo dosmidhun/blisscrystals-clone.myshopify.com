@@ -55,6 +55,7 @@
                                             console.log("Found", end_crystal_path);
                                             $('#collection-name').append('<h4>' + api_val.name + '</h4>');
                                             $('#collection-description').append('<h6>"' + api_val.description + '"</h6>');
+                                          	$('#additional-a').text('Learn about '+api_val.name);
                                             found = 1;
                                             api_crystal_name=api_val.name;
                                             additional_fetch(api_val.id);
@@ -70,7 +71,7 @@
                         });
                         if (found) {
                             $('#additional').show();
-                           $('#additional-a').text('Learn about '+api_crystal_name);
+                           
                         }
                     }
                     , error: function (xhr, status, err) {
