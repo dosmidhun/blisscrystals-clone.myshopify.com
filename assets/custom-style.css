@@ -519,10 +519,7 @@ div#collection-healings {
 div#collection-product-description {
     grid-area:collection-product-description;
 }
-div#collection-product-description p{
-    font-size: 18px;
-    line-height: 28px;
-}
+
 div#collection-image3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -547,7 +544,6 @@ div#collection-name-body {
 div#collection-desc-body h6 {
     font-size: 24px;
     color: #000;
-  	margin-bottom:1em;
 }
 
 div#collection-desc-body span {
@@ -565,22 +561,20 @@ div#collection-healings h6{
     color: #000;
 }
 div#collection-uses span{
-  font-size: 18px;
-  line-height: 25px;
-  font-weight: 500;
+   font-size: 20px;
+    font-weight: 600;
 }
 
 div#collection-healings span{
-  font-size: 18px;
-  line-height: 25px;
-  font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
 }
 div#api_info span {
     font-weight: 400;
 }
 
 
-#api_info .api_orgin,#api_info .api_colors,div#collection-image3{
+#api_info .api_orgin,#api_info .api_colors{
   display:none;
 }
 
@@ -730,7 +724,7 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 }
 
 @media (max-width: 767px) {
-div#collection-body,div#collection-image3 {display:block!important;}
+div#collection-body {display:block!important;}
   div#collection-name h4 {
    font-size: 50px;
    line-height: 60px;
