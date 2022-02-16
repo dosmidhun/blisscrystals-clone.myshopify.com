@@ -42,6 +42,7 @@
                     }
                     , complete: function (res) {
                         var count_va = 1;
+                      	var api_crystal_name;
                         res.responseJSON.data.data.forEach(function (api_val) {
                             $('#collection-list input').each(function () {
                                 if (api_val.purchase_url) {
@@ -55,6 +56,7 @@
                                             $('#collection-name').append('<h4>' + api_val.name + '</h4>');
                                             $('#collection-description').append('<h6>"' + api_val.description + '"</h6>');
                                             found = 1;
+                                            api_crystal_name=api_val.name;
                                             additional_fetch(api_val.id);
                                             count_va = 0;
                                         }
@@ -68,7 +70,7 @@
                         });
                         if (found) {
                             $('#additional').show();
-                           $('#additional-a').text('Learm about '+api_val.name);
+                           $('#additional-a').text('Learm about '+api_crystal_name);
                         }
                     }
                     , error: function (xhr, status, err) {
