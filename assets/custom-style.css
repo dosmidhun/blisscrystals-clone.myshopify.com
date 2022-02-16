@@ -580,7 +580,7 @@ div#api_info span {
 }
 
 
-#api_info .api_orgin,#api_info .api_colors,#collection-image3{
+#api_info .api_orgin,#api_info .api_colors,div#collection-image3{
   display:none;
 }
 
