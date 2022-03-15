@@ -257,10 +257,10 @@ html { padding-bottom: 0 !important; }
 
 /***************************** Collection ********************************************/
  
-.collection_title_top { position: absolute; top: 46%; left: 50%; transform: translate(-50%,-50%); text-align: left; width: 60%;}
+.collection_title_top { position: absolute; top: 46%; left: 50%; transform: translate(-50%,-50%); text-align: left; width: 60%;transition:opacity 1s ease;}
 
 .collection_title_top{
-  animation: cssAnimation 0s 5s forwards;
+  animation: cssAnimation 0s 2s forwards;
   opacity: 0; 
 }
 
