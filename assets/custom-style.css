@@ -810,9 +810,9 @@ div#collection-healings span{
 .footer_logo img { width: 50%; }
 .site-header .header-wrapper .column-right .header-search .search-form { margin: 60px auto 0 auto; }
 html.open-search .site-header .header-wrapper .column-right .header-search .search-form .bg-search { top: 70px; }
-.page_banner .page-header h1, .page_banner .page-header h2, .collection_title_top h2 { font-size: 25px; line-height: 35px; text-align: center;}
+.page_banner .page-header h1, .page_banner .page-header h2, .collection_title_top h2 { font-size: 36px; line-height: 35px; text-align: center;}
 .page_banner .page-header { position: static; transform: none; padding: 15px 0; width: 100%; text-align: center;}
-.collection_title_top {  position: static; transform: none; margin-top: 15px; padding-bottom: 15px; width: 100%;}
+/* .collection_title_top {  position: static; transform: none; margin-top: 15px; padding-bottom: 15px; width: 100%;} */
 #shopify-section-page-inner .page-header h2, .collection_title_top h3 { font-size: 18px; text-align: center;}
 .template-collection .row-bt { padding: 0; }
 .col-sidebar { flex: inherit; max-width: 280px; }
@@ -856,7 +856,7 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 .block-row .cat-content { padding: 15px; }
 #slideshow-1530680634287.home-slideshow .not_img { height: 180px;  line-height: 180px; }
 .cat-img { margin: 0 -15px; }
-.collection_title_top { background: #fff; padding-top: 15px; margin-top: 0px; }
+/* .collection_title_top { background: #fff; padding-top: 15px; margin-top: 0px; } */
 #healing-crystal-jewelry .collection_title_top h3, #amethyst .collection_title_top h3, #amethyst-crystals .collection_title_top h3, #tumbled-amp-polished .collection_title_top h3 { color: #000; margin: 0;}
 #section-1541066702550 { padding-top: 0 !important; }
 #shopify-section-1530680634287 #slideshow-1530680634287 .caption-wrap { padding: 20px 10px; position: absolute; top: 40%; transform: translateY(-40%); left: 0;  right: 0; text-align: left !important;}
