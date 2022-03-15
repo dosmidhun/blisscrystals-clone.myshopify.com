@@ -257,8 +257,11 @@ html { padding-bottom: 0 !important; }
 
 /***************************** Collection ********************************************/
  
-.collection_title_top { position: absolute; top: 50%; left: 30px; transform: translateY(-50%); text-align: left; width: 60%;}
-.collection_title_top h2 { font-size: 40px; line-height: 55px; font-weight: 400; color: #000; text-transform: uppercase; margin: 0; }
+.collection_title_top { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: left; width: 60%;}
+.collection_title_top h2 { font-weight: 400; color: #000; font-size: 68px;
+    text-align: center;
+    line-height: 65px;
+    font-family: Great Vibes,cursive; margin: 0; }
 #shopify-section-collection-header { margin-bottom: 55px; padding-top: 0px;}
 /*.template-collection .row-bt { padding: 0 100px; }*/
 .block-row .cat-content .wrapper .cat-des { text-align: left; font-family: 'Segoe UI'; font-size: 16px; line-height: 24px; font-weight: 400; color: #646464; letter-spacing: .16px; margin-top: 0; overflow: hidden;}
