@@ -92,7 +92,7 @@
         {% endif %}
         {% if collection.metafields.accentuate.collection_banner !='' %} 
            {% for collection_banner in collection.metafields.accentuate.collection_banner %}
-            <img src="{{ collection_banner.src }}" alt="{{ collection_banner.alt }}"/>
+            <img src="{{product_collection.image.src | collection_img_url: 'original'  }}" alt="{{ collection_banner.alt }}"/>
             <div class="collection_title_top">
                 {% if section.settings.show_heading_cls  %}
                 <h2>
