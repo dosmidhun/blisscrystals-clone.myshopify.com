@@ -63,19 +63,11 @@
 {% assign product_collection = product.collections.first %}
 {% endif %}
 
-{% unless product_collection == blank %}
-<div class="collection-hero__image ratio-container js lazyloaded" data-bgset="{{ product_collection.image.src | collection_img_url: 'original' }}" data-parent-fit="cover" style="background-image: url("{{ product_collection.image.src | collection_img_url: 'original' }}")>
-<picture style="display: none;"><source data-srcset="{{ product_collection.image.src | collection_img_url: 'original' }}"><img alt="" class="lazyautosizes lazyloaded ls-is-cached" data-sizes="auto" data-parent-fit="cover" sizes="1519px"></picture></div>
-{% endunless %}
-
-
-
-
 
 <div class="cat-content">
     <div class="container">
      <div class="cat-img lazyload"> 
-       {% if collection.metafields.accentuate.collection_banner == blank %}
+       {% if product_collection == blank %}
             <img src="https://cdn.shopify.com/s/files/1/0258/2102/0194/files/V2-Neutral-Web-Cat-Banner.jpg?v=1647587010">
             <div class="collection_title_top">
                 {% if section.settings.show_heading_cls  %}
@@ -89,8 +81,9 @@
                 </h3> -->
                 {% endif %}
             </div>
-        {% endif %}
-        {% if collection.metafields.accentuate.collection_banner !='' %} 
+        {% else %}
+        
+        
            {% for collection_banner in collection.metafields.accentuate.collection_banner %}
             <img src="{{product_collection.image.src | collection_img_url: 'original'  }}" alt="{{ collection_banner.alt }}"/>
             <div class="collection_title_top">
