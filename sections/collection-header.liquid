@@ -10,7 +10,7 @@
 <div class="cat-content">
     <div class="container">
      <div class="cat-img lazyload"> 
-       {% if product_collection == blank %}
+       {% if product_collection.image.src == blank %}
             <img src="https://cdn.shopify.com/s/files/1/0258/2102/0194/files/V2-Neutral-Web-Cat-Banner.jpg?v=1647587010">
             <div class="collection_title_top if">
                 {% if section.settings.show_heading_cls  %}
