@@ -355,7 +355,7 @@ label { color: #646464; }
 
 .cat-content { background: #f6f6f6; text-align: center; }
 .cat-img { position: relative; }
-.template-collection .cat-content .cat-img img { max-height: inherit !important;   width: auto !important; }
+.template-collection .cat-content .cat-img img { max-height: inherit !important;   }
 .block-row .cat-content { padding-top: 35px; }
 .cart_outer { padding-bottom: 80px; }
 .brands-page .logo-brands  { border-top: none; padding-top: 50px;}
