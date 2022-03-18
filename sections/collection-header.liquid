@@ -1,4 +1,4 @@
-<div class="cat-content" style="background-color: {{ collection.metafields.accentuate.collection_banner_color }}">
+<div class="cat-content">
     <div class="container">
      <div class="cat-img lazyload"> 
        {% if collection.metafields.accentuate.collection_banner == blank %}
@@ -54,6 +54,84 @@
 
   </div>
 </div>
+
+
+
+{% if collection %}
+{% assign product_collection = collection %}
+{% else %}
+{% assign product_collection = product.collections.first %}
+{% endif %}
+
+{% unless product_collection == blank %}
+<div class="collection-hero__image ratio-container js lazyloaded" data-bgset="{{ product_collection.image.src | collection_img_url: 'original' }}" data-parent-fit="cover" style="background-image: url("{{ product_collection.image.src | collection_img_url: 'original' }}")>
+<picture style="display: none;"><source data-srcset="{{ product_collection.image.src | collection_img_url: 'original' }}"><img alt="" class="lazyautosizes lazyloaded ls-is-cached" data-sizes="auto" data-parent-fit="cover" sizes="1519px"></picture></div>
+{% endunless %}
+
+
+
+
+
+<div class="cat-content">
+    <div class="container">
+     <div class="cat-img lazyload"> 
+       {% if collection.metafields.accentuate.collection_banner == blank %}
+            <img src="https://cdn.shopify.com/s/files/1/0258/2102/0194/files/V2-Neutral-Web-Cat-Banner.jpg?v=1647587010">
+            <div class="collection_title_top">
+                {% if section.settings.show_heading_cls  %}
+                <h2>
+                  {% render 'multilang' with collection.title %}       
+                </h2>
+                {% endif %}
+                {% if section.settings.show_subheading_cls  %}
+<!--                 <h3>
+                  {{ section.settings.subheading }}  
+                </h3> -->
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if collection.metafields.accentuate.collection_banner !='' %} 
+           {% for collection_banner in collection.metafields.accentuate.collection_banner %}
+            <img src="{{ collection_banner.src }}" alt="{{ collection_banner.alt }}"/>
+            <div class="collection_title_top">
+                {% if section.settings.show_heading_cls  %}
+                <h2>
+                  {% render 'multilang' with collection.title %}       
+                </h2>
+                {% endif %}
+                {% if section.settings.show_subheading_cls  %}
+<!--                 <h3>
+                  {{ section.settings.subheading }}  
+                </h3> -->
+                {% endif %}
+            </div>
+          {% endfor %}
+        {% endif %}
+        
+                
+    {% if section.settings.dpl_img_cls %}
+    {% if section.settings.display_image_cls == 'image_category' %}
+    {% if section.settings.img_cat != blank %}
+    
+    <img src="{{ section.settings.img_cat | img_url :"master"}}" alt="{{ collection.title | split: '|' | first }}" 
+         class="lazyload"
+         data-src="{{ section.settings.img_cat | img_url :"master"  | canonical_url}}"
+         data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+         data-aspectratio="{{ section.settings.img_cat | img_url :"master"}}"
+         data-sizes="auto">
+    {% endif %}
+  
+   
+    {% endif %}
+    {% endif %}
+  </div>
+
+  </div>
+</div>
+
+
+
+
 {% comment %}
 <div class="page_title_outer">
     <div class="container">
