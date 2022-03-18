@@ -12,7 +12,7 @@
      <div class="cat-img lazyload"> 
        {% if product_collection == blank %}
             <img src="https://cdn.shopify.com/s/files/1/0258/2102/0194/files/V2-Neutral-Web-Cat-Banner.jpg?v=1647587010">
-            <div class="collection_title_top">
+            <div class="collection_title_top if">
                 {% if section.settings.show_heading_cls  %}
                 <h2>
                   {% render 'multilang' with collection.title %}       
@@ -29,7 +29,7 @@
         
            {% for collection_banner in collection.metafields.accentuate.collection_banner %}
             <img src="{{product_collection.image.src | collection_img_url: 'original'  }}" alt="{{ collection_banner.alt }}"/>
-            <div class="collection_title_top">
+            <div class="collection_title_top else">
                 {% if section.settings.show_heading_cls  %}
                 <h2>
                   {% render 'multilang' with collection.title %}       
