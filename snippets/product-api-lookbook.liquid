@@ -194,7 +194,7 @@
                               var api_end_crystal_from_url = api_val.purchase_url.split('/');
                               var api_end_crystal_path = api_end_crystal_from_url[api_end_crystal_from_url.length - 1];
                               if (end_crystal_path === api_end_crystal_path) {
-                                  if (count_va == 1) {
+//                                   if (count_va == 1) {
                                       console.log("Found", end_crystal_path);
                                       $('#collection-name').append('<h4>' + api_val.name + '</h4>');
                                       $('#collection-description').append('<h6>"' + api_val.description + '"</h6>');
@@ -203,7 +203,7 @@
                                       api_crystal_name=api_val.name;
                                       additional_fetch(api_val.id);
                                       count_va = 0;
-                                  }
+//                                   }
                               }
                               else {
                                   console.log("Not Found api", api_end_crystal_path);
@@ -212,10 +212,10 @@
                           }
                       });
                   });
-                  if (found) {
+//                   if (found) {
                       $('#additional').show();
                      
-                  }
+//                   }
                 });
             }
             //        crystal_api_page_fetch(2);
