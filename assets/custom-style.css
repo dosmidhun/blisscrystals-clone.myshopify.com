@@ -496,93 +496,93 @@ div#collection-body {
   grid-column-gap: 30px;
 }
 
-div#collection-image1 {
+#collection-body div#collection-image1 {
     grid-area:collection-image1;
 }
 
-div#collection-image2 {
+#collection-body div#collection-image2 {
     grid-area:collection-image2;
 }
 
-div#collection-image3 {
+#collection-body div#collection-image3 {
     grid-area:collection-image3;
 }
 
-div#collection-name-body {
+#collection-body div#collection-name-body {
     grid-area:collection-name-body;
 }
 
-div#collection-description {
+#collection-body div#collection-description {
     grid-area:collection-description;
 }
 
-div#collection-desc-body {
+#collection-body div#collection-desc-body {
     grid-area:collection-desc-body;
 }
 
-div#collection-uses {
+#collection-body div#collection-uses {
     grid-area:collection-uses;
 }
 
-div#collection-healings {
+#collection-body div#collection-healings {
     grid-area:collection-healings;
 }
 
-div#collection-product-description {
+#collection-body div#collection-product-description {
     grid-area:collection-product-description;
 }
-div#collection-product-description p{
+#collection-body div#collection-product-description p{
     font-size: 18px;
     line-height: 28px;
 }
-div#collection-image3 {
+#collection-body div#collection-image3 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-div#collection-name h4 {
+#collection-body div#collection-name h4 {
    font-size: 78px;
    line-height: 80px;
    font-family: 'Great Vibes', cursive;
 }
 
-div#collection-description h6 {
+#collection-body div#collection-description h6 {
   
       font-size: 24px;
     font-style: italic;
 }
 
-div#collection-name-body {
+#collection-body div#collection-name-body {
     text-align: center;
 }
 
-div#collection-desc-body h6 {
+#collection-body div#collection-desc-body h6 {
     font-size: 24px;
     color: #000;
   	margin-bottom:1em;
 }
 
-div#collection-desc-body span {
+#collection-body div#collection-desc-body span {
     font-size: 20px;
     font-weight: 600;
 }
 
-div#collection-uses h6{
+#collection-body div#collection-uses h6{
         font-size: 24px;
     color: #000;
 }
 
-div#collection-healings h6{
+#collection-body div#collection-healings h6{
         font-size: 24px;
     color: #000;
 }
-div#collection-uses span{
+#collection-body div#collection-uses span{
   font-size: 18px;
   line-height: 25px;
   font-weight: 500;
 }
 
-div#collection-healings span{
+#collection-body div#collection-healings span{
   font-size: 18px;
   line-height: 25px;
   font-weight: 500;
@@ -592,7 +592,7 @@ div#api_info span {
 }
 
 
-#api_info .api_orgin,#api_info .api_colors,div#collection-image3{
+#api_info .api_orgin,#api_info .api_colors,#collection-body div#collection-image3{
   display:none;
 }
 
@@ -744,51 +744,51 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 
 @media (max-width: 767px) {
 div#collection-body {display:block!important;}
-  div#collection-name h4 {
+#collection-body   div#collection-name h4 {
    font-size: 50px;
    line-height: 60px;
    font-family: 'Great Vibes', cursive;
 }
-div#collection-image3 img {
+#collection-body div#collection-image3 img {
     width: 50%;
     margin: 0 auto;
     display: block;
 }
-div#collection-description h6 {
+#collection-body div#collection-description h6 {
   
       font-size: 15px;
     font-style: italic;
 }
 
-div#collection-name-body {
+#collection-body div#collection-name-body {
     text-align: center;
 }
 
-div#collection-desc-body h6 {
+#collection-body div#collection-desc-body h6 {
     font-size: 15px;
     
 }
 
-div#collection-desc-body span {
+#collection-body div#collection-desc-body span {
     font-size: 17px;
     
 }
 
-div#collection-uses h6{
+#collection-body div#collection-uses h6{
         font-size: 18px;
    
 }
 
-div#collection-healings h6{
+#collection-body div#collection-healings h6{
         font-size: 20px;
     color: #000;
 }
-div#collection-uses span{
+#collection-body div#collection-uses span{
    font-size: 17px;
     font-weight: 600;
 }
 
-div#collection-healings span{
+#collection-body div#collection-healings span{
     font-size: 17px;
     font-weight: 600;
 }
