@@ -17,9 +17,7 @@
                 <div id="collection-description"></div>
             </div>
             <div id="collection-desc-body"> </div>
-            <div id="collection-uses"></div>
-            <div id="collection-healings"></div>
-            <div id="collection-product-description"></div>
+
           <div id="collection-image3"></div>
         </div>
     </div>
@@ -78,34 +76,34 @@
                         $('#collection-desc-body').append(htmlvalorgin);
                         $('#api_info').append(htmlvalorgin);
                     }
-                    if (res.data.healing != null) {
-                        var htmlvalhealing;
-                        healing = res.data.healing;
-                        var htmlvalhealing = '<h6 class="api_healing">Healing: ';
-                        htmlvalhealing += '<span>' + healing + '</span>';
-                        $('#collection-healings').append(htmlvalhealing);
-                    }
-                    if (res.data.uses != null) {
-                        var htmlvaluses;
-                        uses = res.data.uses;
-                        var htmlvaluses = '<h6 class="api_uses">Uses: ';
-                        htmlvaluses += '<span>' + uses + '</span>';
-                        $('#collection-uses').append(htmlvaluses);
-                    }
-                    if (res.data.product_description != null) {
-                        var htmlvalproduct_description;
-                        product_description = res.data.product_description;
-                        var htmlvalproduct_description = '<h6> ';
-                        htmlvalproduct_description += '<span>' + product_description + '</span>';
-                        $('#collection-product-description').append(htmlvalproduct_description);
-                    }
-                  if (res.data.content != null) {
-                        var htmlvalcontent;
-                        cont = res.data.content;
-                        var htmlvalcontent = '<h6> ';
-                        htmlvalcontent += '<span>' + cont + '</span>';
-                        $('#collection-product-description').append(htmlvalcontent);
-                    }
+//                     if (res.data.healing != null) {
+//                         var htmlvalhealing;
+//                         healing = res.data.healing;
+//                         var htmlvalhealing = '<h6 class="api_healing">Healing: ';
+//                         htmlvalhealing += '<span>' + healing + '</span>';
+//                         $('#collection-healings').append(htmlvalhealing);
+//                     }
+//                     if (res.data.uses != null) {
+//                         var htmlvaluses;
+//                         uses = res.data.uses;
+//                         var htmlvaluses = '<h6 class="api_uses">Uses: ';
+//                         htmlvaluses += '<span>' + uses + '</span>';
+//                         $('#collection-uses').append(htmlvaluses);
+//                     }
+//                     if (res.data.product_description != null) {
+//                         var htmlvalproduct_description;
+//                         product_description = res.data.product_description;
+//                         var htmlvalproduct_description = '<h6> ';
+//                         htmlvalproduct_description += '<span>' + product_description + '</span>';
+//                         $('#collection-product-description').append(htmlvalproduct_description);
+//                     }
+//                   if (res.data.content != null) {
+//                         var htmlvalcontent;
+//                         cont = res.data.content;
+//                         var htmlvalcontent = '<h6> ';
+//                         htmlvalcontent += '<span>' + cont + '</span>';
+//                         $('#collection-product-description').append(htmlvalcontent);
+//                     }
                     if (res.data.colors.length) {
                         var colours = [];
                         colours = res.data.colors;
