@@ -595,6 +595,61 @@ div#api_info span {
 #api_info .api_orgin,#api_info .api_colors,#collection-body div#collection-image3{
   display:none;
 }
+/***************************************/
+
+div#collection-side-body {
+    display:grid;
+    grid-template-areas:
+        'image name'
+        'image body';
+    grid-template-columns: 1fr 2fr;
+}
+
+.collection-desc-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#collection-side-body div#collection-image1 {
+    grid-area:image;
+}
+
+#collection-side-body div#collection-name-body {
+    grid-area:name;
+}
+
+#collection-side-body div#collection-desc-body {
+    grid-area:body;
+    margin-top: 12px;
+}
+
+#collection-side-body div#collection-name h4{
+    font-family: Great Vibes,cursive;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 0;
+}
+
+#collection-side-body div#collection-description h6{
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+
+
+div#collection-desc-body h6 {
+    font-size: 14px;
+    margin-bottom: 0;
+    line-height: 21px;
+}
+
+div#collection-desc-body span {
+    font-weight: 400;
+}
+
+
+
+
 
 /********************** Responsive *************************/
 
