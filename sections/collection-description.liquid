@@ -2,8 +2,7 @@
 <div style="display: none !important;  visibility: hidden !important;" class="cmspro-section" id="cmspro-aca2bac9"></div>
 {% if section.settings.show_des_cls  %}
     {% if collection.description  != blank %}
-<div class="cat-content">
-  <div class="wrapper">  
+<div class="collection-desc-content">
     <div class="cat-des">
       {{ collection.description  }}
     </div>
@@ -11,7 +10,7 @@
       {% render 'product-api-collection'%}
     </div>
     
-  </div>
+  
 </div>
 {% endif %}
     {% endif  %}
