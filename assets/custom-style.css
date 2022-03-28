@@ -716,7 +716,7 @@ div#collection-desc-body span {
 
 }
 @media (min-width: 992px) and (max-width: 1199px) {
- div#collection-side-body {
+ .collection-desc-content {
     
     grid-template-columns: 3fr 2fr;
     grid-gap: 16px;
