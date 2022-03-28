@@ -596,7 +596,11 @@ div#api_info span {
   display:none;
 }
 /***************************************/
-
+div#collection-disp {
+    padding: 8px;
+    border: 3px dotted;
+    border-color: #ddd;
+}
 div#collection-side-body {
     display:grid;
     grid-template-areas:
