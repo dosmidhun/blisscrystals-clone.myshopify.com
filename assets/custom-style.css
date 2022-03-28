@@ -596,6 +596,10 @@ div#api_info span {
   display:none;
 }
 /***************************************/
+#collection-display.Yellow #collection-name h4,#collection-display.Yellow #collection-description h6{
+  color:#d88b12;
+}
+
 .product-api-collection div#collection-display {
     padding: 8px;
     border: 3px dotted;
