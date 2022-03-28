@@ -600,6 +600,18 @@ div#api_info span {
     padding: 8px;
     border: 3px dotted;
     border-color: #ddd;
+  position:relative;
+  
+}
+p.decorate {
+    position: absolute;
+    transform: rotate(323deg);
+    right: 20%;
+    font-family: Great Vibes,cursive;
+    top: 54%;
+    font-size: 32px;
+    z-index: -1;
+    color: #c9c9c9;
 }
 div#collection-side-body {
     display:grid;
