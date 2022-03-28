@@ -716,7 +716,11 @@ div#collection-desc-body span {
 
 }
 @media (min-width: 992px) and (max-width: 1199px) {
- 
+ div#collection-side-body {
+    
+    grid-template-columns: 3fr 2fr;
+    grid-gap: 16px;
+}
 #shopify-section-navigation .wrapper-navigation .wrapper-right { top: 20px; }
 #shopify-section-header .header-wrapper .logo img { max-height: 50px; }
 .hd-option { display: none; }
@@ -760,7 +764,11 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-
+div#collection-side-body {
+    
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+}
 #shopify-section-navigation .wrapper-navigation .wrapper-right { top: 20px; }
 #shopify-section-header .header-wrapper .logo img { max-height: 50px; }
 .hd-option { display: none; }
