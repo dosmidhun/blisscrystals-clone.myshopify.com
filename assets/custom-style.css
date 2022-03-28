@@ -628,13 +628,15 @@ div#collection-side-body {
 #collection-side-body div#collection-name h4{
     font-family: Great Vibes,cursive;
     text-align: center;
-    font-size: 40px;
+    font-size: 36px;
     margin-bottom: 0;
 }
 
 #collection-side-body div#collection-description h6{
     font-style: italic;
     margin-bottom: 0;
+  font-size: 16px;
+    line-height: 18px;
 }
 
 
