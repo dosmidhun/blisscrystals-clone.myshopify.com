@@ -1,6 +1,12 @@
+{% if collection %}
+{% assign product_collection = collection %}
+{% else %}
+{% assign product_collection = product.collections.first %}
+{% endif %}
+
 <div class="product-api-lookbook">
-    <div id="collection-list"> {% for collection in product.collections %}
-        <input type="hidden" value='{{ collection.url }}'> {% endfor %} </div>
+    <div id="collection-list"> 
+        <input type="hidden" value='{{ product_collection.url }}'>  </div>
     <div id="collection-display" class="loading">
         <div id="collection-body">
 <!--             <div id="collection-image1"></div>
