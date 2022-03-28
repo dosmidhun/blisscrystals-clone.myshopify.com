@@ -612,6 +612,8 @@ div#collection-side-body {
 
 #collection-side-body div#collection-image1 {
     grid-area:image;
+    align-content: center;
+    display: grid;
 }
 
 #collection-side-body div#collection-name-body {
