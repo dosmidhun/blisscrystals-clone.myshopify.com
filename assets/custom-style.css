@@ -603,6 +603,7 @@ div#collection-side-body {
         'image name'
         'image body';
     grid-template-columns: 1fr 2fr;
+      grid-gap: 16px;
 }
 
 .collection-desc-content {
@@ -622,7 +623,7 @@ div#collection-side-body {
 
 #collection-side-body div#collection-desc-body {
     grid-area:body;
-    margin-top: 12px;
+  
 }
 
 #collection-side-body div#collection-name h4{
