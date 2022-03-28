@@ -831,6 +831,10 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 }
 
 @media (max-width: 767px) {
+  .collection-desc-content {
+    display: grid;
+    grid-template-columns: 1fr;
+}
 div#collection-body {display:block!important;}
 #collection-body   div#collection-name h4 {
    font-size: 50px;
