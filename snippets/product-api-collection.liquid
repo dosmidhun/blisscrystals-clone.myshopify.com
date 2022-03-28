@@ -110,6 +110,7 @@
                         colours = res.data.colors;
                         var htmlvalcolors = '<h6 class="api_colors">Colors: ';
                         colours.forEach(function (item, index) {
+                          $('#collection-display').addClass(item.name);
                             if (index < colours.length - 1) {
                                 htmlvalcolors += '<span>' + item.name + ', </span>';
                             }
