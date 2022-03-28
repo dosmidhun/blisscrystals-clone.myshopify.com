@@ -9,8 +9,8 @@
         <input type="hidden" value='{{ product_collection.url }}'>  </div>
     <div id="collection-display" class="loading">
         <div id="collection-side-body">
-<!--             <div id="collection-image1"></div>
-            <div id="collection-image2"></div> -->
+       <div id="collection-image1"></div>
+ <!--                 <div id="collection-image2"></div> -->
             
             <div id="collection-name-body">
                 <div id="collection-name"></div>
@@ -18,7 +18,7 @@
             </div>
             <div id="collection-desc-body"> </div>
 
-          <div id="collection-image3"></div>
+        
         </div>
     </div>
 </div>
@@ -51,10 +51,10 @@
                     for (var key in images) {
                         if (images.hasOwnProperty(key)) {
                             var val = images[key];
-//                             if (key == 1) {
-//                                 htmlvalimage1 += '<img src="https://blisscrystalslearn.com/storage/' + val + '">';
-//                                 $('#collection-image1').append(htmlvalimage1);
-//                             }
+                            if (key == 1) {
+                                htmlvalimage1 += '<img src="https://blisscrystalslearn.com/storage/' + val + '">';
+                                $('#collection-image1').append(htmlvalimage1);
+                            }
 //                             else if (key == 2) {
 //                                 htmlvalimage2 += '<img src="https://blisscrystalslearn.com/storage/' + val + '">';
 //                                 $('#collection-image2').append(htmlvalimage2);
@@ -66,7 +66,7 @@
                         }
                     }
 //                     if (c > 2) {
-                        $('#collection-image3').append(htmlvalimagemore);
+//                         $('#collection-image3').append(htmlvalimagemore);
 //                     }
                     if (res.data.origin != null) {
                         var orgin;
