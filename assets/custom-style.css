@@ -595,8 +595,8 @@ div#api_info span {
 #api_info .api_orgin,#api_info .api_colors,#collection-body div#collection-image3{
   display:none;
 }
-/***************************************/
-#collection-display.Yellow #collection-name h4,#collection-display.Yellow #collection-description h6{
+/***************Collection page api************************/
+/#collection-display.Yellow #collection-name h4,#collection-display.Yellow #collection-description h6{
   color:#d88b12;
 }
 
