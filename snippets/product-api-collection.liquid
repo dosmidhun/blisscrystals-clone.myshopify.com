@@ -7,7 +7,7 @@
 <div class="product-api-collection">
     <div id="collection-list"> 
         <input type="hidden" value='{{ product_collection.url }}'>  </div>
-    <div id="collection-display" class="loading" id="additional" style="display:none;"> 
+    <div id="collection-display" class="loading additional" style="display:none;"> 
         <div id="collection-side-body">
        <div id="collection-image1"></div>
  <!--                 <div id="collection-image2"></div> -->
@@ -209,7 +209,7 @@
                                       api_crystal_name=api_val.name;
                                       additional_fetch(api_val.id);
                                       count_va = 0;
-                                		 $('#additional').show();
+                                		 $('.additional').show();
 //                                   }
                               }
                               else {
@@ -220,7 +220,7 @@
                       });
                   });
 //                   if (found) {
-                      $('#additional').show();
+                      $('.additional').show();
                      
 //                   }
                 });
