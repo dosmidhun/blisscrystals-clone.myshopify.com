@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 @font-face {
     font-family: 'bombshell_proregular';
     src: url('bombshell_pro-webfont.eot');
@@ -559,7 +559,7 @@ div#collection-body {
 #collection-body div#collection-desc-body h6 {
     font-size: 24px;
     color: #000;
-  	margin-bottom:1em;
+    margin-bottom:1em;
 }
 
 #collection-body div#collection-desc-body span {
@@ -672,9 +672,9 @@ div#collection-desc-body span {
     font-weight: 400;
 }
 
+/************************* New Banner Style *******************/
 
-
-
+#slide-1541062590307 h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 83px; line-height: 65px; color: #61277b; }
 
 /********************** Responsive *************************/
 
