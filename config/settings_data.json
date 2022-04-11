@@ -2217,7 +2217,7 @@
           "space_on": 0,
           "space_below": 0,
           "dpl_parallax": false,
-          "height_img_dk": "auto",
+          "height_img_dk": "460px",
           "height_img_mb": "auto",
           "video_height": "24.7%",
           "auto_playvideo": false
