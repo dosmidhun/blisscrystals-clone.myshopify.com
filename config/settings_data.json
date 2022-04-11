@@ -2098,9 +2098,33 @@
       "1530680634287": {
         "type": "slideshow",
         "blocks": {
+          "1541062590307": {
+            "type": "image",
+            "settings": {
+              "dpl_slide_img": true,
+              "image_slide": "shopify:\/\/shop_images\/new_banner.jpg",
+              "alignment": "right",
+              "slide_banner_content": true,
+              "sub_header_silde": "",
+              "font_size_sub_header": "12px",
+              "color_sub_header": "#ffffff",
+              "header_silde": "Live Show Host",
+              "font_size_header": "55px",
+              "color_header": "#000000",
+              "image_des": "Featuring Kara\nMondays 4:30 pm Pacific",
+              "font_size_des": "33px",
+              "color_des": "#000000",
+              "button_slide": "Check Details",
+              "link_button": "#",
+              "font_size_button": "13px",
+              "slide_image_bg": "#ddd3f2",
+              "button_slide_bg": "#61287b",
+              "button_slide_border": "#ffffff",
+              "button_slide_color": "#ffffff"
+            }
+          },
           "1541058747096": {
             "type": "image",
-            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/Live-Show-Host-v2.jpg",
@@ -2126,7 +2150,6 @@
           },
           "1544084713789": {
             "type": "image",
-            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/banner.png",
@@ -2152,7 +2175,6 @@
           },
           "86b9265d-085f-4306-984d-8fa90945d408": {
             "type": "image",
-            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/Artboard_1-100.jpg",
@@ -2175,38 +2197,13 @@
               "button_slide_border": "#d41d42",
               "button_slide_color": "#ffffff"
             }
-          },
-          "1541062590307": {
-            "type": "image",
-            "settings": {
-              "dpl_slide_img": true,
-              "image_slide": "shopify:\/\/shop_images\/new_banner.jpg",
-              "alignment": "right",
-              "slide_banner_content": true,
-              "sub_header_silde": "",
-              "font_size_sub_header": "12px",
-              "color_sub_header": "#ffffff",
-              "header_silde": "Live Show Host",
-              "font_size_header": "55px",
-              "color_header": "#000000",
-              "image_des": "Featuring Kara\nMondays 4:30 pm Pacific",
-              "font_size_des": "33px",
-              "color_des": "#000000",
-              "button_slide": "Check Details",
-              "link_button": "#",
-              "font_size_button": "13px",
-              "slide_image_bg": "#ddd3f2",
-              "button_slide_bg": "#61287b",
-              "button_slide_border": "#ffffff",
-              "button_slide_color": "#ffffff"
-            }
           }
         },
         "block_order": [
+          "1541062590307",
           "1541058747096",
           "1544084713789",
-          "86b9265d-085f-4306-984d-8fa90945d408",
-          "1541062590307"
+          "86b9265d-085f-4306-984d-8fa90945d408"
         ],
         "settings": {
           "autoplay": true,
