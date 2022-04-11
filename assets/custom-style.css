@@ -674,7 +674,13 @@ div#collection-desc-body span {
 
 /************************* New Banner Style *******************/
 
-#shopify-section-1530680634287 #slide-1541062590307 h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 83px; line-height: 65px; color: #61277b; }
+#shopify-section-1530680634287 #slide-1541062590307 h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 83px; line-height: 65px; color: #61277b; text-transform: capitalize;}
+#slide-1541062590307 .home-slideshow .caption-wrap .slide-des { font-family: Montserrat; font-weight: 700; line-height: 42px; }
+
+
+
+
+
 
 /********************** Responsive *************************/
 
