@@ -2125,6 +2125,7 @@
           },
           "1541058747096": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/Live-Show-Host-v2.jpg",
@@ -2150,6 +2151,7 @@
           },
           "1544084713789": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/banner.png",
@@ -2175,6 +2177,7 @@
           },
           "86b9265d-085f-4306-984d-8fa90945d408": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/Artboard_1-100.jpg",
