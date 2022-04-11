@@ -2100,6 +2100,7 @@
         "blocks": {
           "1541062590307": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/new_banner.jpg",
