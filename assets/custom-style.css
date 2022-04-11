@@ -676,7 +676,7 @@ div#collection-desc-body span {
 
 #shopify-section-1530680634287 #slide-1541062590307 h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 83px; line-height: 65px; color: #61277b; text-transform: capitalize;}
 #slide-1541062590307 .caption-wrap .slide-des { font-family: Montserrat; font-weight: 700; line-height: 42px; }
-#slide-1541062590307 .button-slide { background: url(https://cdn.shopify.com/s/files/1/0258/2102/0194/files/check_btn.png?v=1649675095) no-repeat 0px 0px; width: 353px; height: 73px; font-size: 33px !important; }
+#slide-1541062590307 .button-slide { background: url(https://cdn.shopify.com/s/files/1/0258/2102/0194/files/check_btn.png?v=1649675095) no-repeat 0px 0px !important; width: 353px;  height: 73px; font-size: 33px !important; border: none !important; min-width: 353px; letter-spacing: 0; padding: 0;  line-height: 70px; text-transform: capitalize; }
 
 
 
