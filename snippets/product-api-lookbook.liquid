@@ -86,6 +86,13 @@
                         htmlvaluses += '<span>' + uses + '</span>';
                         $('#collection-uses').append(htmlvaluses);
                     }
+                   if (res.data.description != null) {
+                        var htmlvaldescription;
+                        description = res.data.description;
+                        var htmlvalproduct_description = '<h6> ';
+                        htmlvalproduct_description += '<span>' + description + '</span>';
+                        $('#collection-product-description').append(htmlvaldescription);
+                    }
                     if (res.data.product_description != null) {
                         var htmlvalproduct_description;
                         product_description = res.data.product_description;
@@ -197,7 +204,7 @@
 //                                   if (count_va == 1) {
                                       console.log("Found", end_crystal_path);
                                       $('#collection-name').append('<h4>' + api_val.name + '</h4>');
-                                      $('#collection-description').append('<h6>"' + api_val.description + '"</h6>');
+                                      $('#collection-description').append('<h6>"' + api_val.sub_title + '"</h6>');
                                     	$('#additional-a').text('Learn about '+api_val.name);
                                       found = 1;
                                       api_crystal_name=api_val.name;
