@@ -682,7 +682,7 @@ div#collection-desc-body span {
 .blog-page .blog-list { margin: 0; display: table; width: 100%; }
 .blog-page .blog-list li { border: none !important; width: 30.33%; float: left; vertical-align: top;  margin: 0 17px; margin-bottom: 34px;}
 .blog-page .article-title {  min-height: 72px; }
-.blog-page .blog_author {  font-size: 14px; min-height: 44px; } 
+.blog-page .blog_author {  font-size: 14px; margin-bottom: 10px;} 
 .blog-page .article-excerpt .des {  overflow: hidden; text-overflow: ellipsis;  display: -webkit-box; -webkit-line-clamp: 1; /* number of lines to show */ -webkit-box-orient: vertical; }
 .blog-page .blog-list li+li { padding-top: 0; }
 .blog-page .article-img { margin-bottom: 25px; }
