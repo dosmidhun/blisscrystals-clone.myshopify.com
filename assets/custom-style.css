@@ -679,6 +679,11 @@ div#collection-desc-body span {
 #slide-1541062590307 .button-slide { background: url(https://cdn.shopify.com/s/files/1/0258/2102/0194/files/check_btn.png?v=1649675095) no-repeat 0px 0px !important; width: 353px;  height: 73px; font-size: 33px !important; border: none !important; min-width: 353px; letter-spacing: 0; padding: 0;  line-height: 70px; text-transform: capitalize; }
 #slide-1541062590307 .caption-wrap .button-slide:hover { color: #aa7115!important; }
 
+.blog-page .blog-list { margin: 0; display: table; width: 100%; }
+.blog-page .blog-list li { border: none !important; width: 30.33%; float: left; vertical-align: top;  margin: 0 17px; margin-bottom: 34px;}
+.blog-page .article-title {  min-height: 72px; }
+.blog-page .blog_author {  font-size: 14px; min-height: 44px; }
+.blog-page .article-details .article-img { width: 354px; }
 
 
 
