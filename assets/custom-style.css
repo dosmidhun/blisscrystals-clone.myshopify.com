@@ -845,9 +845,9 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 #shopify-section-1530680634287 #slide-1541062590307 h2 { line-height: 32px; }
 .home-slideshow .slick-dots li {  margin: 0 2px!important; }
 .blog_outer .col-main.col-lg-9 { max-width: 100%; flex: 0 0 100%; }
-.blog-page .blog-list li { width: 29.33%; }
-
-
+.blog-page .blog-list li { width: 28.33%; }
+.blog-page .article-title { font-size: 19px; line-height: 25px; }
+.blog-page .article-title { min-height: 55px; }
 
 }
 
