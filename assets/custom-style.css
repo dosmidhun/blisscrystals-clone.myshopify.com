@@ -684,7 +684,7 @@ div#collection-desc-body span {
 .blog-page .article-title {  min-height: 72px; }
 .blog-page .blog_author {  font-size: 14px; min-height: 44px; }
 .blog-page .article-details .article-img { width: 354px; }
-
+.blog-page .article-excerpt .des {  overflow: hidden; text-overflow: ellipsis;  display: -webkit-box; -webkit-line-clamp: 1; /* number of lines to show */ -webkit-box-orient: vertical; }
 
 
 /********************** Responsive *************************/
