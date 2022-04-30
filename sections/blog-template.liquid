@@ -29,6 +29,13 @@
 
     {% for article in blog.articles %}
     <li{% if section.settings.layout == 'grid' %} class="col-md-6 col-xl-{{ blog_grid }}"{% endif %}>
+      {% if article.image %}
+        {% assign image_alt = article.title | escape %}
+        <div class="article-img">
+          {{ article | img_url: '1024x1024' | img_tag: image_alt, 'article__image' | link_to: article.url }}
+        </div>
+        {% endif %}
+      
       <h3 class="article-title">
         <a href="{{ article.url }}">
           {% render 'multilang' with article.title %}
@@ -76,12 +83,7 @@
       </div> 
 
       <div class="article-details">
-        {% if article.image %}
-        {% assign image_alt = article.title | escape %}
-        <div class="article-img">
-          {{ article | img_url: '1024x1024' | img_tag: image_alt, 'article__image' | link_to: article.url }}
-        </div>
-        {% endif %}
+        
 
         <div class="rte article-excerpt">
           <div class="des">
