@@ -1767,7 +1767,7 @@
           "1532933909190"
         ],
         "settings": {
-          "display_sidebar_blog_page": true,
+          "display_sidebar_blog_page": false,
           "show_sidebar": "left",
           "sidebar_recent_art": true,
           "sidebar_blog_tags": false,
