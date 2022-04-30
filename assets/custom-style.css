@@ -992,7 +992,7 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 #slideshow-1530680634287 #slide-1541062590307 .button-slide { background: url(https://cdn.shopify.com/s/files/1/0258/2102/0194/files/check_btn.png?v=1649675095) no-repeat 0px 0px !important;
     width: 190px; height: 40px; font-size: 17px !important; border: none !important;  min-width: 190px; letter-spacing: 0; padding: 0; line-height: 39px; text-transform: capitalize;  background-size: 190px !important; }
 .blog_outer .col-main.col-lg-9 { max-width: 100%; flex: 0 0 100%; }
-.blog-page .blog-list li { width: 100%; }
+.blog-page .blog-list li { width: 100%; margin: 0;}
 .blog-page .article-title { font-size: 19px; line-height: 25px; }
 .blog-page .article-title { min-height: inherit; }
 
