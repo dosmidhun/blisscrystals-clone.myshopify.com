@@ -685,6 +685,13 @@ div#collection-desc-body span {
 .blog-page .blog_author {  font-size: 14px; min-height: 44px; } 
 .blog-page .article-excerpt .des {  overflow: hidden; text-overflow: ellipsis;  display: -webkit-box; -webkit-line-clamp: 1; /* number of lines to show */ -webkit-box-orient: vertical; }
 .blog-page .blog-list li+li { padding-top: 0; }
+.blog-page .article-img { margin-bottom: 25px; }
+
+
+
+
+
+
 
 /********************** Responsive *************************/
 
