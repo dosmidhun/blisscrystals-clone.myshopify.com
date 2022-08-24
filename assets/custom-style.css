@@ -687,7 +687,10 @@ div#collection-desc-body span {
 .blog-page .blog-list li+li { padding-top: 0; }
 .blog-page .article-img { margin-bottom: 25px; }
 
+/******************** New Edits ***************************/
 
+.free_shipping_sec { background: #cface6; text-align: center; }
+.free_shipping_sec p { text-transform: uppercase; color: #fff; font-family: 'Mulish', sans-serif; text-transform: uppercase; letter-spacing: 4px; }
 
 
 
