@@ -2126,6 +2126,7 @@
           },
           "1541058747096": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/Live-Show-Host-v2.jpg",
@@ -2151,6 +2152,7 @@
           },
           "1544084713789": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/banner.png",
@@ -2176,6 +2178,7 @@
           },
           "86b9265d-085f-4306-984d-8fa90945d408": {
             "type": "image",
+            "disabled": true,
             "settings": {
               "dpl_slide_img": true,
               "image_slide": "shopify:\/\/shop_images\/Artboard_1-100.jpg",
@@ -2198,13 +2201,39 @@
               "button_slide_border": "#d41d42",
               "button_slide_color": "#ffffff"
             }
+          },
+          "ea06d46d-9eca-4a1a-ba80-590873aef958": {
+            "type": "image",
+            "settings": {
+              "dpl_slide_img": true,
+              "image_slide": "shopify:\/\/shop_images\/Bracelet_Sale_25_off.png",
+              "alignment": "left",
+              "slide_banner_content": false,
+              "sub_header_silde": "Soliquem Duscipitor",
+              "font_size_sub_header": "12px",
+              "color_sub_header": "#000",
+              "header_silde": "Soliquem Duscipitor",
+              "font_size_header": "48px",
+              "color_header": "#000",
+              "image_des": "",
+              "font_size_des": "12px",
+              "color_des": "#000",
+              "button_slide": "Shop Now",
+              "link_button": "",
+              "font_size_button": "14px",
+              "slide_image_bg": "#ffffff",
+              "button_slide_bg": "#d41d42",
+              "button_slide_border": "#d41d42",
+              "button_slide_color": "#fff"
+            }
           }
         },
         "block_order": [
           "1541062590307",
           "1541058747096",
           "1544084713789",
-          "86b9265d-085f-4306-984d-8fa90945d408"
+          "86b9265d-085f-4306-984d-8fa90945d408",
+          "ea06d46d-9eca-4a1a-ba80-590873aef958"
         ],
         "settings": {
           "autoplay": true,
