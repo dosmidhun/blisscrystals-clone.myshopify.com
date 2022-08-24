@@ -690,7 +690,7 @@ div#collection-desc-body span {
 /******************** New Edits ***************************/
 
 .free_shipping_sec { background: #cface6; text-align: center; }
-.free_shipping_sec p { text-transform: uppercase; color: #fff; font-family: 'Mulish', sans-serif; text-transform: uppercase; letter-spacing: 4px; }
+.free_shipping_sec p { text-transform: uppercase; color: #fff; font-family: 'Mulish', sans-serif; text-transform: uppercase; letter-spacing: 4px; padding: 10px 0;}
 
 
 
