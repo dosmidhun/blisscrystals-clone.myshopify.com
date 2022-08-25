@@ -694,7 +694,7 @@ div#collection-desc-body span {
 .feature-columns .widget-title h3:before, .feature-columns .widget-title h3:after { display: none; }
 #shopify-section-166140731253fb3000 { padding-top: 100px; }
 .feature-columns .widget-title h3 { color: #8241b8; color: #8241b8; letter-spacing: 5px; font-family: Mulish;}
-
+.feature-columns .grid { text-align: center; }
 
 /********************** Responsive *************************/
 
