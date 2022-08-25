@@ -8,7 +8,7 @@
         <div class="" data-row="5" data-rowtb="4" data-rowtblg="3" data-rowbm="2">
           {% for block in section.blocks %}
           <div id="brand-{{ block.id }}" class="item">
-            <a href="{{ block.settings.link }}">
+            <a class="btn" href="{{ block.settings.link }}">
               {% if block.settings.image != blank %}       
                 {{ block.settings.title }}
               {% endif %}
