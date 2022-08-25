@@ -3418,6 +3418,17 @@
               "button_label": "",
               "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=QUARTZ%20CRYSTAL"
             }
+          },
+          "3450ff9f-4ab1-47ff-bef7-f5ae08467347": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img17.png",
+              "title": "Bracelets",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=BRACELETS"
+            }
           }
         },
         "block_order": [
@@ -3430,7 +3441,8 @@
           "59afc10f-59d0-4f08-884a-fc94458653c8",
           "d4df9b95-382c-471c-813f-5c4e3d29ebc4",
           "422c4128-8138-4043-be07-a0407d840b03",
-          "7b2ca3dc-ba48-4c98-9f9f-072f21f726c2"
+          "7b2ca3dc-ba48-4c98-9f9f-072f21f726c2",
+          "3450ff9f-4ab1-47ff-bef7-f5ae08467347"
         ],
         "settings": {
           "title": "Essentials",
