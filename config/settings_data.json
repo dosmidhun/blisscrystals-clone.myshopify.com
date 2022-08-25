@@ -3270,11 +3270,35 @@
               "title": "Jewelry",
               "link": "https:\/\/blisscrystals.com\/collections\/healing-crystal-jewelry"
             }
+          },
+          "b1e40d02-2c37-49e5-97e0-6c888e6401c2": {
+            "type": "image",
+            "settings": {
+              "title": "On Sale",
+              "link": "https:\/\/blisscrystals.com\/collections\/sale"
+            }
+          },
+          "358e798c-50fc-4466-b155-dd515f624ef2": {
+            "type": "image",
+            "settings": {
+              "title": "Learn",
+              "link": "#"
+            }
+          },
+          "3a68bc45-2d73-49fb-8732-8f287930c01d": {
+            "type": "image",
+            "settings": {
+              "title": "Shop All",
+              "link": "https:\/\/blisscrystals.com\/collections"
+            }
           }
         },
         "block_order": [
           "08953ba9-4397-46bf-a134-8ad5e7856f6a",
-          "d62b102a-0642-423c-a80a-09f3540e0c84"
+          "d62b102a-0642-423c-a80a-09f3540e0c84",
+          "b1e40d02-2c37-49e5-97e0-6c888e6401c2",
+          "358e798c-50fc-4466-b155-dd515f624ef2",
+          "3a68bc45-2d73-49fb-8732-8f287930c01d"
         ],
         "settings": {
           "space_on": 0,
