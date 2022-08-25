@@ -701,6 +701,14 @@ div#collection-desc-body span {
 .home-button-wrapper .item { display: inline-block; text-align: center; margin: 0 30px; margin-bottom: 30px;}
 .home-button-wrapper .item .btn { display: inline-block; text-transform: uppercase; color: #fff; font-family: 'Mulish', sans-serif; text-transform: uppercase; letter-spacing: 4px; background: #6309ab; border-radius: 36px; width: 298px; height: 60px; line-height: 60px; padding: 0 15px;}
 #section-1661422609b84604e6 { padding-top: 50px; }
+.home_button_outer { text-align: center; }
+
+
+
+
+
+
+
 
 /********************** Responsive *************************/
 
