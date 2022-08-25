@@ -3187,7 +3187,8 @@
             "type": "text_block",
             "settings": {
               "enable_image": true,
-              "title": "Add a title or tagline",
+              "image": "shopify:\/\/shop_images\/img2_246c103b-4c6c-497c-9eca-d0b390560953.png",
+              "title": "Virgo Gifts",
               "text": "",
               "button_label": "",
               "button_link": ""
