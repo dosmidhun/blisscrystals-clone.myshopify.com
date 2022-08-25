@@ -3374,6 +3374,17 @@
               "button_label": "",
               "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=points"
             }
+          },
+          "59afc10f-59d0-4f08-884a-fc94458653c8": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img13.png",
+              "title": "Sage",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=SAGE%20"
+            }
           }
         },
         "block_order": [
@@ -3382,7 +3393,8 @@
           "166143146225f3e90c-2",
           "00fa2c02-f828-4aa1-8a13-b56c4c3e3729",
           "1fa62029-50cc-48dd-99ef-07e94657d3e0",
-          "9b4d7438-2d88-4fe1-907a-46df91e59001"
+          "9b4d7438-2d88-4fe1-907a-46df91e59001",
+          "59afc10f-59d0-4f08-884a-fc94458653c8"
         ],
         "settings": {
           "title": "Essentials",
