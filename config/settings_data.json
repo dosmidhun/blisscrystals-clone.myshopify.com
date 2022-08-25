@@ -3341,12 +3341,24 @@
               "button_label": "",
               "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=palm"
             }
+          },
+          "00fa2c02-f828-4aa1-8a13-b56c4c3e3729": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img10.png",
+              "title": "Info Cards",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=crystal%20information%20card%20double%20sided"
+            }
           }
         },
         "block_order": [
           "166143146225f3e90c-0",
           "166143146225f3e90c-1",
-          "166143146225f3e90c-2"
+          "166143146225f3e90c-2",
+          "00fa2c02-f828-4aa1-8a13-b56c4c3e3729"
         ],
         "settings": {
           "title": "Essentials",
