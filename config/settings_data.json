@@ -2211,20 +2211,20 @@
               "slide_banner_content": false,
               "sub_header_silde": "Soliquem Duscipitor",
               "font_size_sub_header": "12px",
-              "color_sub_header": "#000",
+              "color_sub_header": "#000000",
               "header_silde": "Soliquem Duscipitor",
               "font_size_header": "48px",
-              "color_header": "#000",
+              "color_header": "#000000",
               "image_des": "",
               "font_size_des": "12px",
-              "color_des": "#000",
+              "color_des": "#000000",
               "button_slide": "Shop Now",
               "link_button": "",
               "font_size_button": "14px",
               "slide_image_bg": "#ffffff",
               "button_slide_bg": "#d41d42",
               "button_slide_border": "#d41d42",
-              "button_slide_color": "#fff"
+              "button_slide_color": "#ffffff"
             }
           }
         },
@@ -2316,6 +2316,7 @@
       },
       "1541066702550": {
         "type": "homepage-banner-top",
+        "disabled": true,
         "blocks": {
           "1547113259876": {
             "type": "banner",
@@ -2391,6 +2392,7 @@
       },
       "1541141219661": {
         "type": "homepage-banner-bottom",
+        "disabled": true,
         "settings": {
           "show_banner_bottom": false,
           "space_on": 15,
@@ -2402,6 +2404,7 @@
       },
       "1541383455903": {
         "type": "homepage-new-products",
+        "disabled": true,
         "settings": {
           "show_slider_new_products": true,
           "space_on": 0,
@@ -2430,6 +2433,7 @@
       },
       "1541391493814": {
         "type": "homepage-weekly-special",
+        "disabled": true,
         "blocks": {
           "1547536770610": {
             "type": "banner",
@@ -2859,6 +2863,7 @@
       },
       "1547174112052": {
         "type": "homepage-custom-slider",
+        "disabled": true,
         "blocks": {
           "1547174112052-0": {
             "type": "banner",
@@ -3110,6 +3115,7 @@
       },
       "163300015727e16e00": {
         "type": "homepage-new-products",
+        "disabled": true,
         "settings": {
           "show_slider_new_products": true,
           "space_on": 0,
@@ -3142,6 +3148,7 @@
       },
       "16338974211baf596f": {
         "type": "instafeed",
+        "disabled": true,
         "settings": {
           "heading_font": "muli_n4",
           "show_instagram": true,
