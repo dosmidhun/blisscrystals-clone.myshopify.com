@@ -3168,6 +3168,51 @@
         "type": "cmsprofooter",
         "settings": {
         }
+      },
+      "166140731253fb3000": {
+        "type": "feature-columns",
+        "blocks": {
+          "166140731253fb3000-0": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img1_1a6a06cb-7aa8-4c62-99b0-2a4ea052d477.png",
+              "title": "Bliss Live Show App",
+              "text": "",
+              "button_label": "",
+              "button_link": ""
+            }
+          },
+          "166140731253fb3000-1": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "title": "Add a title or tagline",
+              "text": "",
+              "button_label": "",
+              "button_link": ""
+            }
+          },
+          "166140731253fb3000-2": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "title": "Add a title or tagline",
+              "text": "",
+              "button_label": "",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "166140731253fb3000-0",
+          "166140731253fb3000-1",
+          "166140731253fb3000-2"
+        ],
+        "settings": {
+          "title": "Trending",
+          "align_text": "center"
+        }
       }
     },
     "content_for_index": [
@@ -3179,7 +3224,8 @@
       "1541386254961",
       "1541141219661",
       "1541391493814",
-      "16338974211baf596f"
+      "16338974211baf596f",
+      "166140731253fb3000"
     ]
   },
   "presets": {
