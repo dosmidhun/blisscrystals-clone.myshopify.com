@@ -3429,6 +3429,28 @@
               "button_label": "",
               "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=BRACELETS"
             }
+          },
+          "b8c42b4b-6685-42af-82c2-c1d6f90a5b1f": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img18.png",
+              "title": "Shungite",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=SHUNGITE"
+            }
+          },
+          "8c96d6de-d750-43b9-9ab4-59a80e2ea25d": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img19.png",
+              "title": "Carvings",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=CARVING"
+            }
           }
         },
         "block_order": [
@@ -3442,7 +3464,9 @@
           "d4df9b95-382c-471c-813f-5c4e3d29ebc4",
           "422c4128-8138-4043-be07-a0407d840b03",
           "7b2ca3dc-ba48-4c98-9f9f-072f21f726c2",
-          "3450ff9f-4ab1-47ff-bef7-f5ae08467347"
+          "3450ff9f-4ab1-47ff-bef7-f5ae08467347",
+          "b8c42b4b-6685-42af-82c2-c1d6f90a5b1f",
+          "8c96d6de-d750-43b9-9ab4-59a80e2ea25d"
         ],
         "settings": {
           "title": "Essentials",
