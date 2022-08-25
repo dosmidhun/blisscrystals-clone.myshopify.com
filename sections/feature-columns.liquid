@@ -32,7 +32,9 @@
                 {%- assign img_url = block.settings.image | img_url: 'master' -%}
                 <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
                     <div>
+                      <a href="{{ block.settings.button_link }}" class="">
                         <img id="{{ img_id }}" class="feature-row__image lazyload" src="{{ block.settings.image | img_url: '300x300' }}" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ block.settings.image.aspect_ratio }}" data-sizes="auto" alt="{{ block.settings.image.alt | escape }}">
+                    </a>
                     </div>
                 </div>
                 <noscript>
@@ -47,7 +49,9 @@
                 {% endif %}
                 {% endif %}
                 {% if block.settings.title != blank %}
-                <h3 class="h4">{{ block.settings.title | escape }}</h3>
+                <a href="{{ block.settings.button_link }}" class="">
+                    <h3 class="h4">{{ block.settings.title | escape }}</h3>
+                </a>
                 {% endif %}
                 {% if block.settings.text != blank %}
                 <div class="rte-setting">{{ block.settings.text }}</div>
