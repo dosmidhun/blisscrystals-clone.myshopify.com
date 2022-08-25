@@ -698,9 +698,9 @@ div#collection-desc-body span {
 .feature-columns .grid img { width: 100%; }
 .feature-columns .grid .grid__item h3 { color: #8241b8; letter-spacing: 3px; font-family: Mulish; text-transform: uppercase; padding: 0 50px; font-size: 23px; font-weight: 700; margin-top: 18px;}
 .feature-columns .grid .grid__item { padding: 0 22px; }
-.home-button-wrapper .item { display: inline-block; text-align: center;}
+.home-button-wrapper .item { display: inline-block; text-align: center; margin: 0 30px; margin-bottom: 30px;}
 .home-button-wrapper .item .btn { display: inline-block; text-transform: uppercase; color: #fff; font-family: 'Mulish', sans-serif; text-transform: uppercase; letter-spacing: 4px; background: #6309ab; border-radius: 36px; width: 298px; height: 60px; line-height: 60px; padding: 0 15px;}
-
+#section-1661422609b84604e6 { padding-top: 50px; }
 
 /********************** Responsive *************************/
 
