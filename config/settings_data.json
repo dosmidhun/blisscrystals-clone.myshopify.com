@@ -3207,13 +3207,35 @@
           },
           "b66378f9-3527-4e40-80a7-423c6cd2666b": {
             "type": "text_block",
-            "disabled": true,
             "settings": {
               "enable_image": true,
-              "title": "Add a title or tagline",
-              "text": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.<\/p>",
+              "image": "shopify:\/\/shop_images\/img4.png",
+              "title": "Pendants",
+              "text": "",
               "button_label": "",
-              "button_link": ""
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=pendant&tab=products&page=3"
+            }
+          },
+          "ed3f16d5-b192-40e3-8bc3-e7b72b94cb74": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img5.png",
+              "title": "Intention Sets",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=crystal%20companion"
+            }
+          },
+          "3832862e-6ae6-4f2e-a7f5-29d7b4134ef5": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img6.png",
+              "title": "Tumbled Stones",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=tumbled%20stones"
             }
           }
         },
@@ -3221,7 +3243,9 @@
           "166140731253fb3000-0",
           "166140731253fb3000-1",
           "166140731253fb3000-2",
-          "b66378f9-3527-4e40-80a7-423c6cd2666b"
+          "b66378f9-3527-4e40-80a7-423c6cd2666b",
+          "ed3f16d5-b192-40e3-8bc3-e7b72b94cb74",
+          "3832862e-6ae6-4f2e-a7f5-29d7b4134ef5"
         ],
         "settings": {
           "title": "Trending",
