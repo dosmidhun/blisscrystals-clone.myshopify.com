@@ -698,7 +698,7 @@ div#collection-desc-body span {
 .feature-columns .grid img { width: 100%; }
 .feature-columns .grid .grid__item h3 { color: #8241b8; letter-spacing: 3px; font-family: Mulish; text-transform: uppercase; padding: 0 50px; font-size: 23px; font-weight: 700; margin-top: 18px;}
 .feature-columns .grid .grid__item { padding: 0 22px; }
-
+.home-button-wrapper .item { display: inline-block; }
 
 
 
