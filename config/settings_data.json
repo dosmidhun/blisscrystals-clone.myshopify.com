@@ -1135,6 +1135,8 @@
       "header": {
         "type": "header",
         "settings": {
+          "display_free_shipping": true,
+          "header_free_ship": "Free Shipping Orders $75+",
           "bg_header_color": "#ffffff",
           "header_text_color": "#646464",
           "display_header_text_order": false,
@@ -3255,6 +3257,7 @@
     },
     "content_for_index": [
       "1530680634287",
+      "166140731253fb3000",
       "1541066702550",
       "1547174112052",
       "1541383455903",
@@ -3262,8 +3265,7 @@
       "1541386254961",
       "1541141219661",
       "1541391493814",
-      "16338974211baf596f",
-      "166140731253fb3000"
+      "16338974211baf596f"
     ]
   },
   "presets": {
