@@ -78,15 +78,18 @@
   }
 </style>
 
+{% if section.settings.display_free_shipping %}
 <div class="free_shipping_sec">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <p>Free Shipping Orders $75+</p>
+                <p>{{ section.settings.header_free_ship }}</p>
             </div>
         </div>
     </div> 
 </div>
+{% endif %}
+
 <header class="site-header" role="banner">
   <div class="header-wrapper">
     <div class="container">
@@ -206,6 +209,17 @@
   {
     "name": "Header",
     "settings": [
+    {
+      "type": "checkbox",
+      "id": "display_free_shipping",
+      "label": "Display Free Shipping",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "header_free_ship",
+      "label": "Free Shipping" 
+    },
     {
       "type": "color",
       "id": "bg_header_color",
