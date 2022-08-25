@@ -3263,10 +3263,18 @@
               "title": "Crystals A-z",
               "link": "https:\/\/blisscrystals.com\/pages\/crystal-search-a-z"
             }
+          },
+          "d62b102a-0642-423c-a80a-09f3540e0c84": {
+            "type": "image",
+            "settings": {
+              "title": "Jewelry",
+              "link": "https:\/\/blisscrystals.com\/collections\/healing-crystal-jewelry"
+            }
           }
         },
         "block_order": [
-          "08953ba9-4397-46bf-a134-8ad5e7856f6a"
+          "08953ba9-4397-46bf-a134-8ad5e7856f6a",
+          "d62b102a-0642-423c-a80a-09f3540e0c84"
         ],
         "settings": {
           "space_on": 0,
