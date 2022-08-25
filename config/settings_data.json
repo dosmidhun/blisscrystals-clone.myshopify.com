@@ -3352,13 +3352,37 @@
               "button_label": "",
               "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=crystal%20information%20card%20double%20sided"
             }
+          },
+          "1fa62029-50cc-48dd-99ef-07e94657d3e0": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img11.png",
+              "title": "Moldavite",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=MOLDAVITE"
+            }
+          },
+          "9b4d7438-2d88-4fe1-907a-46df91e59001": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img12.png",
+              "title": "Points",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=points"
+            }
           }
         },
         "block_order": [
           "166143146225f3e90c-0",
           "166143146225f3e90c-1",
           "166143146225f3e90c-2",
-          "00fa2c02-f828-4aa1-8a13-b56c4c3e3729"
+          "00fa2c02-f828-4aa1-8a13-b56c4c3e3729",
+          "1fa62029-50cc-48dd-99ef-07e94657d3e0",
+          "9b4d7438-2d88-4fe1-907a-46df91e59001"
         ],
         "settings": {
           "title": "Essentials",
