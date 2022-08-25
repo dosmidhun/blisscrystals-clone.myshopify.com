@@ -3198,8 +3198,20 @@
             "type": "text_block",
             "settings": {
               "enable_image": true,
-              "title": "Add a title or tagline",
+              "image": "shopify:\/\/shop_images\/img3_e1fc6f85-ae32-4c65-8e11-ce261c0de424.png",
+              "title": "Retail Store",
               "text": "",
+              "button_label": "",
+              "button_link": ""
+            }
+          },
+          "b66378f9-3527-4e40-80a7-423c6cd2666b": {
+            "type": "text_block",
+            "disabled": true,
+            "settings": {
+              "enable_image": true,
+              "title": "Add a title or tagline",
+              "text": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.<\/p>",
               "button_label": "",
               "button_link": ""
             }
@@ -3208,7 +3220,8 @@
         "block_order": [
           "166140731253fb3000-0",
           "166140731253fb3000-1",
-          "166140731253fb3000-2"
+          "166140731253fb3000-2",
+          "b66378f9-3527-4e40-80a7-423c6cd2666b"
         ],
         "settings": {
           "title": "Trending",
