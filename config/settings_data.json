@@ -3335,10 +3335,11 @@
             "type": "text_block",
             "settings": {
               "enable_image": true,
-              "title": "Add a title or tagline",
-              "text": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.<\/p>",
+              "image": "shopify:\/\/shop_images\/img9.png",
+              "title": "Palmstones",
+              "text": "",
               "button_label": "",
-              "button_link": ""
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=palm"
             }
           }
         },
