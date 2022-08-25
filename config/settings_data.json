@@ -3305,6 +3305,51 @@
           "space_below": 25,
           "brands_title": ""
         }
+      },
+      "166143146225f3e90c": {
+        "type": "feature-columns",
+        "blocks": {
+          "166143146225f3e90c-0": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "image": "shopify:\/\/shop_images\/img7.png",
+              "title": "Specimens",
+              "text": "",
+              "button_label": "",
+              "button_link": "https:\/\/blisscrystals.com\/pages\/search-results-page?q=specimen"
+            }
+          },
+          "166143146225f3e90c-1": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "title": "Add a title or tagline",
+              "text": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.<\/p>",
+              "button_label": "",
+              "button_link": ""
+            }
+          },
+          "166143146225f3e90c-2": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": true,
+              "title": "Add a title or tagline",
+              "text": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.<\/p>",
+              "button_label": "",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "166143146225f3e90c-0",
+          "166143146225f3e90c-1",
+          "166143146225f3e90c-2"
+        ],
+        "settings": {
+          "title": "Essentials",
+          "align_text": "center"
+        }
       }
     },
     "content_for_index": [
@@ -3318,7 +3363,8 @@
       "1541386254961",
       "1541141219661",
       "1541391493814",
-      "16338974211baf596f"
+      "16338974211baf596f",
+      "166143146225f3e90c"
     ]
   },
   "presets": {
