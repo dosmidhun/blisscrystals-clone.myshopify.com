@@ -3253,10 +3253,31 @@
           "title": "Trending",
           "align_text": "center"
         }
+      },
+      "1661422609b84604e6": {
+        "type": "home-button-section",
+        "blocks": {
+          "08953ba9-4397-46bf-a134-8ad5e7856f6a": {
+            "type": "image",
+            "settings": {
+              "title": "Crystals A-z",
+              "link": "https:\/\/blisscrystals.com\/pages\/crystal-search-a-z"
+            }
+          }
+        },
+        "block_order": [
+          "08953ba9-4397-46bf-a134-8ad5e7856f6a"
+        ],
+        "settings": {
+          "space_on": 0,
+          "space_below": 25,
+          "brands_title": ""
+        }
       }
     },
     "content_for_index": [
       "1530680634287",
+      "1661422609b84604e6",
       "166140731253fb3000",
       "1541066702550",
       "1547174112052",
