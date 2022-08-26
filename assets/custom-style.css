@@ -1055,5 +1055,9 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 #shopify-section-1530680634287 #slide-1541062590307 .caption-wrap .content .slide-des { margin-bottom: 4px; }
 .free_shipping_sec p { font-size: 12px; }
 .home-button-wrapper .item .btn { font-size: 14px; }
+.feature-columns .grid .grid__item h3 { padding: 0 30px; }
+.feature-columns .grid .grid__item h3 { font-size: 20px; }
+
+
 
 }
