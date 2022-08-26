@@ -807,7 +807,10 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
     grid-template-columns: 1fr 1fr;
     grid-gap: 16px;
 }
-#shopify-section-navigation .wrapper-navigation .wrapper-right { top: 20px; }
+
+
+.site-header { top: 0; }
+#shopify-section-navigation .wrapper-navigation .wrapper-right { top: 25px; }
 #shopify-section-header .header-wrapper .logo img { max-height: 50px; }
 .hd-option { display: none; }
 #shopify-section-header .site-header .header-wrapper { height: inherit; }
