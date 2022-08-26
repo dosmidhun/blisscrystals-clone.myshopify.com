@@ -2406,7 +2406,6 @@
       },
       "1541383455903": {
         "type": "homepage-new-products",
-        "disabled": true,
         "settings": {
           "show_slider_new_products": true,
           "space_on": 0,
@@ -2414,7 +2413,7 @@
           "show_slider_new_collection": "new-product",
           "slider_new_title": "New Products",
           "slider_new_desc_text": "",
-          "slider_new_limit_all": "4",
+          "slider_new_limit_all": "8",
           "display_infinite_scrolling_homepage": true,
           "new_collection_results_per_row": "4"
         }
@@ -3504,13 +3503,13 @@
       "166140731253fb3000",
       "1541066702550",
       "1547174112052",
-      "1541383455903",
       "163300015727e16e00",
       "1541386254961",
       "1541141219661",
       "1541391493814",
       "16338974211baf596f",
-      "166143146225f3e90c"
+      "166143146225f3e90c",
+      "1541383455903"
     ]
   },
   "presets": {
