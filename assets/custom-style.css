@@ -1019,6 +1019,11 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 .blog-page .blog-list li { width: 100%; margin: 0; margin-bottom: 34px;}
 .blog-page .article-title { font-size: 19px; line-height: 25px; }
 .blog-page .article-title { min-height: inherit; }
+.wrapper-navigation .wrapper-right { top: 50px; }
+#shopify-section-header .site-header .header-wrapper { padding: 5px 0; }
+.site-header { top: 44px; }
+.free_shipping_sec { position: fixed; top: 0;  width: 100%; z-index: 999; }
+
 
 
 
