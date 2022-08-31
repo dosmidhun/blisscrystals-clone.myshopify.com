@@ -1048,6 +1048,10 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 .home_button_outer { padding: 0; }
 #section-1661422609b84604e6 { padding-top: 10px; margin-bottom: 0;}
 .widget-title { padding: 0; }
+.feature-columns .grid .grid__item { padding: 0 5px; flex: 0 0 33%;  max-width: 33%; }
+.feature-columns .grid .grid__item h3 { letter-spacing: 1px; padding: 0 5px;  font-size: 16px; font-weight: 700;  margin-top: 5px; line-height: 20px; }
+#shopify-section-166143146225f3e90c {  padding-bottom: 30px; }
+
 
 }
 
