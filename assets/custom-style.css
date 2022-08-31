@@ -889,6 +889,9 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 .blog-page .blog-list li { width: 28.33%; }
 .blog-page .article-title { font-size: 19px; line-height: 25px; }
 .blog-page .article-title { min-height: 55px; }
+.free_shipping_sec p { letter-spacing: 3px; font-size: 13px; }
+
+
 
 }
 
