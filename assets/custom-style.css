@@ -822,9 +822,9 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
 #shopify-section-header .site-header .header-wrapper { padding: 5px 0; }
 .site-header { top: 44px; }
 .free_shipping_sec { position: fixed; top: 0;  width: 100%; z-index: 999; }
-.home-button-wrapper .item .btn { width: 170px; height: 50px; line-height: 47px; padding: 0 15px; font-size: 16px; }
-.home-button-wrapper .item { margin: 0 10px; margin-bottom: 20px;}
-
+.home-button-wrapper .item .btn { width: 136px; height: 50px; line-height: 47px; padding: 0 6px; font-size: 14px; }
+.home-button-wrapper .item { margin: 0 2px; margin-bottom: 20px;}
+.home_button_outer { padding: 0; }
 #shopify-section-header .header-wrapper .logo img { max-height: 50px; }
 .hd-option { display: none; }
 #shopify-section-header .site-header .header-wrapper { height: inherit; }
