@@ -1073,13 +1073,17 @@ html.open-search .site-header .header-wrapper .column-right .header-search .sear
  
 #shopify-section-1530680634287 #slide-1541062590307 .caption-wrap .content h2 { font-size: 15px!important; }
 #shopify-section-1530680634287 #slide-1541062590307 .caption-wrap .content .slide-des { margin-bottom: 4px; }
-.free_shipping_sec p { font-size: 12px; }
+.free_shipping_sec p { font-size: 12px; letter-spacing: 1px;}
 .home-button-wrapper .item .btn { font-size: 10px; height: 40px; line-height: 40px; padding: 0 5px;}
 .feature-columns .grid .grid__item h3 { padding: 0 30px; }
 .feature-columns .grid .grid__item h3 { font-size: 20px; }
 #section-1661422609b84604e6 {  padding-top: 30px; }
 .home-button-wrapper .item { margin-bottom: 10px; width: 30%; }
 #section-1661422609b84604e6 { padding-top: 10px; margin-bottom: 0; }
+#shopify-section-166140731253fb3000 { padding-top: 0; }
+.widget-title { padding: 0px 0 0px; }
+.site-header .header-wrapper>.container .logo img { max-width: 140px; }
+
 
 
 
